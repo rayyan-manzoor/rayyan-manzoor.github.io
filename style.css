@@ -5,7 +5,18 @@
   box-sizing: border-box;
 }
 
-/* ===== Fullscreen Welcome Section ===== */
+/* ===== Base Typography ===== */
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%; /* Prevent iOS text inflation */
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+}
+
+/* ===== Responsive Welcome Section ===== */
 .full-screen {
   height: 100vh;
   width: 100%;
@@ -13,25 +24,48 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 1rem;
   transition: all 0.5s ease;
 }
 
-/* ===== Enhanced Gradients ===== */
+.welcome-content {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== Enhanced Gradients (Unchanged) ===== */
 .light-mode .full-screen {
   background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
   color: #333;
 }
 
 .dark-mode .full-screen {
-  background: linear-gradient(135deg, #0f2027 0%, #2a5470 100%); /* Richer dark gradient */
+  background: linear-gradient(135deg, #0f2027 0%, #2a5470 100%);
   color: white;
 }
 
-/* ===== Clean Toggle Switch ===== */
+/* ===== Responsive Typography ===== */
+#welcomeText {
+  font-size: clamp(2rem, 8vw, 4rem);
+  margin-bottom: 1.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  animation: blinkCursor 0.7s infinite;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  opacity: 0.9;
+}
+
+/* ===== Clean Toggle Switch (Adjusted for Mobile) ===== */
 .theme-switch {
   position: fixed;
-  top: 30px;
-  right: 30px;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
 }
 
 .toggle-label {
@@ -55,7 +89,7 @@
   transition: transform 0.3s ease;
 }
 
-/* Hide the checkbox (but keep it functional) */
+/* Hide the checkbox */
 #themeToggle {
   position: absolute;
   opacity: 0;
@@ -67,15 +101,27 @@
   transform: translateX(30px);
 }
 
-/* Typing Animation (unchanged) */
-#welcomeText {
-  font-size: clamp(2rem, 5vw, 4rem);
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid;
-  animation: blinkCursor 0.7s infinite;
+/* ===== Media Queries ===== */
+@media (min-width: 768px) {
+  /* Tablet/Laptop adjustments */
+  .theme-switch {
+    top: 30px;
+    right: 30px;
+  }
+  
+  .welcome-content {
+    width: 80%;
+  }
 }
 
+@media (min-width: 1024px) {
+  /* Desktop adjustments */
+  .welcome-content {
+    width: 70%;
+  }
+}
+
+/* Cursor Animation (unchanged) */
 @keyframes blinkCursor {
   0%, 100% { border-color: currentColor; }
   50% { border-color: transparent; }
