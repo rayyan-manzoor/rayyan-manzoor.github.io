@@ -2,25 +2,16 @@
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 
-// Set default theme (dark)
+// Set default theme
 const savedTheme = localStorage.getItem('theme') || 'dark';
 body.classList.add(savedTheme + '-mode');
 themeToggle.checked = (savedTheme === 'light');
 
-// Apply correct gradient on load
-updateGradient(savedTheme);
-
-// Toggle theme on switch
+// Toggle function
 themeToggle.addEventListener('change', () => {
-  if (body.classList.contains('dark-mode')) {
-    body.classList.replace('dark-mode', 'light-mode');
-    localStorage.setItem('theme', 'light');
-    updateGradient('light');
-  } else {
-    body.classList.replace('light-mode', 'dark-mode');
-    localStorage.setItem('theme', 'dark');
-    updateGradient('dark');
-  }
+  body.classList.toggle('light-mode');
+  body.classList.toggle('dark-mode');
+  localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
 });
 
 // Typing Animation
@@ -37,15 +28,6 @@ function typeText() {
   } else {
     welcomeText.style.borderRight = "none";
   }
-}
-
-// Helper function to update gradient
-function updateGradient(theme) {
-  const welcomeSection = document.querySelector('.full-screen');
-  welcomeSection.style.background = 
-    theme === 'dark' 
-      ? 'linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)'
-      : 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
 }
 
 typeText();
