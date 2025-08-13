@@ -1,73 +1,21 @@
 /* ===== Light Mode ===== */
 .light-mode {
-  --bg-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-  --text-color: #333333;
+  --welcome-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Soft gray-blue */
+  --text-color: #333333; /* Dark text for readability */
   --portfolio-bg: #f9f9f9;
   --card-bg: #ffffff;
-  --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* ===== Dark Mode ===== */
 .dark-mode {
-  --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  --text-color: #ffffff;
+  --welcome-gradient: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); /* Deep blue-teal */
+  --text-color: #ffffff; /* White text for contrast */
   --portfolio-bg: #121212;
   --card-bg: #1e1e1e;
-  --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* ===== Apply Variables ===== */
-body {
-  transition: all 0.5s ease;
-  font-family: 'Poppins', sans-serif;
-  color: var(--text-color);
-}
-
+/* ===== Apply to Welcome Section ===== */
 .full-screen {
-  background: var(--bg-gradient);
-}
-
-#portfolio {
-  background: var(--portfolio-bg);
-}
-
-.project-card {
-  background: var(--card-bg);
-  box-shadow: var(--card-shadow);
-}
-
-/* ===== Toggle Switch ===== */
-.theme-switch {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-}
-
-.toggle-label {
-  display: inline-block;
-  width: 50px;
-  height: 24px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 50px;
-  position: relative;
-  cursor: pointer;
-}
-
-.toggle-handle {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 20px;
-  height: 20px;
-  background: white;
-  border-radius: 50%;
-  transition: transform 0.3s ease;
-}
-
-#themeToggle:checked + .toggle-label .toggle-handle {
-  transform: translateX(26px);
-}
-
-#themeToggle {
-  display: none;
+  background: var(--welcome-gradient); /* Now changes with theme */
+  color: var(--text-color); /* Text adapts automatically */
 }
