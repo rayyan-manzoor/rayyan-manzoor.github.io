@@ -15,7 +15,7 @@ themeToggle.addEventListener('change', () => {
 });
 
 // Typing Animation
-const text = "Welcome to my portfolio!";
+const text = "Welcome to Rayyan's Portfolio!";
 let index = 0;
 const speed = 100;
 const welcomeText = document.getElementById('welcomeText');
