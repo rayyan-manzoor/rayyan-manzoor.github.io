@@ -1,4 +1,4 @@
-// Theme Toggle Functionality
+// Theme Toggle
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 
@@ -7,7 +7,7 @@ const savedTheme = localStorage.getItem('theme') || 'dark';
 body.classList.add(savedTheme + '-mode');
 themeToggle.checked = (savedTheme === 'light');
 
-// Toggle theme on switch click
+// Toggle theme on switch
 themeToggle.addEventListener('change', () => {
   if (body.classList.contains('dark-mode')) {
     body.classList.replace('dark-mode', 'light-mode');
@@ -18,7 +18,7 @@ themeToggle.addEventListener('change', () => {
   }
 });
 
-// Typing Animation (Original)
+// Typing Animation (Keep original)
 const text = "Welcome to my portfolio!";
 let index = 0;
 const speed = 100;
