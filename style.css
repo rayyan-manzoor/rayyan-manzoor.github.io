@@ -1,60 +1,44 @@
-/* Modern Reset & Base Styles */
+/* ===== Modern Reset ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Full-Screen Welcome Section */
+/* ===== Fullscreen Welcome Section ===== */
 .full-screen {
   height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   text-align: center;
-  transition: all 0.5s ease !important;
+  transition: all 0.5s ease;
 }
 
-/* Gradient Themes */
+/* ===== Enhanced Gradients ===== */
 .light-mode .full-screen {
   background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
   color: #333;
 }
 
 .dark-mode .full-screen {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background: linear-gradient(135deg, #0f2027 0%, #2a5470 100%); /* Richer dark gradient */
   color: white;
 }
 
-/* Typing Animation */
-#welcomeText {
-  font-size: clamp(2rem, 5vw, 4rem); /* Responsive text */
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid;
-  animation: blinkCursor 0.7s steps(1) infinite;
-}
-
-@keyframes blinkCursor {
-  0%, 100% { border-color: currentColor; }
-  50% { border-color: transparent; }
-}
-
-/* Modern Toggle Switch */
+/* ===== Clean Toggle Switch ===== */
 .theme-switch {
   position: fixed;
   top: 30px;
   right: 30px;
-  z-index: 100;
 }
 
 .toggle-label {
   display: inline-block;
   width: 60px;
   height: 30px;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 50px;
   position: relative;
   cursor: pointer;
@@ -71,6 +55,28 @@
   transition: transform 0.3s ease;
 }
 
+/* Hide the checkbox (but keep it functional) */
+#themeToggle {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
 #themeToggle:checked + .toggle-label .toggle-handle {
   transform: translateX(30px);
+}
+
+/* Typing Animation (unchanged) */
+#welcomeText {
+  font-size: clamp(2rem, 5vw, 4rem);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  animation: blinkCursor 0.7s infinite;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { border-color: currentColor; }
+  50% { border-color: transparent; }
 }
