@@ -1,7 +1,14 @@
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* Dark Mode (Default) */
 .dark-mode {
   --bg-gradient: linear-gradient(135deg, #1d2b64, #f8cdda);
-  --text-color: white;
+  --text-color: #ffffff;
   --portfolio-bg: #121212;
   --card-bg: #1e1e1e;
   --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -9,57 +16,125 @@
 
 /* Light Mode */
 .light-mode {
-  --bg-gradient: linear-gradient(135deg, #1d2b64, #f8cdda); /* Keeps your gradient */
-  --text-color: #333;
+  --bg-gradient: linear-gradient(135deg, #1d2b64, #f8cdda);
+  --text-color: #333333;
   --portfolio-bg: #f8f8f8;
-  --card-bg: white;
+  --card-bg: #ffffff;
   --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Apply Variables */
 body {
-  transition: background 0.5s ease, color 0.5s ease;
+  font-family: 'Arial', sans-serif;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
+/* Welcome Section */
 .full-screen {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: var(--bg-gradient);
+  position: relative;
 }
 
 #welcomeText {
   color: var(--text-color);
+  font-size: 3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid var(--text-color);
+  animation: blinkCursor 0.7s steps(1) infinite;
 }
 
+/* Portfolio Section */
 #portfolio {
   background: var(--portfolio-bg);
+  padding: 50px 20px;
+  min-height: 100vh;
+}
+
+.portfolio-section {
+  max-width: 900px;
+  margin: 0 auto 50px;
+  color: var(--text-color);
+}
+
+.projects-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .project-card {
   background: var(--card-bg);
+  padding: 20px;
+  flex: 1 1 200px;
   box-shadow: var(--card-shadow);
+  border-radius: 8px;
 }
 
-/* Toggle Button Styling */
-#themeToggle {
+/* Minimalist Toggle Switch */
+.theme-switch-wrapper {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: var(--text-color);
+  top: 30px;
+  right: 30px;
 }
-#themeToggle {
-  position: fixed; /* Stays in view even when scrolling */
-  top: 20px;
-  right: 20px;
-  z-index: 1000; /* Ensures it's above other elements */
-  background: rgba(0, 0, 0, 0.3);
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-size: 1.5rem;
+
+.theme-switch {
+  display: inline-block;
+  height: 24px;
+  width: 50px;
+  position: relative;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
   cursor: pointer;
-  color: white;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ccc;
+  transition: 0.4s;
+}
+
+.slider.round {
+  border-radius: 24px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background: #1d2b64;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Typing Animation */
+@keyframes blinkCursor {
+  0%, 100% { border-color: var(--text-color); }
+  50% { border-color: transparent; }
 }
