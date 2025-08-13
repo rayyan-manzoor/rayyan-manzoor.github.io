@@ -3,10 +3,28 @@
   position: fixed;
   left: 0;
   right: 0;
-  height: 150px; /* Increased height for smoother fade */
+  height: 150px;
   z-index: 900;
   pointer-events: none;
   transition: all 0.3s ease;
+}
+
+/* Fallback for browsers without backdrop-filter */
+.glass-overlay {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Modern browsers support */
+@supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+  .glass-overlay {
+    background: transparent;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
+
+.top-glass {
+  top: 0;
   -webkit-mask-image: linear-gradient(
     to bottom, 
     rgba(0,0,0,1) 0%, 
@@ -19,12 +37,6 @@
     rgba(0,0,0,1) 70%, 
     rgba(0,0,0,0) 100%
   );
-}
-
-.top-glass {
-  top: 0;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   background: linear-gradient(
     to bottom, 
     rgba(255,255,255,0.4) 0%, 
@@ -44,8 +56,6 @@
 
 .bottom-glass {
   bottom: 0;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   -webkit-mask-image: linear-gradient(
     to top, 
     rgba(0,0,0,1) 0%, 
