@@ -1,3 +1,5 @@
+// Add this at the top of script.js
+console.log("Script loaded!"); 
 // Theme Toggle Functionality
 const themeToggle = document.getElementById("themeToggle");
 const body = document.body;
