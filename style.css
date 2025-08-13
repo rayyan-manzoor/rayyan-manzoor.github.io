@@ -20,7 +20,7 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  height: 150px; /* Increased for smoother fade */
+  height: 80px; /* Increased for smoother fade */
   z-index: 900;
   pointer-events: none;
   transition: all 0.3s ease;
@@ -29,13 +29,13 @@ body {
   -webkit-mask-image: linear-gradient(
     to bottom, 
     rgba(0,0,0,1) 0%, 
-    rgba(0,0,0,1) 70%, 
+    rgba(0,0,0,1) 60%, 
     rgba(0,0,0,0) 100%
   );
   mask-image: linear-gradient(
     to bottom, 
     rgba(0,0,0,1) 0%, 
-    rgba(0,0,0,1) 70%, 
+    rgba(0,0,0,1) 60%, 
     rgba(0,0,0,0) 100%
   );
 }
@@ -54,7 +54,7 @@ body {
   background: linear-gradient(
     to bottom, 
     rgba(255,255,255,0.4) 0%, 
-    rgba(255,255,255,0.1) 70%, 
+    rgba(255,255,255,0.1) 60%, 
     transparent 100%
   );
 }
@@ -63,7 +63,7 @@ body {
   background: linear-gradient(
     to bottom, 
     rgba(0,0,0,0.6) 0%, 
-    rgba(0,0,0,0.2) 70%, 
+    rgba(0,0,0,0.2) 60%, 
     transparent 100%
   );
 }
