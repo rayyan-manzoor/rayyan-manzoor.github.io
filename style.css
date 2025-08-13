@@ -1,11 +1,10 @@
-/* ===== Modern Reset ===== */
+/* ===== Reset & Base Styles ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ===== Base Styles ===== */
 html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
@@ -16,66 +15,44 @@ body {
   line-height: 1.6;
 }
 
-/* ===== Welcome Section ===== */
-.full-screen {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 1rem;
-  transition: all 0.5s ease;
+/* ===== Glass Overlays ===== */
+.glass-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 100px;
+  z-index: 900;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.welcome-content {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
+@supports not (backdrop-filter: blur(10px)) {
+  .glass-overlay {
+    background: rgba(255, 255, 255, 0.8) !important;
+  }
+  .dark-mode .glass-overlay {
+    background: rgba(0, 0, 0, 0.7) !important;
+  }
 }
 
-#welcomeText {
-  font-size: clamp(2rem, 10vw, 3.5rem);
-  line-height: 1.3;
-  max-width: 90vw;
-  margin: 0 auto;
-  padding: 0 5%;
-  white-space: normal;
-  display: inline-block;
-  overflow: hidden;
-  border-right: 3px solid;
-  animation: blinkCursor 0.7s infinite;
+.top-glass {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, transparent 100%);
 }
 
-.subtitle {
-  font-size: clamp(1rem, 3vw, 1.5rem);
-  opacity: 0.9;
-  margin-top: 1rem;
+.dark-mode .top-glass {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 100%);
 }
 
-/* ===== Portfolio Section ===== */
-.content-section {
-  min-height: 100vh;
-  padding: 4rem 2rem;
-  transition: all 0.5s ease;
+.bottom-glass {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(255,255,255,0.3) 0%, transparent 100%);
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
-}
-
-.project-card {
-  padding: 2rem;
-  border-radius: 12px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.dark-mode .bottom-glass {
+  background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
 }
 
 /* ===== Theme Styles ===== */
@@ -95,24 +72,69 @@ body {
   --section-bg: #121212;
 }
 
-.light-mode .full-screen {
-  background: var(--bg-gradient);
-  color: var(--text-color);
-}
-
-.dark-mode .full-screen {
+/* ===== Sections ===== */
+.full-screen {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
   background: var(--bg-gradient);
   color: var(--text-color);
 }
 
 .content-section {
+  min-height: 100vh;
+  padding: 6rem 2rem;
   background: var(--section-bg);
   color: var(--text-color);
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== Typography ===== */
+#welcomeText {
+  font-size: clamp(2rem, 10vw, 3.5rem);
+  line-height: 1.3;
+  max-width: 90vw;
+  margin: 0 auto;
+  padding: 0 5%;
+  white-space: normal;
+  display: inline-block;
+  overflow: hidden;
+  border-right: 3px solid;
+  animation: blinkCursor 0.7s infinite;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  opacity: 0.9;
+  margin-top: 1rem;
+}
+
+/* ===== Projects Grid ===== */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
 .project-card {
+  padding: 2rem;
+  border-radius: 12px;
   background: var(--card-bg);
   box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
 }
 
 /* ===== Toggle Switch ===== */
@@ -159,10 +181,6 @@ body {
 @keyframes blinkCursor {
   0%, 100% { border-color: currentColor; }
   50% { border-color: transparent; }
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
 }
 
 /* ===== Responsive Adjustments ===== */
