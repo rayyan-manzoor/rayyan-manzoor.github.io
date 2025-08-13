@@ -1,29 +1,37 @@
-// Add this at the top of script.js
-console.log("Script loaded!"); 
 // Theme Toggle Functionality
-const themeToggle = document.getElementById("themeToggle");
+const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 
-// Check for saved preference or use dark mode
-const savedTheme = localStorage.getItem("theme") || "dark";
-body.classList.add(savedTheme + "-mode");
-updateToggleIcon(savedTheme);
+// Set default theme (dark)
+const savedTheme = localStorage.getItem('theme') || 'dark';
+body.classList.add(savedTheme + '-mode');
+themeToggle.checked = (savedTheme === 'light');
 
-themeToggle.addEventListener("click", () => {
-  if (body.classList.contains("dark-mode")) {
-    body.classList.replace("dark-mode", "light-mode");
-    localStorage.setItem("theme", "light");
-    updateToggleIcon("light");
+// Toggle theme on switch click
+themeToggle.addEventListener('change', () => {
+  if (body.classList.contains('dark-mode')) {
+    body.classList.replace('dark-mode', 'light-mode');
+    localStorage.setItem('theme', 'light');
   } else {
-    body.classList.replace("light-mode", "dark-mode");
-    localStorage.setItem("theme", "dark");
-    updateToggleIcon("dark");
+    body.classList.replace('light-mode', 'dark-mode');
+    localStorage.setItem('theme', 'dark');
   }
 });
 
-function updateToggleIcon(theme) {
-  themeToggle.textContent = theme === "dark" ? "🌙" : "☀️";
+// Typing Animation (Original)
+const text = "Welcome to my portfolio!";
+let index = 0;
+const speed = 100;
+const welcomeText = document.getElementById('welcomeText');
+
+function typeText() {
+  if (index < text.length) {
+    welcomeText.textContent += text.charAt(index);
+    index++;
+    setTimeout(typeText, speed);
+  } else {
+    welcomeText.style.borderRight = "none";
+  }
 }
 
-// Your existing typing animation and scroll effects remain below
-// ...
+typeText();
