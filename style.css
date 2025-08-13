@@ -4,22 +4,20 @@
   --welcome-gradient-dark: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
 }
 
-/* ===== Light Mode ===== */
 .light-mode {
   --welcome-gradient: var(--welcome-gradient-light);
-  --text-color: #333333;
+  --text-color: #333;
   --portfolio-bg: #f9f9f9;
 }
 
-/* ===== Dark Mode ===== */
 .dark-mode {
   --welcome-gradient: var(--welcome-gradient-dark);
-  --text-color: #ffffff;
+  --text-color: #fff;
   --portfolio-bg: #121212;
 }
 
-/* ===== Apply to Elements ===== */
+/* ===== Force Gradient Update ===== */
 .full-screen {
-  background: var(--welcome-gradient) !important; /* Force override */
-  transition: background 0.5s ease; /* Smooth transition */
+  background: var(--welcome-gradient) !important; /* !important ensures override */
+  transition: background 0.5s ease !important; /* Smooth transition */
 }
