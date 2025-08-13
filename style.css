@@ -92,6 +92,12 @@ body {
   color: var(--text-color);
 }
 
+.scrollable-section {
+  padding: 4rem 2rem;
+  background: var(--section-bg);
+  color: var(--text-color);
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -115,6 +121,39 @@ body {
   font-size: clamp(1rem, 3vw, 1.5rem);
   opacity: 0.9;
   margin-top: 1rem;
+}
+
+/* ===== Scrollable Content ===== */
+.content-wrapper {
+  display: flex;
+  overflow-x: auto;
+  gap: 2rem;
+  padding: 2rem 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.content-block {
+  min-width: 300px;
+  scroll-snap-align: start;
+  padding: 2rem;
+  border-radius: 12px;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease;
+}
+
+.content-block:hover {
+  transform: translateY(-5px);
+}
+
+.content-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.content-wrapper {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* ===== Projects Grid ===== */
