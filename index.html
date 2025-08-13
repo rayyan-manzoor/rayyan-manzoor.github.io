@@ -6,17 +6,39 @@
   <title>Rayyan Manzoor Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="dark-mode"> <!-- Default: dark mode -->
+<body class="dark-mode">
   
-  <!-- Welcome Section (Added Toggle Button) -->
+  <!-- Welcome Section -->
   <section id="welcome" class="full-screen">
-    <button id="themeToggle" aria-label="Toggle theme">🌙</button>
+    <div class="theme-switch-wrapper">
+      <label class="theme-switch" for="themeToggle">
+        <input type="checkbox" id="themeToggle">
+        <span class="slider round"></span>
+      </label>
+    </div>
     <h1 id="welcomeText"></h1>
   </section>
 
-  <!-- Rest of your HTML remains the same -->
+  <!-- Portfolio Section -->
   <section id="portfolio">
-    <!-- ... -->
+    <div class="portfolio-section">
+      <h2>About Me</h2>
+      <p>Hi! I'm Rayyan, an aspiring medical professional with a passion for biology and technology.</p>
+    </div>
+
+    <div class="portfolio-section">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>Project 1</h3>
+          <p>Description coming soon.</p>
+        </div>
+        <div class="project-card">
+          <h3>Project 2</h3>
+          <p>Description coming soon.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <script src="script.js"></script>
