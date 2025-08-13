@@ -1,71 +1,51 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Dark Mode (Default) */
+.dark-mode {
+  --bg-gradient: linear-gradient(135deg, #1d2b64, #f8cdda);
+  --text-color: white;
+  --portfolio-bg: #121212;
+  --card-bg: #1e1e1e;
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* Full-screen welcome section */
+/* Light Mode */
+.light-mode {
+  --bg-gradient: linear-gradient(135deg, #1d2b64, #f8cdda); /* Keeps your gradient */
+  --text-color: #333;
+  --portfolio-bg: #f8f8f8;
+  --card-bg: white;
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Apply Variables */
+body {
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
 .full-screen {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #1d2b64, #f8cdda);
-  font-family: 'Arial', sans-serif;
-  overflow: hidden;
+  background: var(--bg-gradient);
 }
 
 #welcomeText {
-  color: white;
-  font-size: 3rem;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid white;
-  animation: blinkCursor 0.7s steps(1) infinite;
+  color: var(--text-color);
 }
 
-/* Blinking cursor */
-@keyframes blinkCursor {
-  0%, 100% { border-color: white; }
-  50% { border-color: transparent; }
-}
-
-/* Portfolio sections */
 #portfolio {
-  background: #f8f8f8;
-  padding: 50px 20px;
-  font-family: Arial, sans-serif;
-}
-
-.portfolio-section {
-  max-width: 900px;
-  margin: 50px auto;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-.portfolio-section.fade-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.portfolio-section h2 {
-  font-size: 2rem;
-  margin-bottom: 15px;
-}
-
-.projects-grid {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+  background: var(--portfolio-bg);
 }
 
 .project-card {
-  background: white;
-  padding: 20px;
-  flex: 1 1 200px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  border-radius: 10px;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+}
+
+/* Toggle Button Styling */
+#themeToggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
 }
