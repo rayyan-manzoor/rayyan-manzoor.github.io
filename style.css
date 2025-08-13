@@ -20,24 +20,12 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  height: 80px; /* Increased for smoother fade */
+  height: 100px;
   z-index: 900;
   pointer-events: none;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  -webkit-mask-image: linear-gradient(
-    to bottom, 
-    rgba(0,0,0,1) 0%, 
-    rgba(0,0,0,1) 70%, 
-    rgba(0,0,0,0) 100%
-  );
-  mask-image: linear-gradient(
-    to bottom, 
-    rgba(0,0,0,1) 0%, 
-    rgba(0,0,0,1) 70%, 
-    rgba(0,0,0,0) 100%
-  );
 }
 
 @supports not (backdrop-filter: blur(10px)) {
@@ -51,52 +39,20 @@ body {
 
 .top-glass {
   top: 0;
-  background: linear-gradient(
-    to bottom, 
-    rgba(255,255,255,0.4) 0%, 
-    rgba(255,255,255,0.1) 70%, 
-    transparent 100%
-  );
+  background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, transparent 100%);
 }
 
 .dark-mode .top-glass {
-  background: linear-gradient(
-    to bottom, 
-    rgba(0,0,0,0.6) 0%, 
-    rgba(0,0,0,0.2) 60%, 
-    transparent 100%
-  );
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 100%);
 }
 
 .bottom-glass {
   bottom: 0;
-  -webkit-mask-image: linear-gradient(
-    to top, 
-    rgba(0,0,0,1) 0%, 
-    rgba(0,0,0,1) 60%, 
-    rgba(0,0,0,0) 100%
-  );
-  mask-image: linear-gradient(
-    to top, 
-    rgba(0,0,0,1) 0%, 
-    rgba(0,0,0,1) 60%, 
-    rgba(0,0,0,0) 100%
-  );
-  background: linear-gradient(
-    to top, 
-    rgba(255,255,255,0.4) 0%, 
-    rgba(255,255,255,0.1) 60%, 
-    transparent 100%
-  );
+  background: linear-gradient(to top, rgba(255,255,255,0.3) 0%, transparent 100%);
 }
 
 .dark-mode .bottom-glass {
-  background: linear-gradient(
-    to top, 
-    rgba(0,0,0,0.6) 0%, 
-    rgba(0,0,0,0.2) 60%, 
-    transparent 100%
-  );
+  background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
 }
 
 /* ===== Theme Styles ===== */
@@ -271,29 +227,4 @@ body {
   #welcomeText {
     white-space: nowrap;
   }
-}
-/* Diagonal Scroll Styles */
-.diagonal-scroll-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.diagonal-scroll-content {
-  position: absolute;
-  will-change: transform;
-}
-
-body {
-  overflow: hidden; /* Disable normal scrolling */
-}
-
-/* Adjust your sections to be relative */
-.full-screen, 
-.content-section, 
-.scrollable-section {
-  position: relative;
 }
