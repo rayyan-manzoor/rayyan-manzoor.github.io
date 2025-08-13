@@ -3,42 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rayyan Manzoor Portfolio</title>
+  <title>Rayyan's Portfolio</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body class="dark-mode">
+<body class="dark-mode"> <!-- Default: Dark Mode -->
   
   <!-- Welcome Section -->
   <section id="welcome" class="full-screen">
-    <div class="theme-switch-wrapper">
-      <label class="theme-switch" for="themeToggle">
-        <input type="checkbox" id="themeToggle">
-        <span class="slider round"></span>
+    <!-- Toggle Switch -->
+    <div class="theme-switch">
+      <input type="checkbox" id="themeToggle">
+      <label for="themeToggle" class="toggle-label">
+        <span class="toggle-handle"></span>
       </label>
     </div>
-    <h1 id="welcomeText"></h1>
+
+    <div class="welcome-content">
+      <h1 id="welcomeText"></h1>
+      <p class="subtitle">Medical Innovator & Tech Enthusiast</p>
+    </div>
   </section>
 
-  <!-- Portfolio Section -->
+  <!-- Portfolio Content -->
   <section id="portfolio">
-    <div class="portfolio-section">
-      <h2>About Me</h2>
-      <p>Hi! I'm Rayyan, an aspiring medical professional with a passion for biology and technology.</p>
-    </div>
-
-    <div class="portfolio-section">
-      <h2>Projects</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>Project 1</h3>
-          <p>Description coming soon.</p>
-        </div>
-        <div class="project-card">
-          <h3>Project 2</h3>
-          <p>Description coming soon.</p>
-        </div>
-      </div>
-    </div>
+    <!-- Your sections here -->
   </section>
 
   <script src="script.js"></script>
