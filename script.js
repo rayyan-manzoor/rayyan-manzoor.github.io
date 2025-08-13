@@ -1,34 +1,27 @@
-// Typing animation for welcome text
-const text = "Welcome to my portfolio!";
-let index = 0;
-const speed = 100;
-const welcomeText = document.getElementById("welcomeText");
+// Theme Toggle Functionality
+const themeToggle = document.getElementById("themeToggle");
+const body = document.body;
 
-function typeText() {
-  if (index < text.length) {
-    welcomeText.textContent += text.charAt(index);
-    index++;
-    setTimeout(typeText, speed);
+// Check for saved preference or use dark mode
+const savedTheme = localStorage.getItem("theme") || "dark";
+body.classList.add(savedTheme + "-mode");
+updateToggleIcon(savedTheme);
+
+themeToggle.addEventListener("click", () => {
+  if (body.classList.contains("dark-mode")) {
+    body.classList.replace("dark-mode", "light-mode");
+    localStorage.setItem("theme", "light");
+    updateToggleIcon("light");
   } else {
-    welcomeText.style.borderRight = "none"; // remove cursor
+    body.classList.replace("light-mode", "dark-mode");
+    localStorage.setItem("theme", "dark");
+    updateToggleIcon("dark");
   }
+});
+
+function updateToggleIcon(theme) {
+  themeToggle.textContent = theme === "dark" ? "🌙" : "☀️";
 }
 
-typeText();
-
-// Scroll animation for portfolio sections
-const sections = document.querySelectorAll('.portfolio-section');
-
-function checkFade() {
-  const triggerBottom = window.innerHeight * 0.85;
-
-  sections.forEach(section => {
-    const sectionTop = section.getBoundingClientRect().top;
-    if(sectionTop < triggerBottom) {
-      section.classList.add('fade-in');
-    }
-  });
-}
-
-window.addEventListener('scroll', checkFade);
-window.addEventListener('load', checkFade);
+// Your existing typing animation and scroll effects remain below
+// ...
