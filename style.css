@@ -272,3 +272,28 @@ body {
     white-space: nowrap;
   }
 }
+/* Diagonal Scroll Styles */
+.diagonal-scroll-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.diagonal-scroll-content {
+  position: absolute;
+  will-change: transform;
+}
+
+body {
+  overflow: hidden; /* Disable normal scrolling */
+}
+
+/* Adjust your sections to be relative */
+.full-screen, 
+.content-section, 
+.scrollable-section {
+  position: relative;
+}
