@@ -14,11 +14,12 @@ themeToggle.addEventListener('change', () => {
   localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
 });
 
-// Typing Animation
-const text = "Welcome to Rayyan's Portfolio!";
+// Smart Typing Animation
+const welcomeText = document.getElementById('welcomeText');
+const isMobile = window.innerWidth < 768;
+const text = isMobile ? "Welcome to Rayyan's Portfolio!" : "Welcome to Rayyan's Portfolio!";
 let index = 0;
 const speed = 50;
-const welcomeText = document.getElementById('welcomeText');
 
 function typeText() {
   if (index < text.length) {
