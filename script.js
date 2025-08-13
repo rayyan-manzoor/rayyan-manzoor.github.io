@@ -14,12 +14,11 @@ themeToggle.addEventListener('change', () => {
   localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
 });
 
-// Smart Typing Animation
-const welcomeText = document.getElementById('welcomeText');
-const isMobile = window.innerWidth < 768;
-const text = isMobile ? "Welcome to Rayyan's Portfolio!" : "Welcome to Rayyan's Portfolio!";
+// Typing Animation
+const text = "Welcome to Rayyan's Portfolio!";
 let index = 0;
 const speed = 50;
+const welcomeText = document.getElementById('welcomeText');
 
 function typeText() {
   if (index < text.length) {
@@ -29,6 +28,14 @@ function typeText() {
   } else {
     welcomeText.style.borderRight = "none";
   }
+}
+
+// Dynamic Glass Effect
+if (CSS.supports('backdrop-filter', 'blur(10px)')) {
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    document.querySelector('.top-glass').style.backdropFilter = `blur(${Math.min(15, 10 + scrollY * 0.1)}px)`;
+  });
 }
 
 typeText();
