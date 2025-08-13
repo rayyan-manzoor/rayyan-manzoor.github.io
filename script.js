@@ -1,41 +1,32 @@
-// Theme Toggle
-const themeToggle = document.getElementById('themeToggle');
-const body = document.body;
-
-// Set default theme
-const savedTheme = localStorage.getItem('theme') || 'dark';
-body.classList.add(savedTheme + '-mode');
-themeToggle.checked = (savedTheme === 'light');
-
-// Toggle function
-themeToggle.addEventListener('change', () => {
-  body.classList.toggle('light-mode');
-  body.classList.toggle('dark-mode');
-  localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
-});
-
-// Typing Animation
-const text = "Welcome to Rayyan's Portfolio!";
-let index = 0;
-const speed = 50;
-const welcomeText = document.getElementById('welcomeText');
-
-function typeText() {
-  if (index < text.length) {
-    welcomeText.textContent += text.charAt(index);
-    index++;
-    setTimeout(typeText, speed);
-  } else {
-    welcomeText.style.borderRight = "none";
-  }
-}
-
 // Dynamic Glass Effect
-if (CSS.supports('backdrop-filter', 'blur(10px)')) {
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    document.querySelector('.top-glass').style.backdropFilter = `blur(${Math.min(15, 10 + scrollY * 0.1)}px)`;
-  });
+function updateGlassEffects() {
+  const scrollY = window.scrollY;
+  const docHeight = document.body.scrollHeight;
+  const windowHeight = window.innerHeight;
+  const scrollRatio = scrollY / (docHeight - windowHeight);
+
+  // Top glass
+  const topGlass = document.querySelector('.top-glass');
+  topGlass.classList.toggle('active', scrollY > 10);
+  
+  // Bottom glass
+  const bottomGlass = document.querySelector('.bottom-glass');
+  bottomGlass.classList.toggle('active', scrollRatio < 0.98);
+  
+  // Dynamic blur intensity (optional)
+  const dynamicBlur = 5 + (scrollY * 0.03); // 5px to 8px range
+  document.documentElement.style.setProperty('--blur-amount', `${Math.min(8, dynamicBlur)}px`);
 }
 
-typeText();
+// Initialize and run on scroll
+window.addEventListener('scroll', updateGlassEffects);
+updateGlassEffects(); // Initial check
+
+// Add this to your CSS for dynamic blur:
+:root {
+  --blur-amount: 5px;
+}
+.glass-overlay {
+  backdrop-filter: blur(var(--blur-amount));
+  -webkit-backdrop-filter: blur(var(--blur-amount));
+}
