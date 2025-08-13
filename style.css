@@ -1,12 +1,18 @@
-/* ===== Modern Reset ===== */
+/* ===== Reset & Base Styles ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root {
-  --blur-amount: 5px;
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
 }
 
 /* ===== Glass Overlays ===== */
@@ -14,19 +20,21 @@
   position: fixed;
   left: 0;
   right: 0;
-  height: 50px; /* Half thickness */
+  height: 100px;
   z-index: 900;
   pointer-events: none;
-  backdrop-filter: blur(var(--blur-amount));
-  -webkit-backdrop-filter: blur(var(--blur-amount));
-  opacity: 0;
-  transition: 
-    opacity 0.4s ease,
-    backdrop-filter 0.4s ease;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.glass-overlay.active {
-  opacity: 1;
+@supports not (backdrop-filter: blur(10px)) {
+  .glass-overlay {
+    background: rgba(255, 255, 255, 0.8) !important;
+  }
+  .dark-mode .glass-overlay {
+    background: rgba(0, 0, 0, 0.7) !important;
+  }
 }
 
 .top-glass {
@@ -50,7 +58,7 @@
 /* ===== Theme Styles ===== */
 .light-mode {
   --text-color: #333;
-  --bg-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%) !important;
+  --bg-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
   --card-bg: #f8f8f8;
   --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
   --section-bg: #ffffff;
@@ -58,7 +66,7 @@
 
 .dark-mode {
   --text-color: white;
-  --bg-gradient: linear-gradient(135deg, #0f2027 0%, #2a5470 100%) !important;
+  --bg-gradient: linear-gradient(135deg, #0f2027 0%, #2a5470 100%);
   --card-bg: #1e1e1e;
   --card-shadow: 0 4px 6px rgba(0,0,0,0.3);
   --section-bg: #121212;
@@ -75,7 +83,6 @@
   padding: 1rem;
   background: var(--bg-gradient);
   color: var(--text-color);
-  transition: background 0.5s ease !important;
 }
 
 .content-section {
