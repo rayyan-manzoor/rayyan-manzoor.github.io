@@ -85,19 +85,22 @@
     const bottomOverlay = document.querySelector('.bottom-glass');
 
     const maxBlur = 3; // maximum blur in px
+    const scrollThreshold = 20; // start blur after 20px scroll
+    const rampLength = 600; // how many px to reach max blur
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
       const viewportHeight = window.innerHeight;
       const pageHeight = document.body.scrollHeight;
 
-      // Top overlay: bottom = 0 blur, top = max
-      let topFactor = Math.min(scrollY / 600, 1);
+      // Top overlay: start blur after threshold
+      let topFactor = Math.min(Math.max((scrollY - scrollThreshold) / rampLength, 0), 1);
       topOverlay.style.backdropFilter = `blur(${topFactor * maxBlur}px)`;
       topOverlay.style.webkitBackdropFilter = `blur(${topFactor * maxBlur}px)`;
 
-      // Bottom overlay: top = 0 blur, bottom = max
-      let bottomFactor = Math.min((pageHeight - viewportHeight - scrollY) / 600, 1);
+      // Bottom overlay: start blur after threshold
+      let bottomScroll = pageHeight - viewportHeight - scrollY;
+      let bottomFactor = Math.min(Math.max((bottomScroll - scrollThreshold) / rampLength, 0), 1);
       bottomOverlay.style.backdropFilter = `blur(${bottomFactor * maxBlur}px)`;
       bottomOverlay.style.webkitBackdropFilter = `blur(${bottomFactor * maxBlur}px)`;
     });
