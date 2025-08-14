@@ -13,41 +13,51 @@ html {
 body {
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.6;
-  transition: background 0.7s ease, color 0.7s ease;
+  transition: background 0.5s ease, color 0.5s ease; /* smooth mode transition */
 }
 
-/* ===== Glass Overlays with Soft Edges ===== */
+/* ===== Glass Overlays with Smooth Fade ===== */
 .glass-overlay {
   position: fixed;
   left: 0;
   right: 0;
   z-index: 900;
   pointer-events: none;
-  transition: backdrop-filter 0.3s ease;
-  backdrop-filter: blur(6px); 
+  backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+  transition: backdrop-filter 0.3s ease;
 }
 
-/* Top blur */
+/* Top Blur */
 .top-glass {
   top: 0;
   height: 60px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 30%, rgba(255,255,255,0.05) 60%, transparent 100%);
+  background: rgba(255, 255, 255, 0.05);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
 }
 
+/* Dark Mode Top Blur */
 .dark-mode .top-glass {
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.1) 60%, transparent 100%);
+  background: rgba(0,0,0,0.05);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
 }
 
-/* Bottom blur */
+/* Bottom Blur */
 .bottom-glass {
   bottom: 0;
   height: 60px;
-  background: linear-gradient(to top, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 30%, rgba(255,255,255,0.05) 60%, transparent 100%);
+  background: rgba(255, 255, 255, 0.05);
+  mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
 }
 
+/* Dark Mode Bottom Blur */
 .dark-mode .bottom-glass {
-  background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.1) 60%, transparent 100%);
+  background: rgba(0,0,0,0.05);
+  mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
 }
 
 /* ===== Theme Styles ===== */
@@ -57,7 +67,6 @@ body {
   --card-bg: #f8f8f8;
   --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
   --section-bg: #ffffff;
-  transition: background 0.7s ease, color 0.7s ease;
 }
 
 .dark-mode {
@@ -66,7 +75,6 @@ body {
   --card-bg: #1e1e1e;
   --card-shadow: 0 4px 6px rgba(0,0,0,0.3);
   --section-bg: #121212;
-  transition: background 0.7s ease, color 0.7s ease;
 }
 
 /* ===== Sections ===== */
@@ -80,7 +88,7 @@ body {
   padding: 1rem;
   background: var(--bg-gradient);
   color: var(--text-color);
-  transition: background 0.7s ease, color 0.7s ease; /* smooth gradient transition */
+  transition: background 0.5s ease, color 0.5s ease; /* smooth gradient transition */
 }
 
 .content-section {
@@ -88,7 +96,19 @@ body {
   padding: 6rem 2rem;
   background: var(--section-bg);
   color: var(--text-color);
-  transition: background 0.7s ease, color 0.7s ease;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+.scrollable-section {
+  padding: 4rem 2rem;
+  background: var(--section-bg);
+  color: var(--text-color);
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* ===== Typography ===== */
@@ -101,7 +121,7 @@ body {
   white-space: normal;
   display: inline-block;
   overflow: hidden;
-  border: none; /* removed blinking cursor */
+  border-right: none; /* removed annoying cursor */
 }
 
 .subtitle {
@@ -110,9 +130,8 @@ body {
   margin-top: 1rem;
 }
 
-/* Blinking effect for "Please scroll!" */
-.blink {
-  animation: blinkText 1s step-start infinite;
+.subtitle.blink {
+  animation: blinkText 1s infinite;
 }
 
 @keyframes blinkText {
@@ -137,7 +156,7 @@ body {
   border-radius: 12px;
   background: var(--card-bg);
   box-shadow: var(--card-shadow);
-  transition: transform 0.3s ease, background 0.7s ease, color 0.7s ease;
+  transition: transform 0.3s ease, background 0.5s ease, color 0.5s ease;
 }
 
 .content-block:hover {
@@ -166,7 +185,7 @@ body {
   border-radius: 12px;
   background: var(--card-bg);
   box-shadow: var(--card-shadow);
-  transition: transform 0.3s ease, background 0.7s ease, color 0.7s ease;
+  transition: transform 0.3s ease, background 0.5s ease, color 0.5s ease;
 }
 
 .project-card:hover {
