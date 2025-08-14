@@ -92,7 +92,7 @@ body { font-family:'Poppins', sans-serif; line-height:1.6; transition: backgroun
 }
 .fixed-gif {
     position: fixed;
-    top: 10px;       /* adjust vertical position */
+    top: 3px;       /* adjust vertical position */
     left: 50%;       /* center horizontally */
     transform: translateX(-50%);
     z-index: 1000;   /* same layer as socials and toggle */
