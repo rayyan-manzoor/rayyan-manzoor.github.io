@@ -5,11 +5,21 @@ const savedTheme = localStorage.getItem('theme') || 'dark';
 body.classList.add(savedTheme + '-mode');
 themeToggle.checked = (savedTheme === 'light');
 
+const aboutSection = document.getElementById('about');
+
 themeToggle.addEventListener('change', () => {
   body.classList.toggle('light-mode');
   body.classList.toggle('dark-mode');
-  localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
+
+  if (body.classList.contains('light-mode')) {
+    localStorage.setItem('theme', 'light');
+    aboutSection.style.backgroundImage = "url('light-mode-image.jpg')"; // replace with your light mode image
+  } else {
+    localStorage.setItem('theme', 'dark');
+    aboutSection.style.backgroundImage = "url('dallas.JPG')"; // dark mode image
+  }
 });
+
 
 // ===== Typing Effect =====
 const welcomeText = document.getElementById('welcomeText');
