@@ -48,17 +48,17 @@ body {
   background: rgba(0,0,0,0.05);
 }
 
-/* ===== Theme Colors & Gradients ===== */
+/* ===== Theme Colors & Gradients (Distinct) ===== */
 .light-mode {
   --text-color: #333;
-  --bg-gradient: linear-gradient(135deg, #a8edea, #fed6e3, #fdf6e3);
+  --bg-gradient: linear-gradient(135deg, #ffecd2, #fcb69f, #ffe6f0);
   --card-bg: rgba(255,255,255,0.5);
   --card-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 .dark-mode {
   --text-color: #fff;
-  --bg-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
   --card-bg: rgba(30,30,30,0.6);
   --card-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
