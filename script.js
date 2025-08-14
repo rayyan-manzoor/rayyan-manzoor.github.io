@@ -58,3 +58,5 @@ window.addEventListener('scroll', () => {
   document.querySelector('.top-glass').style.backdropFilter = `blur(${8 + scrollY*0.015}px)`;
   document.querySelector('.bottom-glass').style.backdropFilter = `blur(${8 + scrollY*0.015}px)`;
 });
+
+
