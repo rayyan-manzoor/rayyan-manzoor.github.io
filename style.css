@@ -37,7 +37,7 @@ html {
 
 .dark-mode {
   --text-color: #fff;
-  --bg-gradient: linear-gradient(135deg, #3f37a0, #2e0f8c);
+  --bg-gradient: linear-gradient(135deg, #140d66, #641bf5);
   --card-bg: rgba(30,30,30,0.85);
   --card-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
