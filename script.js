@@ -1,4 +1,4 @@
-// Theme Toggle
+// ===== Theme Toggle =====
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -11,7 +11,8 @@ themeToggle.addEventListener('change', () => {
   localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
 });
 
-// Typing & Deleting Effect for Subtitle
+// ===== Typing Animation for Welcome & Subtitle =====
+const welcomeText = document.getElementById('welcomeText');
 const subtitle = document.querySelector('.subtitle');
 
 function typeEffect(element, text, speed = 50, callback) {
@@ -23,10 +24,8 @@ function typeEffect(element, text, speed = 50, callback) {
       i++;
       setTimeout(typing, speed);
     } else if (callback) {
-      setTimeout(callback, 1000, callback);
-      if (element.textContent === "Please scroll!") {
-        element.classList.add('blink'); // blinking only for final text
-      }
+      setTimeout(callback, 500);
+      callback();
     }
   }
   typing();
@@ -41,26 +40,29 @@ function deleteEffect(element, speed = 50, callback) {
       i--;
       setTimeout(deleting, speed);
     } else if (callback) {
-      setTimeout(callback, 500, callback);
+      setTimeout(callback, 500);
+      callback();
     }
   }
   deleting();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  typeEffect(subtitle, "Medical Professional & Tech Enthusiast", 50, () => {
-    deleteEffect(subtitle, 30, () => {
-      typeEffect(subtitle, "Please scroll!", 50);
+  typeEffect(welcomeText, "Welcome to Rayyan's Portfolio!", 50, () => {
+    typeEffect(subtitle, "Medical Professional & Tech Enthusiast", 50, () => {
+      deleteEffect(subtitle, 30, () => {
+        subtitle.textContent = "Please scroll!";
+        subtitle.classList.add('blink');
+      });
     });
   });
 });
 
-// Soft Glass Blur on Scroll
+// ===== Glass blur effect on scroll =====
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
-  const topGlass = document.querySelector('.top-glass');
-  const bottomGlass = document.querySelector('.bottom-glass');
-
-  topGlass.style.backdropFilter = `blur(${6 + scrollY * 0.02}px)`;
-  bottomGlass.style.backdropFilter = `blur(${6 + scrollY * 0.02}px)`;
+  document.querySelector('.top-glass').style.backdropFilter =
+    `blur(${Math.min(6, 3 + scrollY * 0.02)}px)`;
+  document.querySelector('.bottom-glass').style.backdropFilter =
+    `blur(${Math.min(6, 3 + scrollY * 0.02)}px)`;
 });
