@@ -1,305 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rayyan's Portfolio</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Custom styles for the theme switch and glass effect, plus font */
-        body {
-            font-family: 'Poppins', sans-serif;
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
-        .dark-mode {
-            @apply bg-gray-900 text-gray-100;
-        }
-        .light-mode {
-            @apply bg-gray-100 text-gray-900;
-        }
-
-        .full-screen {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden; /* Ensure overlays stay within bounds */
-        }
-
-        /* Glass Overlays */
-        .glass-overlay {
-            position: fixed;
-            width: 100%;
-            height: 50vh; /* Adjust as needed */
-            pointer-events: none; /* Allows interaction with content underneath */
-            z-index: 0; /* Behind content */
-        }
-
-        .top-glass {
-            top: 0;
-            background: rgba(255, 255, 255, 0.05); /* Slightly visible glass effect */
-            backdrop-filter: blur(8px); /* Initial blur */
-            -webkit-backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .bottom-glass {
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.05); /* Slightly visible glass effect */
-            backdrop-filter: blur(8px); /* Initial blur */
-            -webkit-backdrop-filter: blur(8px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Theme Switch Styling */
-        .theme-switch {
-            position: fixed;
-            top: 1.5rem;
-            right: 1.5rem;
-            z-index: 50; /* Ensure it's above other elements */
-        }
-
-        .toggle-label {
-            display: block;
-            width: 4rem; /* Wider toggle */
-            height: 2rem; /* Taller toggle */
-            background-color: #4a5568; /* Gray background for dark mode */
-            border-radius: 9999px; /* Fully rounded */
-            position: relative;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .toggle-label:has(+ input:checked) {
-            background-color: #ecc94b; /* Yellow background for light mode */
-        }
-
-        .toggle-handle {
-            position: absolute;
-            top: 0.25rem;
-            left: 0.25rem;
-            width: 1.5rem;
-            height: 1.5rem;
-            background-color: #fff;
-            border-radius: 9999px;
-            transition: transform 0.3s ease;
-        }
-
-        .toggle-label:has(+ input:checked) .toggle-handle {
-            transform: translateX(2rem); /* Move handle to the right */
-        }
-
-        .theme-switch input[type="checkbox"] {
-            display: none;
-        }
-
-        /* Social Icons */
-        .social-icons {
-            position: fixed;
-            bottom: 1.5rem;
-            left: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            z-index: 50;
-        }
-        .social-link img {
-            width: 2.5rem; /* Larger icons */
-            height: 2.5rem;
-            transition: transform 0.3s ease;
-            filter: grayscale(100%); /* Desaturate */
-        }
-        .social-link:hover img {
-            transform: scale(1.1);
-            filter: grayscale(0%); /* Full color on hover */
-        }
-
-        /* Welcome Text Animation */
-        #welcomeText {
-            @apply text-5xl md:text-7xl font-bold mb-4;
-            letter-spacing: 0.05em;
-        }
-
-        .subtitle {
-            @apply text-xl md:text-3xl font-light;
-            min-height: 2rem; /* Prevent layout shift during typing/deleting */
-        }
-
-        .subtitle.blink::after {
-            content: '|';
-            animation: blink-caret 0.75s step-end infinite;
-        }
-
-        @keyframes blink-caret {
-            from, to { opacity: 0; }
-            50% { opacity: 1; }
-        }
-
-        /* Content Sections */
-        .content-section {
-            @apply py-24 px-8 relative z-10; /* Ensure content is above glass overlays */
-        }
-
-        .container {
-            @apply max-w-4xl mx-auto;
-        }
-
-        h2 {
-            @apply text-4xl font-bold mb-12 text-center;
-        }
-
-        h3 {
-            @apply text-2xl font-semibold mb-4;
-        }
-
-        p {
-            @apply text-lg leading-relaxed;
-        }
-
-        .content-wrapper {
-            @apply grid grid-cols-1 md:grid-cols-2 gap-8;
-        }
-
-        .content-block {
-            @apply p-6 rounded-xl shadow-lg bg-white bg-opacity-10 backdrop-filter backdrop-blur-md;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-
-        .project-grid {
-            @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
-        }
-
-        .project-card {
-            @apply p-6 rounded-xl shadow-lg bg-white bg-opacity-10 backdrop-filter backdrop-blur-md;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-
-        /* Responsive adjustments for glass overlays */
-        @media (max-width: 768px) {
-            .glass-overlay {
-                height: 30vh; /* Shorter on mobile */
-            }
-            #welcomeText {
-                font-size: 3rem;
-            }
-            .subtitle {
-                font-size: 1.25rem;
-            }
-            .theme-switch {
-                top: 1rem;
-                right: 1rem;
-            }
-            .social-icons {
-                bottom: 1rem;
-                left: 1rem;
-                flex-direction: row; /* Horizontal on mobile */
-            }
-            .social-link img {
-                width: 2rem;
-                height: 2rem;
-            }
-            h2 {
-                font-size: 2.5rem;
-            }
-            h3 {
-                font-size: 1.75rem;
-            }
-            p {
-                font-size: 1rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rayyan's Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body class="dark-mode">
-    <!-- Glass Overlays -->
-    <div class="glass-overlay top-glass"></div>
-    <div class="glass-overlay bottom-glass"></div>
+  <!-- Glass Overlays -->
+  <div class="glass-overlay top-glass"></div>
+  <div class="glass-overlay bottom-glass"></div>
 
-    <!-- Theme Toggle -->
-    <div class="theme-switch">
-        <input type="checkbox" id="themeToggle">
-        <label for="themeToggle" class="toggle-label">
-            <span class="toggle-handle"></span>
-        </label>
+  <!-- Theme Toggle -->
+  <div class="theme-switch">
+    <input type="checkbox" id="themeToggle">
+    <label for="themeToggle" class="toggle-label">
+      <span class="toggle-handle"></span>
+    </label>
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons">
+    <a href="#" target="_blank" class="social-link"><img src="linkedin.png" alt="LinkedIn"></a>
+    <a href="#" target="_blank" class="social-link"><img src="instagram.png" alt="Instagram"></a>
+    <a href="#" target="_blank" class="social-link"><img src="youtube.png" alt="YouTube"></a>
+  </div>
+
+  <!-- Welcome Section -->
+  <section id="welcome" class="full-screen">
+    <div class="welcome-content">
+      <h1 id="welcomeText"></h1>
+      <p class="subtitle"></p>
     </div>
+  </section>
 
-    <!-- Social Icons -->
-    <div class="social-icons">
-        <!-- Placeholder images for social links -->
-        <a href="#" target="_blank" class="social-link">
-            <img src="https://placehold.co/40x40/0077B5/FFFFFF?text=LI" alt="LinkedIn">
-        </a>
-        <a href="#" target="_blank" class="social-link">
-            <img src="https://placehold.co/40x40/E1306C/FFFFFF?text=IG" alt="Instagram">
-        </a>
-        <a href="#" target="_blank" class="social-link">
-            <img src="https://placehold.co/40x40/FF0000/FFFFFF?text=YT" alt="YouTube">
-        </a>
+  <!-- About Section -->
+  <section id="about" class="content-section">
+    <div class="container">
+      <h2>About Me</h2>
+      <div class="content-wrapper">
+        <div class="content-block">
+          <h3>Medical Background</h3>
+          <p>Description of your medical experience and qualifications.</p>
+        </div>
+        <div class="content-block">
+          <h3>Tech Interests</h3>
+          <p>Your areas of interest in technology and development.</p>
+        </div>
+        <div class="content-block">
+          <h3>Research</h3>
+          <p>Details about your research projects and publications.</p>
+        </div>
+        <div class="content-block">
+          <h3>Education</h3>
+          <p>Your academic background and certifications.</p>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <!-- Welcome Section -->
-    <section id="welcome" class="full-screen">
-        <div class="welcome-content">
-            <h1 id="welcomeText"></h1>
-            <p class="subtitle"></p>
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="content-section">
+    <div class="container">
+      <h2>My Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>Medical Research</h3>
+          <p>Description of your first project...</p>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="content-section">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="content-wrapper">
-                <div class="content-block">
-                    <h3>Medical Background</h3>
-                    <p>Description of your medical experience and qualifications. Highlight key roles, specializations, and how your medical expertise informs your unique perspective.</p>
-                </div>
-                <div class="content-block">
-                    <h3>Tech Interests</h3>
-                    <p>Your areas of interest in technology and development. Discuss specific programming languages, frameworks, or emerging technologies that excite you. Mention your journey into tech.</p>
-                </div>
-                <div class="content-block">
-                    <h3>Research</h3>
-                    <p>Details about your research projects and publications. Include links to papers, posters, or presentations. Describe the impact and findings of your research work.</p>
-                </div>
-                <div class="content-block">
-                    <h3>Education</h3>
-                    <p>Your academic background and certifications. List degrees, institutions, relevant coursework, and any notable achievements or certifications in both medical and tech fields.</p>
-                </div>
-            </div>
+        <div class="project-card">
+          <h3>Tech Innovation</h3>
+          <p>Description of your second project...</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="content-section">
-        <div class="container">
-            <h2>My Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>Medical Research Insights</h3>
-                    <p>A deep dive into a significant medical research project you led or contributed to, detailing the problem addressed, methodologies used, and the key outcomes or discoveries. Emphasize its real-world impact.</p>
-                </div>
-                <div class="project-card">
-                    <h3>HealthTech Innovation</h3>
-                    <p>Showcase a technology project focused on healthcare, such as a mobile app for patient management, a data visualization tool for clinical trials, or a telemedicine platform. Describe your role and the technologies employed.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Data Science & AI in Medicine</h3>
-                    <p>Present a project where you applied data science or AI techniques to medical data, e.g., predictive modeling for disease outbreaks, image analysis for diagnosis, or personalized treatment recommendations.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Web Development for Health Advocacy</h3>
-                    <p>Describe a web development project designed for public health awareness, patient education, or community support, highlighting your front-end and back-end skills and the project's user impact.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
