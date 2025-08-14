@@ -5,18 +5,14 @@
   box-sizing: border-box;
 }
 
-html {
-  font-size: 16px;
-  -webkit-text-size-adjust: 100%;
-}
-
 body {
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 1.6;
-  transition: background 0.8s ease, color 0.8s ease; 
+  transition: background 1s ease, color 1s ease;
+  min-height: 100vh;
 }
 
-/* ===== Glass Overlays with Smooth Fade ===== */
+/* ===== Glass Overlays ===== */
 .glass-overlay {
   position: fixed;
   left: 0;
@@ -31,7 +27,7 @@ body {
 .top-glass {
   top: 0;
   height: 60px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255,255,255,0.05);
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
 }
@@ -43,7 +39,7 @@ body {
 .bottom-glass {
   bottom: 0;
   height: 60px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255,255,255,0.05);
   mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
   -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
 }
@@ -52,19 +48,19 @@ body {
   background: rgba(0,0,0,0.05);
 }
 
-/* ===== Theme Styles ===== */
+/* ===== Theme Colors & Gradients ===== */
 .light-mode {
   --text-color: #333;
-  --bg-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-  --card-bg: #f8f8f8;
-  --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  --bg-gradient: linear-gradient(135deg, #a8edea, #fed6e3, #fdf6e3);
+  --card-bg: rgba(255,255,255,0.5);
+  --card-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 .dark-mode {
-  --text-color: white;
-  --bg-gradient: linear-gradient(135deg, #0f2027 0%, #2a5470 100%);
-  --card-bg: #1e1e1e;
-  --card-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  --text-color: #fff;
+  --bg-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  --card-bg: rgba(30,30,30,0.6);
+  --card-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
 /* ===== Sections ===== */
@@ -75,7 +71,7 @@ body {
   padding: 2rem;
   color: var(--text-color);
   background: var(--bg-gradient);
-  transition: background 0.8s ease, color 0.8s ease;
+  transition: background 1s ease, color 1s ease;
 }
 
 .full-screen {
@@ -100,7 +96,7 @@ body {
   white-space: normal;
   display: inline-block;
   overflow: hidden;
-  border-right: none; /* removed cursor */
+  border-right: none; /* remove blinking caret */
 }
 
 .subtitle {
@@ -109,13 +105,20 @@ body {
   margin-top: 1rem;
 }
 
-.subtitle.blink {
-  animation: blinkText 1s infinite;
+/* ===== Glassmorphic Cards ===== */
+.content-block, .project-card {
+  min-width: 300px;
+  padding: 2rem;
+  border-radius: 12px;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, background 1s ease, color 1s ease;
 }
 
-@keyframes blinkText {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
+.content-block:hover, .project-card:hover {
+  transform: translateY(-5px);
 }
 
 /* ===== Scrollable Content ===== */
@@ -125,21 +128,6 @@ body {
   gap: 2rem;
   padding: 2rem 0;
   scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-
-.content-block {
-  min-width: 300px;
-  scroll-snap-align: start;
-  padding: 2rem;
-  border-radius: 12px;
-  background: var(--card-bg);
-  box-shadow: var(--card-shadow);
-  transition: transform 0.3s ease, background 0.8s ease, color 0.8s ease;
-}
-
-.content-block:hover {
-  transform: translateY(-5px);
 }
 
 .content-wrapper::-webkit-scrollbar {
@@ -159,18 +147,6 @@ body {
   margin-top: 3rem;
 }
 
-.project-card {
-  padding: 2rem;
-  border-radius: 12px;
-  background: var(--card-bg);
-  box-shadow: var(--card-shadow);
-  transition: transform 0.3s ease, background 0.8s ease, color 0.8s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-}
-
 /* ===== Toggle Switch ===== */
 .theme-switch {
   position: fixed;
@@ -183,7 +159,7 @@ body {
   display: inline-block;
   width: 60px;
   height: 30px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255,255,255,0.2);
   border-radius: 50px;
   position: relative;
   cursor: pointer;
@@ -197,7 +173,7 @@ body {
   height: 24px;
   background: white;
   border-radius: 50%;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, background 1s ease;
 }
 
 #themeToggle {
@@ -211,9 +187,12 @@ body {
   transform: translateX(30px);
 }
 
-/* ===== Responsive Adjustments ===== */
-@media (min-width: 1024px) {
-  #welcomeText {
-    white-space: nowrap;
-  }
+/* ===== Blinking Subtitle ===== */
+.blink {
+  animation: blinkText 1s infinite;
+}
+
+@keyframes blinkText {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
 }
