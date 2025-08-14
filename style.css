@@ -115,4 +115,112 @@ body {
   margin-top: 1rem;
 }
 
-/* Bl
+/* Blinking effect for "Please scroll!" */
+.blink {
+  animation: blinkText 1s step-start infinite;
+}
+
+@keyframes blinkText {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+/* ===== Scrollable Content ===== */
+.content-wrapper {
+  display: flex;
+  overflow-x: auto;
+  gap: 2rem;
+  padding: 2rem 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.content-block {
+  min-width: 300px;
+  scroll-snap-align: start;
+  padding: 2rem;
+  border-radius: 12px;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, background 0.7s ease, color 0.7s ease;
+}
+
+.content-block:hover {
+  transform: translateY(-5px);
+}
+
+.content-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.content-wrapper {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ===== Projects Grid ===== */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.project-card {
+  padding: 2rem;
+  border-radius: 12px;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, background 0.7s ease, color 0.7s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+/* ===== Toggle Switch ===== */
+.theme-switch {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 1000;
+}
+
+.toggle-label {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+}
+
+.toggle-handle {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+#themeToggle {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+#themeToggle:checked + .toggle-label .toggle-handle {
+  transform: translateX(30px);
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (min-width: 1024px) {
+  #welcomeText {
+    white-space: nowrap;
+  }
+}
