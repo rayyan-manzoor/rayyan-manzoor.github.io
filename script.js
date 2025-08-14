@@ -1,5 +1,4 @@
-
-// Theme Toggle (keep your existing code)
+// Theme Toggle
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -12,7 +11,7 @@ themeToggle.addEventListener('change', () => {
   localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
 });
 
-// Typing Animation (keep your existing code)
+// Typing Animation
 const text = "Welcome to Rayyan's Portfolio!";
 let index = 0;
 const speed = 50;
@@ -30,21 +29,13 @@ function typeText() {
 
 // Diagonal Scroll Animation
 document.addEventListener('DOMContentLoaded', () => {
-  // Move all sections into the diagonal container
   const container = document.querySelector('.diagonal-scroll-content');
-  document.querySelectorAll('section').forEach(section => {
-    container.appendChild(section);
-  });
+  const sections = gsap.utils.toArray(".diagonal-scroll-content section");
+  let totalWidth = sections.length * window.innerWidth;
 
-  // GSAP Animation
-  gsap.registerPlugin(ScrollTrigger);
-  
-  let sections = gsap.utils.toArray("section");
-  let maxWidth = 0;
-  
+  gsap.set(container, { width: totalWidth });
+
   sections.forEach((section, i) => {
-    maxWidth += window.innerWidth;
-    
     gsap.to(container, {
       x: -i * window.innerWidth,
       scrollTrigger: {
@@ -58,10 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Set container width
-  gsap.set(container, { width: maxWidth });
-
-  // Glass effect (keep your existing code)
+  // Glass blur effect
   if (CSS.supports('backdrop-filter', 'blur(10px)')) {
     ScrollTrigger.create({
       onUpdate: (self) => {
