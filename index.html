@@ -78,5 +78,30 @@
   </section>
 
   <script src="script.js"></script>
+
+  <!-- Progressive Blur Script -->
+  <script>
+    const topOverlay = document.querySelector('.top-glass');
+    const bottomOverlay = document.querySelector('.bottom-glass');
+
+    const maxBlur = 12; // maximum blur in px
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const pageHeight = document.body.scrollHeight;
+
+      // Top overlay: text scrolling under top
+      let topBlur = Math.min(scrollY / 200, 1) * maxBlur;
+      topOverlay.style.backdropFilter = `blur(${topBlur}px)`;
+      topOverlay.style.webkitBackdropFilter = `blur(${topBlur}px)`;
+
+      // Bottom overlay: text scrolling under bottom
+      let bottomScroll = pageHeight - viewportHeight - scrollY;
+      let bottomBlur = Math.min(bottomScroll / 200, 1) * maxBlur;
+      bottomOverlay.style.backdropFilter = `blur(${bottomBlur}px)`;
+      bottomOverlay.style.webkitBackdropFilter = `blur(${bottomBlur}px)`;
+    });
+  </script>
 </body>
 </html>
