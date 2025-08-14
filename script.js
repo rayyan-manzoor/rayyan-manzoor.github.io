@@ -38,7 +38,7 @@ function applyTheme(theme) {
     localStorage.setItem('theme', 'dark');
 
     aboutSection.style.backgroundImage = darkImage;
-    welcomeSection.style.background = "linear-gradient(135deg, #0f2027, #2a5470)";
+    welcomeSection.style.background = "linear-gradient(135deg, #2a5470, #0f2027)";
     portfolioSection.style.background = "linear-gradient(135deg, #0f2027, #2a5470)";
 
     body.style.color = darkTextColor;
