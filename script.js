@@ -23,7 +23,10 @@ function typeEffect(element, text, speed = 50, callback) {
       i++;
       setTimeout(typing, speed);
     } else if (callback) {
-      setTimeout(callback, 1000);
+      setTimeout(callback, 1000, callback);
+      if (element.textContent === "Please scroll!") {
+        element.classList.add('blink'); // blinking only for final text
+      }
     }
   }
   typing();
@@ -38,29 +41,26 @@ function deleteEffect(element, speed = 50, callback) {
       i--;
       setTimeout(deleting, speed);
     } else if (callback) {
-      setTimeout(callback, 500);
+      setTimeout(callback, 500, callback);
     }
   }
   deleting();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Animate Subtitle
   typeEffect(subtitle, "Medical Professional & Tech Enthusiast", 50, () => {
     deleteEffect(subtitle, 30, () => {
-      // Blinking "Please scroll!"
-      subtitle.textContent = "Please scroll!";
-      subtitle.classList.add('blink');
+      typeEffect(subtitle, "Please scroll!", 50);
     });
   });
 });
 
-// Smooth Soft Glass Blur on Scroll
+// Soft Glass Blur on Scroll
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
-  const topBlur = Math.min(6 + scrollY * 0.02, 12);
-  const bottomBlur = Math.min(6 + scrollY * 0.02, 12);
+  const topGlass = document.querySelector('.top-glass');
+  const bottomGlass = document.querySelector('.bottom-glass');
 
-  document.querySelector('.top-glass').style.backdropFilter = `blur(${topBlur}px)`;
-  document.querySelector('.bottom-glass').style.backdropFilter = `blur(${bottomBlur}px)`;
+  topGlass.style.backdropFilter = `blur(${6 + scrollY * 0.02}px)`;
+  bottomGlass.style.backdropFilter = `blur(${6 + scrollY * 0.02}px)`;
 });
