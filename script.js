@@ -12,11 +12,11 @@ themeToggle.addEventListener('change', () => {
 });
 
 // Typing & Deleting Effect
-const welcomeText = document.getElementById('welcomeText');
 const subtitle = document.querySelector('.subtitle');
 
 function typeEffect(element, text, speed = 50, callback) {
   let i = 0;
+  element.textContent = ""; // Ensure empty before typing
   function typing() {
     if (i < text.length) {
       element.textContent += text.charAt(i);
