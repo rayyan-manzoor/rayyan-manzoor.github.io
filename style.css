@@ -10,7 +10,7 @@ body { font-family:'Poppins',sans-serif; line-height:1.6; transition: background
 .dark-mode .bottom-glass { background: rgba(0,0,0,0.05); }
 
 /* ===== Theme Colors & Gradients ===== */
-.light-mode { --text-color:#333; --bg-gradient:linear-gradient(135deg,#ffecd2,#fcb69f,#ffe6f0); --card-bg:rgba(255,255,255,0.5); --card-shadow:0 8px 20px rgba(0,0,0,0.1);}
+.light-mode { --text-color:#333; --bg-gradient:linear-gradient(135deg,#f6d365,#fda085,#ffe6f0); --card-bg:rgba(255,255,255,0.5); --card-shadow:0 8px 20px rgba(0,0,0,0.1);}
 .dark-mode { --text-color:#fff; --bg-gradient:linear-gradient(135deg,#0f0c29,#302b63,#24243e); --card-bg:rgba(30,30,30,0.6); --card-shadow:0 8px 20px rgba(0,0,0,0.3);}
 
 /* ===== Sections ===== */
@@ -42,9 +42,13 @@ body { font-family:'Poppins',sans-serif; line-height:1.6; transition: background
 #themeToggle { position:absolute; opacity:0; width:0; height:0; }
 #themeToggle:checked + .toggle-label .toggle-handle { transform:translateX(30px); }
 
-.social-icons a { margin-left:0.5rem; color:var(--text-color); font-size:1.5rem; transition: color 0.5s ease; }
-.social-icons a:hover { color:#1da1f2; }
+.social-icons a { margin-left:0.5rem; color:var(--text-color); font-size:1.5rem; transition: color 0.5s ease, transform 0.3s ease; }
+.social-icons a:hover { color:#1da1f2; transform:scale(1.2); }
 
 /* ===== Blinking Subtitle ===== */
 .blink { animation: blinkText 1s infinite; }
 @keyframes blinkText { 0%,50%,100%{opacity:1;} 25%,75%{opacity:0;} }
+
+/* ===== Fade/Slide Animation ===== */
+.fade-slide { opacity:0; transform: translateY(40px); transition: opacity 1s ease, transform 1s ease; }
+.fade-slide.show { opacity:1; transform: translateY(0); }
