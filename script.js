@@ -38,24 +38,24 @@ function deleteText(element, speed=50, callback){
 
 // ===== Animate Subtitle =====
 function animateSubtitle() {
+  subtitle.classList.remove("blink"); // reset blink
+
   typeText(subtitle, "Medical Professional & Tech Enthusiast", 50, () => {
-    // Wait 1 second before deleting
-    setTimeout(() => {
+    setTimeout(() => { // wait 1s before deleting
       deleteText(subtitle, 30, () => {
         subtitle.textContent = "";
         typeText(subtitle, "Please scroll!", 50, () => {
-          // Wait 1 second AFTER typing is fully done before blinking
-          setTimeout(() => {
+          setTimeout(() => { // wait 1s before blinking
             subtitle.classList.add("blink");
-          }, 1000); // 1000ms = 1 second
+          }, 1000);
         });
       });
-    }, 1000); // 1 second pause before deleting
+    }, 1000);
   });
 }
 
-document.addEventListener('DOMContentLoaded', ()=>{
-  typeText(welcomeText, mainHeader,50,animateSubtitle);
+document.addEventListener('DOMContentLoaded', () => {
+  typeText(welcomeText, mainHeader, 50, animateSubtitle);
 });
 
 // ===== Smooth Glass Blur on Scroll =====
