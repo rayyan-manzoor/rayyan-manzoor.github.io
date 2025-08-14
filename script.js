@@ -42,4 +42,13 @@ window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
   document.querySelector('.top-glass').style.backdropFilter = `blur(${Math.min(15,6 + scrollY*0.02)}px)`;
   document.querySelector('.bottom-glass').style.backdropFilter = `blur(${Math.min(15,6 + scrollY*0.02)}px)`;
+
+  // ===== Fade-slide sections on scroll =====
+  document.querySelectorAll('.fade-slide').forEach(section=>{
+    const top = section.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    if(top < windowHeight*0.85){
+      section.classList.add('show');
+    }
+  });
 });
