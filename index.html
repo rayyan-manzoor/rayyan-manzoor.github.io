@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -5,38 +6,37 @@
   <title>Rayyan's Portfolio</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body class="dark-mode">
   <!-- Glass Overlays -->
   <div class="glass-overlay top-glass"></div>
-  <div class="glass-overlay bottom-glass"></div>  
+  <div class="glass-overlay bottom-glass"></div>
 
-  <!-- Fixed Toggle & Socials -->
-  <div class="top-fixed">
-    <div class="theme-switch">
-      <input type="checkbox" id="themeToggle">
-      <label for="themeToggle" class="toggle-label">
-        <span class="toggle-handle"></span>
-      </label>
-    </div>
-    <div class="social-icons">
-      <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
-    </div>
+  <!-- Theme Toggle -->
+  <div class="theme-switch">
+    <input type="checkbox" id="themeToggle">
+    <label for="themeToggle" class="toggle-label">
+      <span class="toggle-handle"></span>
+    </label>
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons">
+    <a href="#" target="_blank" class="social-link"><img src="linkedin.png" alt="LinkedIn"></a>
+    <a href="#" target="_blank" class="social-link"><img src="instagram.png" alt="Instagram"></a>
+    <a href="#" target="_blank" class="social-link"><img src="youtube.png" alt="YouTube"></a>
   </div>
 
   <!-- Welcome Section -->
   <section id="welcome" class="full-screen">
     <div class="welcome-content">
-      <h1 id="welcomeText">Welcome to Rayyan's Portfolio!</h1>
+      <h1 id="welcomeText"></h1>
       <p class="subtitle"></p>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="content-section fade-slide">
+  <section id="about" class="content-section">
     <div class="container">
       <h2>About Me</h2>
       <div class="content-wrapper">
@@ -61,7 +61,7 @@
   </section>
 
   <!-- Portfolio Section -->
-  <section id="portfolio" class="content-section fade-slide">
+  <section id="portfolio" class="content-section">
     <div class="container">
       <h2>My Projects</h2>
       <div class="project-grid">
@@ -80,5 +80,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
-
