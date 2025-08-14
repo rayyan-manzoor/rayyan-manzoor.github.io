@@ -30,14 +30,14 @@ html {
 /* ===== Theme Variables ===== */
 .light-mode {
   --text-color: #333;
-  --bg-gradient: linear-gradient(135deg, #fceabb, #f8b500);
+  --bg-gradient: linear-gradient(135deg, #a8edea, #fed6e3);
   --card-bg: rgba(255,255,255,0.85);
   --card-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .dark-mode {
   --text-color: #fff;
-  --bg-gradient: linear-gradient(135deg, #7b4397, #dc2430);
+  --bg-gradient: linear-gradient(135deg, #3f37a0, #2e0f8c);
   --card-bg: rgba(30,30,30,0.85);
   --card-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
