@@ -11,8 +11,7 @@ themeToggle.addEventListener('change', () => {
   localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
 });
 
-// Typing & Deleting Effect
-const welcomeText = document.getElementById('welcomeText');
+// Typing & Deleting Effect for Subtitle
 const subtitle = document.querySelector('.subtitle');
 
 function typeEffect(element, text, speed = 50, callback) {
@@ -24,7 +23,7 @@ function typeEffect(element, text, speed = 50, callback) {
       i++;
       setTimeout(typing, speed);
     } else if (callback) {
-      callback();
+      setTimeout(callback, 1000);
     }
   }
   typing();
@@ -39,46 +38,28 @@ function deleteEffect(element, speed = 50, callback) {
       i--;
       setTimeout(deleting, speed);
     } else if (callback) {
-      callback();
+      setTimeout(callback, 500);
     }
   }
   deleting();
 }
 
-// Blinking text effect (fade in/out)
-function blinkText(element) {
-  setInterval(() => {
-    element.style.visibility = (element.style.visibility === 'hidden') ? 'visible' : 'visible' === element.style.visibility ? 'hidden' : 'visible';
-  }, 500);
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-  // Step 1: Type welcome line
-  typeEffect(welcomeText, "Welcome to Rayyan's Portfolio!", 50, () => {
-    // Step 2: Type subtitle
-    typeEffect(subtitle, "Medical Professional & Tech Enthusiast", 50, () => {
-      // Step 3: Delete subtitle
-      deleteEffect(subtitle, 30, () => {
-        // Step 4: Type "Please scroll!" and start blinking
-        typeEffect(subtitle, "Please scroll!", 50, () => {
-          blinkText(subtitle);
-        });
-      });
+  // Animate Subtitle
+  typeEffect(subtitle, "Medical Professional & Tech Enthusiast", 50, () => {
+    deleteEffect(subtitle, 30, () => {
+      // Blinking "Please scroll!"
+      subtitle.textContent = "Please scroll!";
+      subtitle.classList.add('blink');
     });
   });
 });
 
-// Glass blur effect on scroll (soft edges + reduced blur)
+// Soft Glass blur effect on scroll
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
-  const maxBlur = 9; // 60% of original 15px
-  const minBlur = 6; // 60% of original 10px
-  const blurValue = Math.min(maxBlur, minBlur + scrollY * 0.02);
-
-  document.querySelector('.top-glass').style.backdropFilter = `blur(${blurValue}px)`;
-  document.querySelector('.bottom-glass').style.backdropFilter = `blur(${blurValue}px)`;
-
-  // Add smooth transition
-  document.querySelector('.top-glass').style.transition = 'backdrop-filter 0.2s ease-out';
-  document.querySelector('.bottom-glass').style.transition = 'backdrop-filter 0.2s ease-out';
+  document.querySelector('.top-glass').style.backdropFilter =
+    `blur(${6 + scrollY * 0.02}px)`;
+  document.querySelector('.bottom-glass').style.backdropFilter =
+    `blur(${6 + scrollY * 0.02}px)`;
 });
