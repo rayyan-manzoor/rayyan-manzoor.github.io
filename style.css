@@ -100,16 +100,18 @@ html {
     transform: translateX(-50%);
     z-index: 1100;  /* above the blur */
 }
+.fixed-gif {
+    position: fixed;
+    top: 20px;      /* distance from top */
+    left: 20px;     /* distance from left */
+    transform: none; /* remove centering */
+    z-index: 1100;  /* above the blur */
+}
+
 .fixed-gif img {
     max-width: 150px; /* adjust size if needed */
     height: auto;
     display: block;
-}
-#about {
-  background-image: url('dallas.JPG');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 /* ===== Responsive GIF positioning ===== */
 
