@@ -65,4 +65,3 @@ body { font-family:'Poppins', sans-serif; line-height:1.6; transition: backgroun
 /* ===== Subtitle Blink for last line only ===== */
 .blink { animation: blinkSubtitle 1s step-start infinite; }
 @keyframes blinkSubtitle { 0%,50%,100%{opacity:1;} 25%,75%{opacity:0;} }
-
