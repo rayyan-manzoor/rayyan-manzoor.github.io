@@ -20,39 +20,32 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  height: 100px;
+  height: 60px; /* 60% of original */
   z-index: 900;
   pointer-events: none;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  transition: backdrop-filter 0.3s ease, background 0.3s ease;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
-@supports not (backdrop-filter: blur(10px)) {
-  .glass-overlay {
-    background: rgba(255, 255, 255, 0.8) !important;
-  }
-  .dark-mode .glass-overlay {
-    background: rgba(0, 0, 0, 0.7) !important;
-  }
-}
-
+/* Top blur with soft edges */
 .top-glass {
   top: 0;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
 }
 
 .dark-mode .top-glass {
-  background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 50%, transparent 100%);
 }
 
+/* Bottom blur with soft edges */
 .bottom-glass {
   bottom: 0;
-  background: linear-gradient(to top, rgba(255,255,255,0.3) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
 }
 
 .dark-mode .bottom-glass {
-  background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 50%, transparent 100%);
 }
 
 /* ===== Theme Styles ===== */
@@ -92,12 +85,6 @@ body {
   color: var(--text-color);
 }
 
-.scrollable-section {
-  padding: 4rem 2rem;
-  background: var(--section-bg);
-  color: var(--text-color);
-}
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -120,7 +107,16 @@ body {
   font-size: clamp(1rem, 3vw, 1.5rem);
   opacity: 0.9;
   margin-top: 1rem;
-  display: inline-block; /* needed for blinking visibility toggle */
+}
+
+/* Blinking effect for "Please scroll!" */
+.blink {
+  animation: blinkText 1s step-start infinite;
+}
+
+@keyframes blinkText {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
 }
 
 /* ===== Scrollable Content ===== */
@@ -216,36 +212,9 @@ body {
   transform: translateX(30px);
 }
 
-/* ===== Animations ===== */
-@keyframes blinkCursor {
-  0%, 100% { border-color: currentColor; }
-  50% { border-color: transparent; }
-}
-
 /* ===== Responsive Adjustments ===== */
 @media (min-width: 1024px) {
   #welcomeText {
     white-space: nowrap;
   }
-}
-
-/* ===== Diagonal Scroll Container ===== */
-.diagonal-scroll-content {
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.diagonal-scroll-content section {
-  flex: 0 0 100vw;
-  height: 100vh;
-}
-
-/* Optional slight diagonal tilt for style */
-.diagonal-scroll-content section:nth-child(even) {
-  transform: skewY(-2deg);
-}
-.diagonal-scroll-content section:nth-child(odd) {
-  transform: skewY(2deg);
 }
