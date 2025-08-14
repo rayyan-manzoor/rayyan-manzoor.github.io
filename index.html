@@ -79,28 +79,27 @@
 
   <script src="script.js"></script>
 
-  <!-- Progressive Blur Script -->
+  <!-- Progressive Blur Script with Smooth Start→End Blur -->
   <script>
     const topOverlay = document.querySelector('.top-glass');
     const bottomOverlay = document.querySelector('.bottom-glass');
 
-    const maxBlur = 12; // maximum blur in px
+    const maxBlur = 10; // maximum blur in px
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
       const viewportHeight = window.innerHeight;
       const pageHeight = document.body.scrollHeight;
 
-      // Top overlay: text scrolling under top
-      let topBlur = Math.min(scrollY / 200, 1) * maxBlur;
-      topOverlay.style.backdropFilter = `blur(${topBlur}px)`;
-      topOverlay.style.webkitBackdropFilter = `blur(${topBlur}px)`;
+      // Top overlay: bottom = 0 blur, top = max
+      let topFactor = Math.min(scrollY / 300, 1);
+      topOverlay.style.backdropFilter = `blur(${topFactor * maxBlur}px)`;
+      topOverlay.style.webkitBackdropFilter = `blur(${topFactor * maxBlur}px)`;
 
-      // Bottom overlay: text scrolling under bottom
-      let bottomScroll = pageHeight - viewportHeight - scrollY;
-      let bottomBlur = Math.min(bottomScroll / 200, 1) * maxBlur;
-      bottomOverlay.style.backdropFilter = `blur(${bottomBlur}px)`;
-      bottomOverlay.style.webkitBackdropFilter = `blur(${bottomBlur}px)`;
+      // Bottom overlay: top = 0 blur, bottom = max
+      let bottomFactor = Math.min((pageHeight - viewportHeight - scrollY) / 300, 1);
+      bottomOverlay.style.backdropFilter = `blur(${bottomFactor * maxBlur}px)`;
+      bottomOverlay.style.webkitBackdropFilter = `blur(${bottomFactor * maxBlur}px)`;
     });
   </script>
 </body>
