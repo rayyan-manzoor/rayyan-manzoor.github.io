@@ -55,11 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Soft Glass blur effect on scroll
+// Smooth Soft Glass Blur on Scroll
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
-  document.querySelector('.top-glass').style.backdropFilter =
-    `blur(${6 + scrollY * 0.02}px)`;
-  document.querySelector('.bottom-glass').style.backdropFilter =
-    `blur(${6 + scrollY * 0.02}px)`;
+  const topBlur = Math.min(6 + scrollY * 0.02, 12);
+  const bottomBlur = Math.min(6 + scrollY * 0.02, 12);
+
+  document.querySelector('.top-glass').style.backdropFilter = `blur(${topBlur}px)`;
+  document.querySelector('.bottom-glass').style.backdropFilter = `blur(${bottomBlur}px)`;
 });
