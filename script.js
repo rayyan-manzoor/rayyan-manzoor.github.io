@@ -44,13 +44,13 @@ function animateSubtitle() {
       deleteText(subtitle, 30, () => {
         subtitle.textContent = "";
         typeText(subtitle, "Please scroll!", 50, () => {
-          // Wait 1 second after typing is complete before blinking
+          // Wait 1 second AFTER typing is fully done before blinking
           setTimeout(() => {
             subtitle.classList.add("blink");
-          }, 1000);
+          }, 1000); // 1000ms = 1 second
         });
       });
-    }, 1000);
+    }, 1000); // 1 second pause before deleting
   });
 }
 
