@@ -115,14 +115,22 @@ html {
 }
 /* ===== Responsive GIF positioning ===== */
 
+.fixed-gif {
+    position: fixed;
+    top: 20px;
+    left: 20px;      /* keep it on the left */
+    transform: none;
+    z-index: 1100;
+    max-width: 150px; /* default size */
+}
+
+/* Smaller screens: only scale down, keep top-left */
 @media (max-width: 768px) {
     .fixed-gif {
-        left: auto;
-        right: 20px;
-        transform: none;
-        max-width: 100px; /* optional: smaller on phones */
+        max-width: 100px; /* smaller size on phones */
     }
 }
+
 /* ===== About Section Background ===== */
 #about {
     background-image: url('dallas.JPG'); /* make sure filename matches exactly */
