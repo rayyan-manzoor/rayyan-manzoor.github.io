@@ -15,24 +15,25 @@ body {
   transition: background 0.8s ease, color 0.8s ease;
 }
 
-/* ===== Glass Overlays with Soft Edges ===== */
+/* ===== Invisible Glass Overlays (Top & Bottom) ===== */
 .glass-overlay {
   position: fixed;
-  left: 10px;
-  right: 10px;
-  height: 60px;
-  z-index: 900;
+  left: 0;
+  right: 0;
+  height: 80px; /* height of the blur zone */
   pointer-events: none;
-  border-radius: 16px;
-  backdrop-filter: blur(0px); /* start at 0 for JS dynamic blur */
+  z-index: 900;
+  backdrop-filter: blur(0px); /* start with no blur */
   -webkit-backdrop-filter: blur(0px);
-  transition: backdrop-filter 0.1s ease, background 0.4s ease;
-  background: rgba(255, 255, 255, 0.15); /* subtle transparency */
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: backdrop-filter 0.1s ease;
 }
 
-.top-glass { top: 10px; }
-.bottom-glass { bottom: 10px; transform: rotate(180deg); }
+/* positions */
+.top-glass { top: 0; }
+.bottom-glass { bottom: 0; }
+
+/* optional: debug overlay (uncomment to see) */
+/* .glass-overlay.debug { background: rgba(255,255,255,0.05); } */
 
 /* ===== Theme Variables ===== */
 .light-mode {
@@ -187,6 +188,6 @@ body {
 }
 
 @keyframes blinkSubtitle {
-  0%,50%,100% { opacity:1; }
-  25%,75% { opacity:0; }
+  0%,50%,100% { opacity: 1; }
+  25%,75% { opacity: 0; }
 }
