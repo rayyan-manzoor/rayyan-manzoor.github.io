@@ -38,8 +38,8 @@ function deleteText(element, speed=50, callback){
 
 // ===== Animate Subtitle =====
 function animateSubtitle(){
-  typeText(subtitle, "Medical Professional & Tech Enthusiast", 100, ()=>{
-    deleteText(subtitle,30,()=>{
+  typeText(subtitle, "Medical Professional & Tech Enthusiast", 80, ()=>{
+    deleteText(subtitle,50,()=>{
       subtitle.textContent="";
       typeText(subtitle,"Please scroll!",50,()=>{
         subtitle.classList.add("blink");
