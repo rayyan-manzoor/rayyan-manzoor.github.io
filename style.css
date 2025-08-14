@@ -105,3 +105,9 @@ html {
     height: auto;
     display: block;
 }
+#about {
+  background-image: url('images/dallas.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
