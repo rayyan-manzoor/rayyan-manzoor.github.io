@@ -229,3 +229,23 @@ body {
     white-space: nowrap;
   }
 }
+/* ===== Diagonal Scroll Container ===== */
+.diagonal-scroll-content {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.diagonal-scroll-content section {
+  flex: 0 0 100vw;
+  height: 100vh;
+}
+
+/* Optional slight diagonal tilt for style */
+.diagonal-scroll-content section:nth-child(even) {
+  transform: skewY(-2deg);
+}
+.diagonal-scroll-content section:nth-child(odd) {
+  transform: skewY(2deg);
+}
