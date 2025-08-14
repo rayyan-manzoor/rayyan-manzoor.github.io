@@ -90,9 +90,17 @@ body { font-family:'Poppins', sans-serif; line-height:1.6; transition: backgroun
     border-radius: 5px;
     cursor: pointer;
 }
-.welcome-gif {
-  display: block;
-  margin: 20px auto;
-  max-width: 100%;
-  height: auto;
+.fixed-gif {
+  position: fixed;       /* stays in place when scrolling */
+  top: 10px;             /* adjust vertical position */
+  left: 50%;             /* center horizontally */
+  transform: translateX(-50%);
+  z-index: 10000;        /* above everything else */
 }
+
+.fixed-gif img {
+  max-width: 150px;      /* adjust size */
+  height: auto;
+  display: block;
+}
+
