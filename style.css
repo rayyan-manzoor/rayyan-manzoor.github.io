@@ -77,3 +77,16 @@ body { font-family:'Poppins', sans-serif; line-height:1.6; transition: backgroun
 /* ===== Subtitle Blink for last line only ===== */
 .blink { animation: blinkSubtitle 1s step-start infinite; }
 @keyframes blinkSubtitle { 0%,50%,100{opacity:1;} 25%,75%{opacity:0;} }
+.top-middle-btn {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background: #ff6600;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
