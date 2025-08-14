@@ -12,18 +12,19 @@ themeToggle.addEventListener('change', () => {
 });
 
 // Typing & Deleting Effect
+const welcomeText = document.getElementById('welcomeText');
 const subtitle = document.querySelector('.subtitle');
 
 function typeEffect(element, text, speed = 50, callback) {
   let i = 0;
-  element.textContent = ""; // Ensure empty before typing
+  element.textContent = "";
   function typing() {
     if (i < text.length) {
       element.textContent += text.charAt(i);
       i++;
       setTimeout(typing, speed);
     } else if (callback) {
-      setTimeout(callback, 1000);
+      callback();
     }
   }
   typing();
@@ -38,17 +39,32 @@ function deleteEffect(element, speed = 50, callback) {
       i--;
       setTimeout(deleting, speed);
     } else if (callback) {
-      setTimeout(callback, 500);
+      callback();
     }
   }
   deleting();
 }
 
+// Blinking effect for "Please scroll!"
+function blinkCursorEffect(element) {
+  element.style.borderRight = "3px solid";
+  setInterval(() => {
+    element.style.borderRight = element.style.borderRight === "3px solid" ? "none" : "3px solid";
+  }, 500);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Subtitle typing animation sequence
-  typeEffect(subtitle, "Medical Professional & Tech Enthusiast", 50, () => {
-    deleteEffect(subtitle, 30, () => {
-      typeEffect(subtitle, "Please scroll!", 50);
+  // Step 1: Type welcome line
+  typeEffect(welcomeText, "Welcome to Rayyan's Portfolio!", 50, () => {
+    // Step 2: Type subtitle
+    typeEffect(subtitle, "Medical Professional & Tech Enthusiast", 50, () => {
+      // Step 3: Delete subtitle
+      deleteEffect(subtitle, 30, () => {
+        // Step 4: Type "Please scroll!" with blinking cursor
+        typeEffect(subtitle, "Please scroll!", 50, () => {
+          blinkCursorEffect(subtitle);
+        });
+      });
     });
   });
 });
