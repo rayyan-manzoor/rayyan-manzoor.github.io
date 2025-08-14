@@ -48,7 +48,7 @@ function deleteEffect(element, speed = 50, callback) {
 // Blinking text effect (fade in/out)
 function blinkText(element) {
   setInterval(() => {
-    element.style.visibility = (element.style.visibility === 'hidden') ? 'visible' : 'hidden';
+    element.style.visibility = (element.style.visibility === 'hidden') ? 'visible' : 'visible' === element.style.visibility ? 'hidden' : 'visible';
   }, 500);
 }
 
@@ -68,9 +68,17 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Glass blur effect on scroll
+// Glass blur effect on scroll (soft edges + reduced blur)
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
-  document.querySelector('.top-glass').style.backdropFilter =
-    `blur(${Math.min(15, 10 + scrollY * 0.02)}px)`;
+  const maxBlur = 9; // 60% of original 15px
+  const minBlur = 6; // 60% of original 10px
+  const blurValue = Math.min(maxBlur, minBlur + scrollY * 0.02);
+
+  document.querySelector('.top-glass').style.backdropFilter = `blur(${blurValue}px)`;
+  document.querySelector('.bottom-glass').style.backdropFilter = `blur(${blurValue}px)`;
+
+  // Add smooth transition
+  document.querySelector('.top-glass').style.transition = 'backdrop-filter 0.2s ease-out';
+  document.querySelector('.bottom-glass').style.transition = 'backdrop-filter 0.2s ease-out';
 });
