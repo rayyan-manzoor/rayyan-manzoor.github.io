@@ -92,12 +92,12 @@
       const pageHeight = document.body.scrollHeight;
 
       // Top overlay: bottom = 0 blur, top = max
-      let topFactor = Math.min(scrollY / 300, 1);
+      let topFactor = Math.min(scrollY / 600, 1);
       topOverlay.style.backdropFilter = `blur(${topFactor * maxBlur}px)`;
       topOverlay.style.webkitBackdropFilter = `blur(${topFactor * maxBlur}px)`;
 
       // Bottom overlay: top = 0 blur, bottom = max
-      let bottomFactor = Math.min((pageHeight - viewportHeight - scrollY) / 300, 1);
+      let bottomFactor = Math.min((pageHeight - viewportHeight - scrollY) / 600, 1);
       bottomOverlay.style.backdropFilter = `blur(${bottomFactor * maxBlur}px)`;
       bottomOverlay.style.webkitBackdropFilter = `blur(${bottomFactor * maxBlur}px)`;
     });
