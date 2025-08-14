@@ -24,7 +24,7 @@ body {
   z-index: 900;
   pointer-events: none;
   transition: backdrop-filter 0.3s ease;
-  backdrop-filter: blur(6px); /* base blur thickness */
+  backdrop-filter: blur(6px); 
   -webkit-backdrop-filter: blur(6px);
 }
 
@@ -80,6 +80,7 @@ body {
   padding: 1rem;
   background: var(--bg-gradient);
   color: var(--text-color);
+  transition: background 0.7s ease, color 0.7s ease; /* smooth gradient transition */
 }
 
 .content-section {
@@ -188,7 +189,6 @@ body {
   border-radius: 50px;
   position: relative;
   cursor: pointer;
-  transition: background 0.7s ease;
 }
 
 .toggle-handle {
