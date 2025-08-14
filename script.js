@@ -45,11 +45,10 @@ function deleteEffect(element, speed = 50, callback) {
   deleting();
 }
 
-// Blinking effect for "Please scroll!"
-function blinkCursorEffect(element) {
-  element.style.borderRight = "3px solid";
+// Blinking text effect (fade in/out)
+function blinkText(element) {
   setInterval(() => {
-    element.style.borderRight = element.style.borderRight === "3px solid" ? "none" : "3px solid";
+    element.style.visibility = (element.style.visibility === 'hidden') ? 'visible' : 'hidden';
   }, 500);
 }
 
@@ -60,9 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
     typeEffect(subtitle, "Medical Professional & Tech Enthusiast", 50, () => {
       // Step 3: Delete subtitle
       deleteEffect(subtitle, 30, () => {
-        // Step 4: Type "Please scroll!" with blinking cursor
+        // Step 4: Type "Please scroll!" and start blinking
         typeEffect(subtitle, "Please scroll!", 50, () => {
-          blinkCursorEffect(subtitle);
+          blinkText(subtitle);
         });
       });
     });
