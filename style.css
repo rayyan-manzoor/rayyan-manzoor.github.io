@@ -115,35 +115,11 @@ html {
 }
 /* ===== Responsive GIF positioning ===== */
 
-/* Small tablets and larger phones */
-@media (max-width: 1024px) {
-  .fixed-gif {
-    top: 15px;
-    left: auto;
-    right: 30px;
-    transform: none;
-    max-width: 120px; /* slightly smaller */
-  }
-}
-
-/* Phones */
 @media (max-width: 768px) {
-  .fixed-gif {
-    top: 20px;
-    left: auto;
-    right: 20px;
-    transform: none;
-    max-width: 100px; /* smaller for small screens */
-  }
-}
-
-/* Extra small phones */
-@media (max-width: 480px) {
-  .fixed-gif {
-    top: 15px;
-    left: auto;
-    right: 15px;
-    transform: none;
-    max-width: 80px; /* very small */
-  }
+    .fixed-gif {
+        left: auto;
+        right: 20px;
+        transform: none;
+        max-width: 100px; /* optional: smaller on phones */
+    }
 }
