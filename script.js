@@ -54,8 +54,6 @@ function animateSubtitle() {
   });
 }
 
-}
-
 document.addEventListener('DOMContentLoaded', ()=>{
   typeText(welcomeText, mainHeader,50,animateSubtitle);
 });
