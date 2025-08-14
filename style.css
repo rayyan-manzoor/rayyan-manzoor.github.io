@@ -13,7 +13,7 @@ html {
 body {
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.6;
-  transition: background 0.5s ease, color 0.5s ease; /* smooth mode transition */
+  transition: background 0.5s ease, color 0.5s ease; 
 }
 
 /* ===== Glass Overlays with Smooth Fade ===== */
@@ -28,7 +28,6 @@ body {
   transition: backdrop-filter 0.3s ease;
 }
 
-/* Top Blur */
 .top-glass {
   top: 0;
   height: 60px;
@@ -37,14 +36,10 @@ body {
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
 }
 
-/* Dark Mode Top Blur */
 .dark-mode .top-glass {
   background: rgba(0,0,0,0.05);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
 }
 
-/* Bottom Blur */
 .bottom-glass {
   bottom: 0;
   height: 60px;
@@ -53,11 +48,8 @@ body {
   -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
 }
 
-/* Dark Mode Bottom Blur */
 .dark-mode .bottom-glass {
   background: rgba(0,0,0,0.05);
-  mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
-  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
 }
 
 /* ===== Theme Styles ===== */
@@ -88,7 +80,7 @@ body {
   padding: 1rem;
   background: var(--bg-gradient);
   color: var(--text-color);
-  transition: background 0.5s ease, color 0.5s ease; /* smooth gradient transition */
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
 .content-section {
@@ -121,7 +113,7 @@ body {
   white-space: normal;
   display: inline-block;
   overflow: hidden;
-  border-right: none; /* removed annoying cursor */
+  border-right: none; /* removed cursor */
 }
 
 .subtitle {
