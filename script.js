@@ -27,37 +27,10 @@ function typeText() {
   }
 }
 
-// Diagonal Scroll Animation
-document.addEventListener('DOMContentLoaded', () => {
-  const container = document.querySelector('.diagonal-scroll-content');
-  const sections = gsap.utils.toArray(".diagonal-scroll-content section");
-  let totalWidth = sections.length * window.innerWidth;
-
-  gsap.set(container, { width: totalWidth });
-
-  sections.forEach((section, i) => {
-    gsap.to(container, {
-      x: -i * window.innerWidth,
-      scrollTrigger: {
-        trigger: section,
-        start: "top top",
-        end: "+=100%",
-        scrub: 1,
-        pin: true,
-        anticipatePin: 1
-      }
-    });
-  });
-
-  // Glass blur effect
-  if (CSS.supports('backdrop-filter', 'blur(10px)')) {
-    ScrollTrigger.create({
-      onUpdate: (self) => {
-        const scrollY = self.progress * 1000;
-        document.querySelector('.top-glass').style.backdropFilter = `blur(${Math.min(15, 10 + scrollY * 0.1)}px)`;
-      }
-    });
-  }
-
-  typeText();
+// Glass blur effect on scroll
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  document.querySelector('.top-glass').style.backdropFilter = `blur(${Math.min(15, 10 + scrollY * 0.02)}px)`;
 });
+
+document.addEventListener('DOMContentLoaded', typeText);
