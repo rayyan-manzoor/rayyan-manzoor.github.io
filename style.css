@@ -2,6 +2,9 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 html { font-size:16px; }
 body { font-family:'Poppins', sans-serif; line-height:1.6; transition: background 0.8s ease, color 0.8s ease; }
+html {
+  scroll-behavior: smooth;
+}
 
 /* ===== Glass Overlays (Top & Bottom) ===== */
 .glass-overlay {
