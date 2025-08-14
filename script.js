@@ -37,17 +37,23 @@ function deleteText(element, speed=50, callback){
 }
 
 // ===== Animate Subtitle =====
-function animateSubtitle(){
-  typeText(subtitle, "Medical Professional & Tech Enthusiast", 50, ()=>{
-  setTimeout(() => {
-    deleteText(subtitle, 30, () => {
-      subtitle.textContent = "";
-      typeText(subtitle, "Please scroll!", 50, () => {
-        subtitle.classList.add("blink");
+function animateSubtitle() {
+  typeText(subtitle, "Medical Professional & Tech Enthusiast", 50, () => {
+    // Wait 1 second before deleting
+    setTimeout(() => {
+      deleteText(subtitle, 30, () => {
+        subtitle.textContent = "";
+        typeText(subtitle, "Please scroll!", 50, () => {
+          // Wait 1 second after typing is complete before blinking
+          setTimeout(() => {
+            subtitle.classList.add("blink");
+          }, 1000);
+        });
       });
-    });
-  }, 1000); // pause for 1 second before deleting
-});
+    }, 1000);
+  });
+}
+
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
