@@ -123,3 +123,10 @@ html {
         max-width: 100px; /* optional: smaller on phones */
     }
 }
+/* ===== About Section Background ===== */
+#about {
+    background-image: url('dallas.JPG'); /* make sure filename matches exactly */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
