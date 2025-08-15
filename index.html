@@ -9,10 +9,6 @@
 </head>
 <body class="dark-mode">
 
-  <!-- Glass Overlays -->
-  <div class="glass-overlay top-glass"></div>
-  <div class="glass-overlay bottom-glass"></div>
-
   <!-- Theme Toggle -->
   <div class="theme-switch">
     <input type="checkbox" id="themeToggle">
@@ -22,18 +18,19 @@
   </div>
 
   <!-- Social Icons -->
- <div class="social-icons">
+  <div class="social-icons">
     <a href="https://www.linkedin.com/in/rayyanmanzoor" target="_blank" class="social-link"><img src="linkedin.png" alt="LinkedIn"></a>
     <a href="https://www.instagram.com/rayyan.manzoorr/" target="_blank" class="social-link"><img src="instagram.png" alt="Instagram"></a>
     <a href="https://www.youtube.com/@rayyan.manzoor" target="_blank" class="social-link"><img src="youtube.png" alt="YouTube"></a>
   </div>
 
   <!-- Top GIF -->
-<div class="fixed-gif">
-  <a href="#welcome">
-    <img src="newgif.gif" alt="Top GIF">
-  </a>
-</div>
+  <div class="fixed-gif">
+    <a href="#welcome">
+      <img src="newgif.gif" alt="Top GIF">
+    </a>
+  </div>
+
   <!-- Welcome Section -->
   <section id="welcome" class="full-screen">
     <div class="welcome-content">
@@ -86,32 +83,5 @@
 
   <script src="script.js"></script>
 
-  <!-- Progressive Blur Script with Smooth Start→End Blur -->
-  <script>
-    const topOverlay = document.querySelector('.top-glass');
-    const bottomOverlay = document.querySelector('.bottom-glass');
-
-    const maxBlur = 3; // maximum blur in px
-    const scrollThreshold = 20; // start blur after 20px scroll
-    const rampLength = 600; // how many px to reach max blur
-
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      const viewportHeight = window.innerHeight;
-      const pageHeight = document.body.scrollHeight;
-
-      // Top overlay: start blur after threshold
-      let topFactor = Math.min(Math.max((scrollY - scrollThreshold) / rampLength, 0), 1);
-      topOverlay.style.backdropFilter = `blur(${topFactor * maxBlur}px)`;
-      topOverlay.style.webkitBackdropFilter = `blur(${topFactor * maxBlur}px)`;
-
-      // Bottom overlay: start blur after threshold
-      let bottomScroll = pageHeight - viewportHeight - scrollY;
-      let bottomFactor = Math.min(Math.max((bottomScroll - scrollThreshold) / rampLength, 0), 1);
-      bottomOverlay.style.backdropFilter = `blur(${bottomFactor * maxBlur}px)`;
-      bottomOverlay.style.webkitBackdropFilter = `blur(${bottomFactor * maxBlur}px)`;
-    });
-  </script>
 </body>
 </html>
-
