@@ -251,3 +251,41 @@ body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+/* ===== Scrolling Text ===== */
+.scrolling-text-container {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.scrolling-text {
+  display: inline-block;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: bold;
+  animation: scrollText 10s linear infinite;
+  color: var(--text-color); /* adapts to dark/light mode */
+}
+
+.scrolling-text span {
+  margin-right: 2rem;
+  display: inline-block;
+}
+
+/* Scroll Animation */
+@keyframes scrollText {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Optional: adjust speed for mobile */
+@media (max-width: 768px) {
+  .scrolling-text {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+  }
+}
