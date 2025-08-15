@@ -138,7 +138,7 @@ const observer = new IntersectionObserver(entries => {
           if (index === wordSpans.length - 1) {
             setTimeout(animateSubtitle, 500);
           }
-        }, index * 150); // delay between each word
+        }, index * 250); // delay between each word
       });
       observer.disconnect();
     }
