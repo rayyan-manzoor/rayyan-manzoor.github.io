@@ -38,7 +38,7 @@ body {
   --bg-gradient: linear-gradient(135deg, #a8edea, #fed6e3);
   --card-bg: rgba(255, 255, 255, 0.85);
   --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  --gradient-colors: linear-gradient(to right, #000000, #db9004, #000000, #db9004, #000000);
+  --gradient-colors: linear-gradient(to right, #302e29, #db9004, #302e29, #db9004, #302e29);
 }
 
 .dark-mode {
