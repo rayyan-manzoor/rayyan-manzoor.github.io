@@ -214,7 +214,7 @@ body {
   }
 }
 
-/* ===== About Section Background (no heading text) ===== */
+/* ===== About Section Background ===== */
 #about {
   background-image: url('dallas.JPG');
   background-size: cover;
@@ -249,13 +249,13 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* ===== Scroll Overlay (Two Opposite Lines, minimal gap, no background) ===== */
+/* ===== Scroll Overlay (Two Opposite Lines) ===== */
 #scrollOverlay {
   position: absolute;
   top: 100vh; /* right after Welcome section */
   left: 0;
   width: 100%;
-  height: 70px; /* minimal height for two lines */
+  height: 60px; /* two lines with small gap */
   pointer-events: none;
   overflow: hidden;
   z-index: 1050;
@@ -264,38 +264,37 @@ body {
 .scrolling-text-line {
   display: flex;
   white-space: nowrap;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2rem, 5vw, 3rem); /* adjust text size here */
   font-weight: bold;
   color: var(--text-color);
-  animation-iteration-count: infinite;
-  line-height: 1; /* minimal gap between lines */
 }
 
 .line1 {
-  animation: scrollLeft 13s linear infinite;
+  animation: scrollLeft 15s linear infinite;
 }
 
 .line2 {
-  animation: scrollRight 13s linear infinite;
-  margin-top: 3px; /* almost no gap */
+  animation: scrollRight 20s linear infinite;
+  margin-top: 3px; /* tiny gap between lines */
 }
 
 .scrolling-text-line span {
+  display: inline-block;
   margin-right: 2rem;
 }
 
-/* ===== Scroll Animations ===== */
+/* Infinite Scroll Animations */
 @keyframes scrollLeft {
-  0% { transform: translateX(0%); }
+  0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
 @keyframes scrollRight {
-  0% { transform: translateX(0%); }
+  0% { transform: translateX(0); }
   100% { transform: translateX(50%); }
 }
 
-/* Optional: adjust speed for mobile */
+/* Optional: adjust size for mobile */
 @media (max-width: 768px) {
   .scrolling-text-line {
     font-size: clamp(1.5rem, 5vw, 2.5rem);
