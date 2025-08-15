@@ -6,12 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const welcomeSection = document.getElementById('welcome');
   const portfolioSection = document.getElementById('portfolio');
 
-  // Reference to GIF element
   const gifImage = document.querySelector('.fixed-gif img');
-
-  // Paths to your GIFs
-  const darkGif = "newgif.gif"; // current one
-  const lightGif = "newgif-blacktext.gif"; // black text GIF
+  const darkGif = "newgif.gif";
+  const lightGif = "newgif-blacktext.gif";
 
   const darkImage = "url('dallas.JPG')";
   const lightImage = "url('light-mode-image.jpg')";
@@ -19,12 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const darkTextColor = "#fff";
   const lightTextColor = "#333";
 
-  // Retrieve saved theme or default to dark
   const savedTheme = localStorage.getItem('theme') || 'dark';
   body.classList.add(`${savedTheme}-mode`);
   themeToggle.checked = savedTheme === 'light';
 
-  // ===== Apply Theme =====
   function applyTheme(theme) {
     if (theme === 'light') {
       body.classList.add('light-mode');
@@ -39,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
       welcomeSection.style.color = lightTextColor;
       portfolioSection.style.color = lightTextColor;
 
-      gifImage.src = lightGif; // ✅ Change GIF for light mode
+      gifImage.src = lightGif;
     } else {
       body.classList.add('dark-mode');
       body.classList.remove('light-mode');
@@ -53,14 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
       welcomeSection.style.color = darkTextColor;
       portfolioSection.style.color = darkTextColor;
 
-      gifImage.src = darkGif; // ✅ Change GIF for dark mode
+      gifImage.src = darkGif;
     }
   }
 
-  // Apply theme on page load
   applyTheme(savedTheme);
 
-  // Toggle theme on checkbox change
   themeToggle.addEventListener('change', () => {
     const newTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
     applyTheme(newTheme);
@@ -100,9 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
     deleting();
   }
 
-  // ===== Animate Subtitle =====
   function animateSubtitle() {
-    subtitle.classList.remove('blink'); // reset blink
+    subtitle.classList.remove('blink');
     typeText(subtitle, "Medical Professional & Tech Enthusiast", 50, () => {
       setTimeout(() => {
         deleteText(subtitle, 30, () => {
@@ -117,42 +109,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ===== Word-by-word blur animation for Welcome Text =====
-const mainHeader = "Welcome to Rayyan's Portfolio!";
+  const mainHeader = "Welcome to Rayyan's Portfolio!";
+  welcomeText.innerHTML = mainHeader.split(" ").map(word => `<span>${word}</span>`).join(" ");
+  const wordSpans = welcomeText.querySelectorAll("span");
 
-// Split into spans for each word
-welcomeText.innerHTML = mainHeader.split(" ").map(word => {
-  return `<span>${word}</span>`;
-}).join(" ");
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        wordSpans.forEach((span, index) => {
+          setTimeout(() => {
+            span.classList.add("visible");
+            if (index === wordSpans.length - 1) {
+              setTimeout(animateSubtitle, 500);
+            }
+          }, index * 250);
+        });
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
 
-// Observe each word and animate in sequence
-const wordSpans = welcomeText.querySelectorAll("span");
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      wordSpans.forEach((span, index) => {
-        setTimeout(() => {
-          span.classList.add("visible");
-          // When last word is visible, start subtitle animation
-          if (index === wordSpans.length - 1) {
-            setTimeout(animateSubtitle, 500);
-          }
-        }, index * 250); // delay between each word
-      });
-      observer.disconnect();
-    }
-  });
-}, { threshold: 0.1 });
-
-observer.observe(welcomeText);
-
+  observer.observe(welcomeText);
 
   // ===== Progressive Blur Overlays =====
   const topOverlay = document.querySelector('.top-glass');
   const bottomOverlay = document.querySelector('.bottom-glass');
 
-  const maxBlur = 3; // maximum blur in px
+  const maxBlur = 3;
   const scrollThreshold = 20; 
   const rampLength = 600;
 
@@ -179,10 +162,11 @@ observer.observe(welcomeText);
     bottomOverlay.style.backdropFilter = `blur(${(bottomFactor * maxBlur).toFixed(2)}px)`;
     bottomOverlay.style.webkitBackdropFilter = `blur(${(bottomFactor * maxBlur).toFixed(2)}px)`;
   });
-});
-// ===== Make Scrolling Text Infinite =====
-document.querySelectorAll('.scrolling-text-line').forEach(line => {
-  const content = line.innerHTML;
-  // Duplicate the content twice for seamless scrolling
-  line.innerHTML = content + content + content;
+
+  // ===== Make Scrolling Text Infinite =====
+  document.querySelectorAll('.scrolling-text-line').forEach(line => {
+    const content = line.innerHTML;
+    // Duplicate content three times for seamless infinite scrolling
+    line.innerHTML = content + content + content;
+  });
 });
