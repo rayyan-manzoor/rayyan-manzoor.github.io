@@ -267,7 +267,7 @@ body {
 .scrolling-text-line {
   display: flex;
   white-space: nowrap;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
   font-weight: bold;
   color: var(--text-color);
   line-height: 1;
