@@ -249,17 +249,19 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* ===== Scroll Overlay (Two Lines, Infinite) ===== */
+/* ===== Scroll Overlay (Two Opposite Lines) ===== */
 #scrollOverlay {
   position: absolute;
   top: 100vh; /* right after Welcome section */
   left: 0;
   width: 100%;
+  height: auto; /* fits both lines */
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible;
   z-index: 1050;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 2px; /* tiny gap between lines */
 }
 
@@ -269,19 +271,31 @@ body {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: bold;
   color: var(--text-color);
+  animation-iteration-count: infinite;
 }
 
-.line1, .line2 {
+.line1 {
   animation: scrollLeft 15s linear infinite;
+}
+
+.line2 {
+  animation: scrollRightInfinite 20s linear infinite;
+  margin-top: 0; /* remove extra gap */
 }
 
 .scrolling-text-line span {
   margin-right: 2rem;
 }
 
+/* ===== Keyframes ===== */
 @keyframes scrollLeft {
   0% { transform: translateX(0%); }
-  100% { transform: translateX(-33.33%); } /* matches duplication for seamless loop */
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scrollRightInfinite {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
 }
 
 /* Optional: adjust speed and size for mobile */
