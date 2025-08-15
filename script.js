@@ -1,62 +1,70 @@
 document.addEventListener('DOMContentLoaded', () => {
   // ===== Theme Toggle & Section Images =====
-  // ===== Theme Toggle, Section Images & Font Colors =====
-const themeToggle = document.getElementById('themeToggle');
-const body = document.body;
-const aboutSection = document.getElementById('about');
-const welcomeSection = document.getElementById('welcome');
-const portfolioSection = document.getElementById('portfolio');
+  const themeToggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const aboutSection = document.getElementById('about');
+  const welcomeSection = document.getElementById('welcome');
+  const portfolioSection = document.getElementById('portfolio');
 
-const darkImage = "url('dallas.JPG')";
-const lightImage = "url('light-mode-image.jpg')";
+  // Reference to GIF element
+  const gifImage = document.querySelector('.fixed-gif img');
 
-const darkTextColor = "#fff";
-const lightTextColor = "#333";
+  // Paths to your GIFs
+  const darkGif = "newgif.gif"; // current one
+  const lightGif = "newgif-blacktext.gif"; // black text GIF
 
-// Retrieve saved theme or default to dark
-const savedTheme = localStorage.getItem('theme') || 'dark';
-body.classList.add(`${savedTheme}-mode`);
-themeToggle.checked = savedTheme === 'light';
+  const darkImage = "url('dallas.JPG')";
+  const lightImage = "url('light-mode-image.jpg')";
 
-// Apply initial styles based on saved theme
-function applyTheme(theme) {
-  if (theme === 'light') {
-    body.classList.add('light-mode');
-    body.classList.remove('dark-mode');
-    localStorage.setItem('theme', 'light');
+  const darkTextColor = "#fff";
+  const lightTextColor = "#333";
 
-    aboutSection.style.backgroundImage = lightImage;
-    welcomeSection.style.background = "linear-gradient(135deg, #a8edea, #fed6e3)";
-    portfolioSection.style.background = "linear-gradient(135deg, #a8edea, #fed6e3)";
+  // Retrieve saved theme or default to dark
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  body.classList.add(`${savedTheme}-mode`);
+  themeToggle.checked = savedTheme === 'light';
 
-    body.style.color = lightTextColor;
-    welcomeSection.style.color = lightTextColor;
-    portfolioSection.style.color = lightTextColor;
-  } else {
-    body.classList.add('dark-mode');
-    body.classList.remove('light-mode');
-    localStorage.setItem('theme', 'dark');
+  // ===== Apply Theme =====
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      body.classList.add('light-mode');
+      body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
 
-    aboutSection.style.backgroundImage = darkImage;
-    welcomeSection.style.background = "linear-gradient(135deg, #2a5470, #0f2027)";
-    portfolioSection.style.background = "linear-gradient(135deg, #0f2027, #2a5470)";
+      aboutSection.style.backgroundImage = lightImage;
+      welcomeSection.style.background = "linear-gradient(135deg, #a8edea, #fed6e3)";
+      portfolioSection.style.background = "linear-gradient(135deg, #a8edea, #fed6e3)";
 
-    body.style.color = darkTextColor;
-    welcomeSection.style.color = darkTextColor;
-    portfolioSection.style.color = darkTextColor;
+      body.style.color = lightTextColor;
+      welcomeSection.style.color = lightTextColor;
+      portfolioSection.style.color = lightTextColor;
+
+      gifImage.src = lightGif; // ✅ Change GIF for light mode
+    } else {
+      body.classList.add('dark-mode');
+      body.classList.remove('light-mode');
+      localStorage.setItem('theme', 'dark');
+
+      aboutSection.style.backgroundImage = darkImage;
+      welcomeSection.style.background = "linear-gradient(135deg, #2a5470, #0f2027)";
+      portfolioSection.style.background = "linear-gradient(135deg, #0f2027, #2a5470)";
+
+      body.style.color = darkTextColor;
+      welcomeSection.style.color = darkTextColor;
+      portfolioSection.style.color = darkTextColor;
+
+      gifImage.src = darkGif; // ✅ Change GIF for dark mode
+    }
   }
-}
 
-// Apply theme on page load
-document.addEventListener('DOMContentLoaded', () => {
+  // Apply theme on page load
   applyTheme(savedTheme);
-});
 
-// Toggle theme on checkbox change
-themeToggle.addEventListener('change', () => {
-  const newTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
-  applyTheme(newTheme);
-});
+  // Toggle theme on checkbox change
+  themeToggle.addEventListener('change', () => {
+    const newTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
+    applyTheme(newTheme);
+  });
 
   // ===== Typing Effect =====
   const welcomeText = document.getElementById('welcomeText');
@@ -111,5 +119,4 @@ themeToggle.addEventListener('change', () => {
 
   const mainHeader = "Welcome to Rayyan's Portfolio!";
   typeText(welcomeText, mainHeader, 50, animateSubtitle);
-
 });
