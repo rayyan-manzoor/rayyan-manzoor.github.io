@@ -276,11 +276,11 @@ body {
 
 /* Line animations */
 .line1 {
-  animation: scrollLeft 15s linear infinite;
+  animation: scrollLeft 25s linear infinite;
 }
 
 .line2 {
-  animation: scrollRight 15s linear infinite;
+  animation: scrollRight 25s linear infinite;
 }
 
 /* Spacing between repeated text */
