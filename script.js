@@ -180,3 +180,9 @@ observer.observe(welcomeText);
     bottomOverlay.style.webkitBackdropFilter = `blur(${(bottomFactor * maxBlur).toFixed(2)}px)`;
   });
 });
+// ===== Make Scrolling Text Infinite =====
+document.querySelectorAll('.scrolling-text-line').forEach(line => {
+  const content = line.innerHTML;
+  // Duplicate the content twice for seamless scrolling
+  line.innerHTML = content + content + content;
+});
