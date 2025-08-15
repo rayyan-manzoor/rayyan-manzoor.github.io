@@ -248,3 +248,7 @@ body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+#welcomeText {
+  position: relative;   /* make it stackable */
+  z-index: 1200;        /* above GIF and overlays */
+}
