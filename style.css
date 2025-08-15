@@ -267,11 +267,11 @@ body {
 
 
 .line1 {
-  animation: scrollLeft 15s linear infinite;
+  animation: scrollLeft 13s linear infinite;
 }
 
 .line2 {
-  animation: scrollRightInfinite 20s linear infinite;
+  animation: scrollRightInfinite 13s linear infinite;
   margin-top: 0; /* remove extra gap */
 }
 
