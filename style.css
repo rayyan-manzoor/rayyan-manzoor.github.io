@@ -184,7 +184,7 @@ body {
 
 /* ===== Subtitle Blink ===== */
 .blink {
-  animation: blinkSubtitle 1s step-start infinite;
+  animation: blinkSubtitle 1.5s step-start infinite;
 }
 
 @keyframes blinkSubtitle {
