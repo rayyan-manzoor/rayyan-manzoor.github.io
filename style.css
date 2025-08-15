@@ -289,3 +289,47 @@ body {
     font-size: clamp(1.5rem, 5vw, 3rem);
   }
 }
+/* ===== Scroll Overlay ===== */
+#scrollOverlay {
+  position: absolute;
+  top: 100vh; /* right after Welcome section */
+  left: 0;
+  width: 100%;
+  height: 150px; /* adjust for two lines */
+  pointer-events: none; /* so you can still scroll normally */
+  overflow: hidden;
+  z-index: 1050;
+}
+
+.scrolling-text-line {
+  display: flex;
+  white-space: nowrap;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: bold;
+  color: var(--text-color); /* adapts to light/dark mode */
+  animation-iteration-count: infinite;
+}
+
+.line1 {
+  animation: scrollLeft 15s linear infinite;
+}
+
+.line2 {
+  animation: scrollRight 20s linear infinite;
+  margin-top: 50px; /* space between lines */
+}
+
+.scrolling-text-line span {
+  margin-right: 2rem;
+}
+
+/* Scroll Animations */
+@keyframes scrollLeft {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scrollRight {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(50%); }
+}
