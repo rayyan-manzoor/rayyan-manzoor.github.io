@@ -119,4 +119,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const mainHeader = "Welcome to Rayyan's Portfolio!";
   typeText(welcomeText, mainHeader, 50, animateSubtitle);
+
+  // ===== Progressive Blur Overlays =====
+  const topOverlay = document.querySelector('.top-glass');
+  const bottomOverlay = document.querySelector('.bottom-glass');
+
+  const maxBlur = 3; // maximum blur in px
+  const scrollThreshold = 20; 
+  const rampLength = 600;
+
+  function updateOverlayHeight() {
+    const viewportHeight = window.innerHeight;
+    topOverlay.style.height = `${viewportHeight}px`;
+    bottomOverlay.style.height = `${viewportHeight}px`;
+  }
+
+  updateOverlayHeight();
+  window.addEventListener('resize', updateOverlayHeight);
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const viewportHeight = window.innerHeight;
+    const pageHeight = document.body.scrollHeight;
+
+    let topFactor = Math.min(Math.max((scrollY - scrollThreshold) / rampLength, 0), 1);
+    topOverlay.style.backdropFilter = `blur(${(topFactor * maxBlur).toFixed(2)}px)`;
+    topOverlay.style.webkitBackdropFilter = `blur(${(topFactor * maxBlur).toFixed(2)}px)`;
+
+    let bottomScroll = pageHeight - viewportHeight - scrollY;
+    let bottomFactor = Math.min(Math.max((bottomScroll - scrollThreshold) / rampLength, 0), 1);
+    bottomOverlay.style.backdropFilter = `blur(${(bottomFactor * maxBlur).toFixed(2)}px)`;
+    bottomOverlay.style.webkitBackdropFilter = `blur(${(bottomFactor * maxBlur).toFixed(2)}px)`;
+  });
 });
