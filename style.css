@@ -251,20 +251,23 @@ body {
 
 /* ===== Scroll Overlay (Two Opposite Lines) ===== */
 #scrollOverlay {
+  position: absolute;       /* position relative to the About section */
+  top: 0;                   /* aligns it to the very top of the About section */
+  left: 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px; /* small gap between lines */
-  overflow: hidden; /* prevent wrapping overflow */
-  width: 100%;
+  gap: 4px;                 /* small gap between lines */
+  overflow: hidden;
+  z-index: 1050;            /* stays above background but below other elements */
 }
 
 .scrolling-text-line {
-  margin: 0; /* remove default margin */
-  line-height: 1.2; /* slightly taller for readability */
-  white-space: nowrap; /* keep text on one line */
+  margin: 0;
+  line-height: 1.2;         /* slightly taller for readability */
+  white-space: nowrap;      /* prevents wrapping */
 }
-
 
 .line1 {
   animation: scrollLeft 13s linear infinite;
