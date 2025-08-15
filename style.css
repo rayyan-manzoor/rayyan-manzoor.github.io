@@ -216,6 +216,7 @@ body {
 
 /* ===== About Section Background ===== */
 #about {
+  position: relative; /* for scrollOverlay */
   background-image: url('dallas.JPG');
   background-size: cover;
   background-position: center;
@@ -249,18 +250,18 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* ===== Scroll Overlay (Two Lines, Infinite) ===== */
+/* ===== Scroll Overlay (Two Infinite Lines) ===== */
 #scrollOverlay {
   position: absolute;
-  top: 100vh; /* right after Welcome section */
+  top: 0;             /* top of About section */
   left: 0;
   width: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 1050;
   display: flex;
   flex-direction: column;
-  gap: 2px; /* tiny gap between lines */
+  align-items: flex-start;
+  gap: 4px;
+  overflow: hidden;
+  z-index: 1050;
 }
 
 .scrolling-text-line {
@@ -269,22 +270,36 @@ body {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: bold;
   color: var(--text-color);
+  line-height: 1.2;
+  margin: 0;
 }
 
-.line1, .line2 {
+/* Line animations */
+.line1 {
   animation: scrollLeft 15s linear infinite;
 }
 
+.line2 {
+  animation: scrollRight 15s linear infinite;
+}
+
+/* Spacing between repeated text */
 .scrolling-text-line span {
   margin-right: 2rem;
 }
 
+/* ===== Keyframes ===== */
 @keyframes scrollLeft {
   0% { transform: translateX(0%); }
-  100% { transform: translateX(-33.33%); } /* matches duplication for seamless loop */
+  100% { transform: translateX(-50%); }
 }
 
-/* Optional: adjust speed and size for mobile */
+@keyframes scrollRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+/* ===== Mobile Adjustments ===== */
 @media (max-width: 768px) {
   .scrolling-text-line {
     font-size: clamp(1.5rem, 5vw, 2.5rem);
