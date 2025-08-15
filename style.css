@@ -255,18 +255,23 @@ body {
   top: 100vh; /* right after Welcome section */
   left: 0;
   width: 100%;
-  height: 60px; /* two lines with small gap */
+  height: auto; /* fits both lines */
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible;
   z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px; /* tiny gap between lines */
 }
 
 .scrolling-text-line {
   display: flex;
   white-space: nowrap;
-  font-size: clamp(2rem, 5vw, 3rem); /* adjust text size here */
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: bold;
   color: var(--text-color);
+  animation-iteration-count: infinite;
 }
 
 .line1 {
@@ -275,26 +280,24 @@ body {
 
 .line2 {
   animation: scrollRight 20s linear infinite;
-  margin-top: 3px; /* tiny gap between lines */
+  margin-top: 0; /* remove extra gap */
 }
 
 .scrolling-text-line span {
-  display: inline-block;
   margin-right: 2rem;
 }
 
-/* Infinite Scroll Animations */
 @keyframes scrollLeft {
-  0% { transform: translateX(0); }
+  0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
 }
 
 @keyframes scrollRight {
-  0% { transform: translateX(0); }
+  0% { transform: translateX(0%); }
   100% { transform: translateX(50%); }
 }
 
-/* Optional: adjust size for mobile */
+/* Optional: adjust speed and size for mobile */
 @media (max-width: 768px) {
   .scrolling-text-line {
     font-size: clamp(1.5rem, 5vw, 2.5rem);
