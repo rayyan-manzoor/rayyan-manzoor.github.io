@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (index === wordSpans.length - 1) {
               setTimeout(animateSubtitle, 500);
             }
-          }, index * 250);
+          }, index * 400);
         });
         observer.disconnect();
       }
