@@ -274,14 +274,7 @@ body {
   margin: 0;
 }
 
-/* Line animations */
-.line1 {
-  animation: scrollLeft 15s linear infinite;
-}
 
-.line2 {
-  animation: scrollRight 15s linear infinite;
-}
 
 /* Spacing between repeated text */
 .scrolling-text-line span {
