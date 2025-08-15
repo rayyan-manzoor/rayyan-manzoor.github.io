@@ -251,6 +251,7 @@ body {
 }
 
 /* ===== Scroll Overlay (Two Infinite Lines) ===== */
+/* ===== Scroll Overlay (Two Infinite Lines) ===== */
 #scrollOverlay {
   position: absolute;
   top: 0;             /* top of About section */
@@ -272,24 +273,12 @@ body {
   color: var(--text-color);
   line-height: 1.2;
   margin: 0;
+  /* Remove old animation */
 }
-
-
 
 /* Spacing between repeated text */
 .scrolling-text-line span {
   margin-right: 1rem;
-}
-
-/* ===== Keyframes ===== */
-@keyframes scrollLeft {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
-@keyframes scrollRight {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0%); }
 }
 
 /* ===== Mobile Adjustments ===== */
