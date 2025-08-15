@@ -250,24 +250,33 @@ body {
 }
 
 /* ===== Scroll Overlay (Two Opposite Lines) ===== */
+#about {
+  position: relative; /* new: makes scrollOverlay position relative to this section */
+  background-image: url('dallas.JPG');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 #scrollOverlay {
-  position: absolute;       /* position relative to the About section */
-  top: 0;                   /* aligns it to the very top of the About section */
+  position: absolute;  /* now relative to #about */
+  top: 0;              /* very top of About section */
   left: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px;                 /* small gap between lines */
+  gap: 4px;            /* small gap between lines */
   overflow: hidden;
-  z-index: 1050;            /* stays above background but below other elements */
+  z-index: 1050;
 }
 
 .scrolling-text-line {
   margin: 0;
-  line-height: 1.2;         /* slightly taller for readability */
-  white-space: nowrap;      /* prevents wrapping */
+  line-height: 1.2;     /* keeps lines readable but close together */
+  white-space: nowrap;   /* prevents wrapping */
 }
+
 
 .line1 {
   animation: scrollLeft 13s linear infinite;
