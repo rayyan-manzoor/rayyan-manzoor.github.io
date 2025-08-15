@@ -164,9 +164,45 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ===== Make Scrolling Text Infinite =====
-  document.querySelectorAll('.scrolling-text-line').forEach(line => {
-    const content = line.innerHTML;
-    // Duplicate content three times for seamless infinite scrolling
-    line.innerHTML = content + content + content;
-  });
+ document.querySelectorAll('.scrolling-text-line').forEach(line => {
+  const content = line.innerHTML;
+  // Duplicate content three times for seamless infinite scrolling
+  line.innerHTML = content + content + content;
 });
+
+// ===== Reactive scrolling lines =====
+const line1 = document.querySelector('.line1');
+const line2 = document.querySelector('.line2');
+
+let lastScrollY = window.scrollY;
+let pos1 = 0;   // top line
+let pos2 = -50; // bottom line (start offset for infinite effect)
+const baseSpeed = 0.2;
+const scrollFactor = 0.05;
+
+function animateLines() {
+  const scrollY = window.scrollY;
+  const delta = scrollY - lastScrollY;
+
+  if (delta > 0) {
+    pos1 += baseSpeed + Math.abs(delta) * scrollFactor;
+    pos2 -= baseSpeed + Math.abs(delta) * scrollFactor;
+  } else {
+    pos1 -= baseSpeed + Math.abs(delta) * scrollFactor;
+    pos2 += baseSpeed + Math.abs(delta) * scrollFactor;
+  }
+
+  if (pos1 <= -100) pos1 = 0;
+  if (pos1 >= 100) pos1 = 0;
+
+  if (pos2 <= -100) pos2 = 0;
+  if (pos2 >= 100) pos2 = 0;
+
+  line1.style.transform = `translateX(${pos1}%)`;
+  line2.style.transform = `translateX(${pos2}%)`;
+
+  lastScrollY = scrollY;
+  requestAnimationFrame(animateLines);
+}
+
+animateLines();
