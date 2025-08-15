@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('theme', 'dark');
 
       aboutSection.style.backgroundImage = darkImage;
-      welcomeSection.style.background = "linear-gradient(135deg, #2a5470, #0f2027)";
-      portfolioSection.style.background = "linear-gradient(135deg, #0f2027, #2a5470)";
+      welcomeSection.style.background = "linear-gradient(135deg, #000000, #1a1a1a)";
+      portfolioSection.style.background = "linear-gradient(135deg, ##1a1a1a, #000000)";
 
       body.style.color = darkTextColor;
       welcomeSection.style.color = darkTextColor;
