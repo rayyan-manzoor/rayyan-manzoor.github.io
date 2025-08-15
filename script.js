@@ -117,8 +117,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const mainHeader = "Welcome to Rayyan's Portfolio!";
-  typeText(welcomeText, mainHeader, 50, animateSubtitle);
+  // ===== Word-by-word blur animation for Welcome Text =====
+const mainHeader = "Welcome to Rayyan's Portfolio!";
+
+// Split into spans for each word
+welcomeText.innerHTML = mainHeader.split(" ").map(word => {
+  return `<span>${word}</span>`;
+}).join(" ");
+
+// Observe each word and animate in sequence
+const wordSpans = welcomeText.querySelectorAll("span");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      wordSpans.forEach((span, index) => {
+        setTimeout(() => {
+          span.classList.add("visible");
+          // When last word is visible, start subtitle animation
+          if (index === wordSpans.length - 1) {
+            setTimeout(animateSubtitle, 500);
+          }
+        }, index * 150); // delay between each word
+      });
+      observer.disconnect();
+    }
+  });
+}, { threshold: 0.1 });
+
+observer.observe(welcomeText);
+
 
   // ===== Progressive Blur Overlays =====
   const topOverlay = document.querySelector('.top-glass');
