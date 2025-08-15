@@ -39,9 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
       gifImage.src = darkGif;
     }
   }
-
   applyTheme(savedTheme);
-
   themeToggle.addEventListener('change', () => {
     const newTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
     applyTheme(newTheme);
@@ -52,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const subtitle = document.querySelector('.subtitle');
   const mainHeader = "Welcome to Rayyan's Portfolio!";
 
-  // Wrap each word in span
   welcomeText.innerHTML = mainHeader.split(" ").map(word => `<span>${word}</span>`).join(" ");
   const wordSpans = welcomeText.querySelectorAll("span");
 
@@ -95,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ===== Word Fade-In Animation =====
   setTimeout(() => {
     wordSpans.forEach((span, index) => {
       setTimeout(() => {
@@ -117,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
     topOverlay.style.height = `${viewportHeight}px`;
     bottomOverlay.style.height = `${viewportHeight}px`;
   }
-
   updateOverlayHeight();
   window.addEventListener('resize', updateOverlayHeight);
 
@@ -136,39 +131,26 @@ document.addEventListener('DOMContentLoaded', () => {
     bottomOverlay.style.webkitBackdropFilter = bottomOverlay.style.backdropFilter;
   });
 
-  // ===== Make Scrolling Text Infinite =====
-  document.querySelectorAll('.scrolling-text-line').forEach(line => {
-    const content = line.innerHTML;
-    line.innerHTML = content + content + content; // triple for seamless scroll
-  });
-
-  // ===== Reactive scrolling lines =====
+  // ===== Infinite Scrolling Text Lines =====
   const line1 = document.querySelector('.line1');
   const line2 = document.querySelector('.line2');
-  let lastScrollY = window.scrollY;
+
   let pos1 = 0;
   let pos2 = 0;
-  const baseSpeed = 0.2;
-  const scrollFactor = 0.05;
+  const speed = 0.5;
 
   function animateLines() {
-    const scrollY = window.scrollY;
-    const delta = scrollY - lastScrollY;
-
-    pos1 += baseSpeed - delta * scrollFactor;
-    pos2 -= baseSpeed - delta * scrollFactor;
-
-    if (pos1 > 50) pos1 = -50;
-    if (pos1 < -50) pos1 = 50;
-    if (pos2 > 50) pos2 = -50;
-    if (pos2 < -50) pos2 = 50;
+    pos1 -= speed;
+    pos2 += speed;
 
     line1.style.transform = `translateX(${pos1}%)`;
     line2.style.transform = `translateX(${pos2}%)`;
 
-    lastScrollY = scrollY;
+    // Reset to create infinite loop
+    if (pos1 <= -100) pos1 = 0;
+    if (pos2 >= 100) pos2 = 0;
+
     requestAnimationFrame(animateLines);
   }
-
   animateLines();
 });
