@@ -1,79 +1,62 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ===== Theme Toggle & Section Elements =====
+  // ===== Theme Toggle & Section Images =====
   const themeToggle = document.getElementById('themeToggle');
   const body = document.body;
   const aboutSection = document.getElementById('about');
   const welcomeSection = document.getElementById('welcome');
   const portfolioSection = document.getElementById('portfolio');
+
   const gifImage = document.querySelector('.fixed-gif img');
+  const darkGif = "newgif.gif";
+  const lightGif = "newgif-blacktext.gif";
 
-  // ===== Assets =====
-  const lightGif = "images/light.gif";
-  const darkGif = "images/dark.gif";
+  const darkImage = "url('dallas.JPG')";
+  const lightImage = "url('light-mode-image.jpg')";
 
-  const lightTextColor = "#000000";
-  const darkTextColor = "#ffffff";
+  const darkTextColor = "#fff";
+  const lightTextColor = "#333";
 
-  // ===== Theme Backgrounds =====
-  const backgrounds = {
-    light: {
-      mobile: "url('images/light-bg-mobile.jpg')",
-      desktop: "url('images/light-bg-desktop.jpg')"
-    },
-    dark: {
-      mobile: "url('images/dark-bg-mobile.jpg')",
-      desktop: "url('images/dark-bg-desktop.jpg')"
-    }
-  };
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  body.classList.add(`${savedTheme}-mode`);
+  themeToggle.checked = savedTheme === 'light';
 
-  // ===== Apply Theme Function =====
   function applyTheme(theme) {
     if (theme === 'light') {
       body.classList.add('light-mode');
       body.classList.remove('dark-mode');
       localStorage.setItem('theme', 'light');
-      gifImage.src = lightGif;
+
+      aboutSection.style.backgroundImage = lightImage;
+      welcomeSection.style.background = "linear-gradient(135deg, #a8edea, #fed6e3)";
+      portfolioSection.style.background = "linear-gradient(135deg, #a8edea, #fed6e3)";
+
       body.style.color = lightTextColor;
       welcomeSection.style.color = lightTextColor;
       portfolioSection.style.color = lightTextColor;
 
-      // Set responsive about background
-      if (window.innerWidth <= 768) {
-        aboutSection.style.backgroundImage = backgrounds.light.mobile;
-      } else {
-        aboutSection.style.backgroundImage = backgrounds.light.desktop;
-      }
+      gifImage.src = lightGif;
     } else {
       body.classList.add('dark-mode');
       body.classList.remove('light-mode');
       localStorage.setItem('theme', 'dark');
-      gifImage.src = darkGif;
+
+      aboutSection.style.backgroundImage = darkImage;
+      welcomeSection.style.background = "linear-gradient(135deg, #000000, #1a1a1a)";
+      portfolioSection.style.background = "linear-gradient(135deg, ##1a1a1a, #000000)";
+
       body.style.color = darkTextColor;
       welcomeSection.style.color = darkTextColor;
       portfolioSection.style.color = darkTextColor;
 
-      if (window.innerWidth <= 768) {
-        aboutSection.style.backgroundImage = backgrounds.dark.mobile;
-      } else {
-        aboutSection.style.backgroundImage = backgrounds.dark.desktop;
-      }
+      gifImage.src = darkGif;
     }
   }
 
-  // ===== Toggle Button =====
-  themeToggle.addEventListener('click', () => {
-    const newTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
-    applyTheme(newTheme);
-  });
-
-  // ===== Load Saved Theme =====
-  const savedTheme = localStorage.getItem('theme') || 'light';
   applyTheme(savedTheme);
 
-  // ===== Adjust Background on Resize =====
-  window.addEventListener('resize', () => {
-    const currentTheme = body.classList.contains('light-mode') ? 'light' : 'dark';
-    applyTheme(currentTheme);
+  themeToggle.addEventListener('change', () => {
+    const newTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
+    applyTheme(newTheme);
   });
 
   // ===== Typing Effect =====
@@ -126,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ===== Animate Main Header =====
   const mainHeader = "Welcome to Rayyan's Portfolio!";
   welcomeText.innerHTML = mainHeader.split(" ").map(word => `<span>${word}</span>`).join(" ");
   const wordSpans = welcomeText.querySelectorAll("span");
@@ -152,14 +134,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== Progressive Blur Overlays =====
   const topOverlay = document.querySelector('.top-glass');
   const bottomOverlay = document.querySelector('.bottom-glass');
+
   const maxBlur = 3;
-  const scrollThreshold = 20;
+  const scrollThreshold = 20; 
   const rampLength = 600;
 
   function updateOverlayHeight() {
     const viewportHeight = window.innerHeight;
-    if (topOverlay) topOverlay.style.height = `${viewportHeight}px`;
-    if (bottomOverlay) bottomOverlay.style.height = `${viewportHeight}px`;
+    topOverlay.style.height = `${viewportHeight}px`;
+    bottomOverlay.style.height = `${viewportHeight}px`;
   }
 
   updateOverlayHeight();
@@ -168,22 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
     const viewportHeight = window.innerHeight;
-    const pageHeight = document.body.scrollHeight;
-
-    let topFactor = Math.min(Math.max((scrollY - scrollThreshold) / rampLength, 0), 1);
-    if (topOverlay) topOverlay.style.backdropFilter = `blur(${(topFactor * maxBlur).toFixed(2)}px)`;
-    if (topOverlay) topOverlay.style.webkitBackdropFilter = `blur(${(topFactor * maxBlur).toFixed(2)}px)`;
-
-    let bottomScroll = pageHeight - viewportHeight - scrollY;
-    let bottomFactor = Math.min(Math.max((bottomScroll - scrollThreshold) / rampLength, 0), 1);
-    if (bottomOverlay) bottomOverlay.style.backdropFilter = `blur(${(bottomFactor * maxBlur).toFixed(2)}px)`;
-    if (bottomOverlay) bottomOverlay.style.webkitBackdropFilter = `blur(${(bottomFactor * maxBlur).toFixed(2)}px)`;
+    const normalizedScroll = Math.min(scrollY / rampLength, 1);
+    const blurValue = normalizedScroll * maxBlur;
+    topOverlay.style.backdropFilter = `blur(${blurValue}px)`;
+    bottomOverlay.style.backdropFilter = `blur(${blurValue}px)`;
   });
-
-  // ===== Make Scrolling Text Infinite =====
-  document.querySelectorAll('.scrolling-text-line').forEach(line => {
-    const content = line.innerHTML;
-    line.innerHTML = content + content + content; // duplicate 3x
-  });
-
 });
