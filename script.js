@@ -7,29 +7,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const portfolioSection = document.getElementById('portfolio');
 
   const gifImage = document.querySelector('.fixed-gif img');
-  const darkGif = "newgif.gif";
-  const lightGif = "newgif-blacktext.gif";
 
-  const darkImage = "url('dallas.JPG')";
-  const lightImage = "url('light-mode-image.jpg')";
+  // Light & Dark assets
+  const lightImage = "url('images/light-bg.jpg')";
+  const darkImage = "url('images/dark-bg.jpg')";
+  const lightGif = "images/light.gif";
+  const darkGif = "images/dark.gif";
 
-  const darkTextColor = "#fff";
-  const lightTextColor = "#333";
+  const lightTextColor = "#000000";
+  const darkTextColor = "#ffffff";
 
-  const savedTheme = localStorage.getItem('theme') || 'dark';
-  body.classList.add(`${savedTheme}-mode`);
-  themeToggle.checked = savedTheme === 'light';
-
+  // Apply theme function with responsive background handling
   function applyTheme(theme) {
     if (theme === 'light') {
       body.classList.add('light-mode');
       body.classList.remove('dark-mode');
       localStorage.setItem('theme', 'light');
 
-      aboutSection.style.backgroundImage = lightImage;
-      welcomeSection.style.background = "linear-gradient(135deg, #a8edea, #fed6e3)";
-      portfolioSection.style.background = "linear-gradient(135deg, #a8edea, #fed6e3)";
+      // Responsive background for light mode
+      if (window.innerWidth <= 768) {
+        welcomeSection.style.background = "linear-gradient(135deg, #dbeafe, #fbcfe8)";
+        portfolioSection.style.background = "linear-gradient(135deg, #dbeafe, #fbcfe8)";
+      } else {
+        welcomeSection.style.background = "linear-gradient(135deg, #a8edea, #fed6e3)";
+        portfolioSection.style.background = "linear-gradient(135deg, #a8edea, #fed6e3)";
+      }
 
+      aboutSection.style.backgroundImage = lightImage;
       body.style.color = lightTextColor;
       welcomeSection.style.color = lightTextColor;
       portfolioSection.style.color = lightTextColor;
@@ -40,10 +44,16 @@ document.addEventListener('DOMContentLoaded', () => {
       body.classList.remove('light-mode');
       localStorage.setItem('theme', 'dark');
 
-      aboutSection.style.backgroundImage = darkImage;
-      welcomeSection.style.background = "linear-gradient(135deg, #000000, #1a1a1a)";
-      portfolioSection.style.background = "linear-gradient(135deg, ##1a1a1a, #000000)";
+      // Responsive background for dark mode
+      if (window.innerWidth <= 768) {
+        welcomeSection.style.background = "linear-gradient(135deg, #111827, #1f2937)";
+        portfolioSection.style.background = "linear-gradient(135deg, #111827, #1f2937)";
+      } else {
+        welcomeSection.style.background = "linear-gradient(135deg, #000000, #1a1a1a)";
+        portfolioSection.style.background = "linear-gradient(135deg, #1a1a1a, #000000)";
+      }
 
+      aboutSection.style.backgroundImage = darkImage;
       body.style.color = darkTextColor;
       welcomeSection.style.color = darkTextColor;
       portfolioSection.style.color = darkTextColor;
@@ -52,121 +62,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Theme toggle button
+  themeToggle.addEventListener('click', () => {
+    if (body.classList.contains('light-mode')) {
+      applyTheme('dark');
+    } else {
+      applyTheme('light');
+    }
+  });
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme') || 'light';
   applyTheme(savedTheme);
 
-  themeToggle.addEventListener('change', () => {
-    const newTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
-    applyTheme(newTheme);
-  });
-
-  // ===== Typing Effect =====
-  const welcomeText = document.getElementById('welcomeText');
-  const subtitle = document.querySelector('.subtitle');
-
-  function typeText(element, text, speed = 50, callback) {
-    let i = 0;
-    element.textContent = '';
-    function typing() {
-      if (i < text.length) {
-        element.textContent += text.charAt(i);
-        i++;
-        setTimeout(typing, speed);
-      } else if (callback) {
-        callback();
-      }
-    }
-    typing();
-  }
-
-  function deleteText(element, speed = 50, callback) {
-    let text = element.textContent;
-    let i = text.length;
-    function deleting() {
-      if (i > 0) {
-        element.textContent = text.substring(0, i - 1);
-        i--;
-        setTimeout(deleting, speed);
-      } else if (callback) {
-        callback();
-      }
-    }
-    deleting();
-  }
-
-  function animateSubtitle() {
-    subtitle.classList.remove('blink');
-    typeText(subtitle, "Medical Professional & Tech Enthusiast", 50, () => {
-      setTimeout(() => {
-        deleteText(subtitle, 30, () => {
-          subtitle.textContent = '';
-          typeText(subtitle, "Please scroll!", 50, () => {
-            setTimeout(() => {
-              subtitle.classList.add('blink');
-            }, 1000);
-          });
-        });
-      }, 1000);
-    });
-  }
-
-  const mainHeader = "Welcome to Rayyan's Portfolio!";
-  welcomeText.innerHTML = mainHeader.split(" ").map(word => `<span>${word}</span>`).join(" ");
-  const wordSpans = welcomeText.querySelectorAll("span");
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        wordSpans.forEach((span, index) => {
-          setTimeout(() => {
-            span.classList.add("visible");
-            if (index === wordSpans.length - 1) {
-              setTimeout(animateSubtitle, 500);
-            }
-          }, index * 400);
-        });
-        observer.disconnect();
-      }
-    });
-  }, { threshold: 0.1 });
-
-  observer.observe(welcomeText);
-
-  // ===== Progressive Blur Overlays =====
-  const topOverlay = document.querySelector('.top-glass');
-  const bottomOverlay = document.querySelector('.bottom-glass');
-
-  const maxBlur = 3;
-  const scrollThreshold = 20; 
-  const rampLength = 600;
-
-  function updateOverlayHeight() {
-    const viewportHeight = window.innerHeight;
-    topOverlay.style.height = `${viewportHeight}px`;
-    bottomOverlay.style.height = `${viewportHeight}px`;
-  }
-
-  updateOverlayHeight();
-  window.addEventListener('resize', updateOverlayHeight);
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const viewportHeight = window.innerHeight;
-    const pageHeight = document.body.scrollHeight;
-
-    let topFactor = Math.min(Math.max((scrollY - scrollThreshold) / rampLength, 0), 1);
-    topOverlay.style.backdropFilter = `blur(${(topFactor * maxBlur).toFixed(2)}px)`;
-    topOverlay.style.webkitBackdropFilter = `blur(${(topFactor * maxBlur).toFixed(2)}px)`;
-
-    let bottomScroll = pageHeight - viewportHeight - scrollY;
-    let bottomFactor = Math.min(Math.max((bottomScroll - scrollThreshold) / rampLength, 0), 1);
-    bottomOverlay.style.backdropFilter = `blur(${(bottomFactor * maxBlur).toFixed(2)}px)`;
-    bottomOverlay.style.webkitBackdropFilter = `blur(${(bottomFactor * maxBlur).toFixed(2)}px)`;
-  });
-
-  // ===== Make Scrolling Text Infinite =====
-  document.querySelectorAll('.scrolling-text-line').forEach(line => {
-    const content = line.innerHTML;
-    // Duplicate content three times for seamless infinite scrolling
-    line.innerHTML = content + content + content;
+  // Reapply correct backgrounds on resize
+  window.addEventListener('resize', () => {
+    const currentTheme = body.classList.contains('light-mode') ? 'light' : 'dark';
+    applyTheme(currentTheme);
   });
 });
