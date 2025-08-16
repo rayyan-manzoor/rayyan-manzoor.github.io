@@ -16,22 +16,6 @@ body {
   transition: background 0.8s ease, color 0.8s ease;
 }
 
-/* ===== Glass Overlays (Top & Bottom) ===== */
-.glass-overlay {
-  position: fixed;
-  left: 0;
-  right: 0;
-  height: 80px;
-  pointer-events: none;
-  z-index: 900;
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
-  transition: backdrop-filter 0.3s ease;
-}
-
-.top-glass { top: 0; }
-.bottom-glass { bottom: 0; }
-
 /* ===== Theme Variables ===== */
 .light-mode {
   --text-color: #333;
@@ -69,6 +53,23 @@ body {
   background: var(--bg-gradient);
   color: var(--text-color);
   transition: background 0.8s ease, color 0.8s ease;
+}
+
+/* ===== About Section Backgrounds (responsive) ===== */
+body.light-mode #about {
+  background-image: url('images/light-bg-desktop.jpg');
+}
+body.dark-mode #about {
+  background-image: url('images/dark-bg-desktop.jpg');
+}
+
+@media (max-width: 768px) {
+  body.light-mode #about {
+    background-image: url('images/light-bg-mobile.jpg');
+  }
+  body.dark-mode #about {
+    background-image: url('images/dark-bg-mobile.jpg');
+  }
 }
 
 /* ===== Typography ===== */
@@ -214,16 +215,7 @@ body {
   }
 }
 
-/* ===== About Section Background ===== */
-#about {
-  position: relative; /* for scrollOverlay */
-  background-image: url('dallas.JPG');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* ===== Blur + Gradient per word ===== */
+/* ===== Blur Text Animation ===== */
 .blur-text span {
   display: inline-block;
   opacity: 0;
@@ -253,7 +245,7 @@ body {
 /* ===== Scroll Overlay (Two Infinite Lines) ===== */
 #scrollOverlay {
   position: absolute;
-  top: 0;             /* top of About section */
+  top: 0;
   left: 0;
   width: 100%;
   display: flex;
@@ -268,13 +260,12 @@ body {
   display: flex;
   white-space: nowrap;
   font-size: clamp(1.5rem, 4vw, 2.2rem);
-  font-weight: 400; /* normal weight */
+  font-weight: 400;
   color: var(--text-color);
   line-height: 1;
   margin: 0;
 }
 
-/* Line animations */
 .line1 {
   animation: scrollLeft 25s linear infinite;
 }
@@ -283,12 +274,10 @@ body {
   animation: scrollRight 25s linear infinite;
 }
 
-/* Spacing between repeated text */
 .scrolling-text-line span {
   margin-right: 2rem;
 }
 
-/* ===== Keyframes ===== */
 @keyframes scrollLeft {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
@@ -299,7 +288,6 @@ body {
   100% { transform: translateX(0%); }
 }
 
-/* ===== Mobile Adjustments ===== */
 @media (max-width: 768px) {
   .scrolling-text-line {
     font-size: clamp(1.5rem, 5vw, 2.5rem);
