@@ -82,43 +82,7 @@ body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: backgro
   border-radius: 50%;
   border: 5px solid rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(8px);
-  background: url('profile.png') center/cover no-repeat;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-}
-.profile-circle:hover { box-shadow: 0 0 20px rgba(255,255,255,0.5); }
-
-.about-description {
-  max-width: 600px;
-  text-align: center;
-  font-size: clamp(1rem, 2.5vw, 1.3rem);
-  color: var(--text-color);
-  line-height: 1.6;
-}
-
-/* ===== Mobile Adjustments ===== */
-@media (max-width: 768px) { 
-  .scrolling-text-line { font-size: clamp(1.5rem, 5vw, 2.5rem); } 
-}
-/* ===== About Centered Profile Circle ===== */
-.about-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  position: relative;
-  z-index: 1050;
-  padding-top: 8rem;
-}
-
-.profile-circle {
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  border: 5px solid rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(8px);
-  background-color: rgba(255,255,255,0.05); /* subtle glass effect behind image */
+  background-color: rgba(255,255,255,0.05);
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   overflow: hidden;
   transition: all 0.3s ease;
@@ -144,4 +108,9 @@ body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: backgro
   font-size: clamp(1rem, 2.5vw, 1.3rem);
   color: var(--text-color);
   line-height: 1.6;
+}
+
+/* ===== Mobile Adjustments ===== */
+@media (max-width: 768px) { 
+  .scrolling-text-line { font-size: clamp(1.5rem, 5vw, 2.5rem); } 
 }
