@@ -52,11 +52,11 @@ body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: backgro
 
 .welcome-bubble {
   display: inline-block;            /* shrink to fit content */
-  padding: 2rem 3rem;               /* space inside bubble */
+  padding: 0.8rem 1.5rem;               /* space inside bubble */
   border-radius: 20px;              /* rounded edges */
   background: rgba(255, 255, 255, 0.1); /* translucent white */
   backdrop-filter: blur(10px);      /* glass blur */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  -webkit-backdrop-filter: blur(5px); /* Safari support */
   text-align: center;
   z-index: 1100;                     /* above background */
 }
