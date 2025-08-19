@@ -33,13 +33,13 @@ body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #fff; overfl
 
 /* ===== Welcome Text ===== */
 #welcomeText { font-size: clamp(2rem, 8vw, 4rem); line-height: 1.3; display: inline-block; text-align: center; }
-.blur-text span { display: inline-block; opacity: 0; transform: translateY(-50px); transition: opacity 0.6s ease, transform 0.6s ease; background: linear-gradient(to right, #ff6ec4, #7873f5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.blur-text span.visible { opacity: 1; transform: translateY(0); }
-.subtitle { margin-top: 15px; font-size: clamp(1rem, 3vw, 1.5rem); opacity: 0.9; text-align: center; }
+.blur-text span { display: inline-block; opacity: 0; filter: blur(10px); transform: translateY(-50px); transition: opacity 0.6s ease, filter 0.6s ease, transform 0.6s ease; background: linear-gradient(to right, #ff6ec4, #7873f5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.blur-text span.visible { opacity: 1; filter: blur(0); transform: translateY(0); }
+.subtitle { margin-top: 15px; font-size: clamp(1rem, 3vw, 1.5rem); text-align: center; }
 
 /* ===== About Section Scrolling Lines ===== */
-#scrollOverlay { position: absolute; top: 0; left: 0; width: 100%; display: flex; flex-direction: column; gap: 0; overflow: hidden; z-index: 1050; }
-.scrolling-text-line { display: flex; white-space: nowrap; font-size: clamp(1.5rem, 4vw, 2.2rem); line-height: 1; margin: 0; }
+#scrollOverlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; display: flex; flex-direction: column; gap: 20px; overflow: hidden; z-index: 1050; }
+.scrolling-text-line { display: flex; white-space: nowrap; font-size: clamp(1.5rem, 4vw, 2.2rem); line-height: 1; margin: 0 auto; justify-content: center; }
 .line1 { animation: scrollLeft 25s linear infinite; }
 .line2 { animation: scrollRight 25s linear infinite; }
 .scrolling-text-line span { margin-right: 2rem; }
@@ -52,3 +52,10 @@ body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #fff; overfl
 .profile-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 .profile-circle:hover { box-shadow: 0 0 20px rgba(255,255,255,0.5); }
 .about-description { max-width: 600px; text-align: center; font-size: clamp(1rem, 2.5vw, 1.3rem); line-height: 1.6; }
+
+/* ===== Mobile Adjustments ===== */
+@media (max-width: 768px) { 
+  .social-icons { top: 15px; right: 15px; gap: 10px; }
+  .social-icons img { width: 22px; height: 22px; }
+  .profile-circle { width: 160px; height: 160px; }
+}
