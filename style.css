@@ -1,7 +1,7 @@
 /* ===== Reset & Base Styles ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { font-size: 16px; scroll-behavior: smooth; }
-body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: background 0.8s ease, color 0.8s ease; }
+body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: background 0.8s ease, color 0.8s ease; overflow-x: hidden; }
 
 /* ===== Top Bar ===== */
 .top-bar {
@@ -23,7 +23,7 @@ body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: backgro
   top: 0;
   left: 0;
   width: 100%;
-  height: 50px; /* slightly shorter than icons */
+  height: 50px;
   backdrop-filter: blur(6px);
   z-index: 1000;
   pointer-events: none;
@@ -38,13 +38,15 @@ body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: backgro
 .social-link:hover img { transform: scale(1.2); }
 
 /* ===== Sections ===== */
-.full-screen { height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; background: #0d0d0d; overflow: hidden; position: relative; }
+.full-screen { height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; overflow: hidden; position: relative; background: #0d0d0d; }
 .content-section { min-height: 100vh; padding: 6rem 2rem; color: #fff; background-image: url('dallas.JPG'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; }
 
 /* ===== Welcome Text ===== */
 .blur-text span { display: inline-block; opacity: 0; filter: blur(10px); transform: translateY(-50px); transition: opacity 0.6s ease, filter 0.6s ease, transform 0.6s ease; background: linear-gradient(45deg, #FF0583, #9F6CF7); background-clip: text; -webkit-background-clip: text; color: transparent; animation: gradient 1.5s linear infinite; }
 .blur-text span.visible { opacity: 1; filter: blur(0); transform: translateY(0); }
 @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+#welcomeText { font-size: clamp(3rem, 8vw, 4rem); letter-spacing: 0.1rem; }
 
 /* Subtitle */
 .subtitle { margin-top: 15px; font-size: clamp(1rem, 3vw, 1.5rem); text-align: center; opacity: 0.9; }
@@ -57,10 +59,13 @@ body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: backgro
 .profile-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
 /* ===== Scrolling Lines ===== */
-#scrollOverlay { position: absolute; top: 0; left: 0; width: 100%; display: flex; flex-direction: column; gap: -5px; overflow: hidden; z-index: 1050; }
+#scrollOverlay { position: absolute; top: 0; left: 0; width: 100%; display: flex; flex-direction: column; gap: 0px; overflow: hidden; z-index: 1050; }
 .scrolling-text-line { display: flex; white-space: nowrap; font-size: clamp(1.5rem, 4vw, 2.2rem); }
 .scrolling-text-line span { margin-right: 3rem; }
 .line1 { animation: scrollLeft 15s linear infinite; }
-.line2 { animation: scrollRight 15s linear infinite; margin-top: -5px; }
+.line2 { animation: scrollRight 15s linear infinite; }
 @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+/* ===== Matrix Canvas ===== */
+#matrixCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
