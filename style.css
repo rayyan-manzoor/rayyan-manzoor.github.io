@@ -1,113 +1,50 @@
 /* ===== Reset & Base Styles ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { font-size: 16px; scroll-behavior: smooth; }
-body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: background 0.8s ease, color 0.8s ease; color: #fff; }
+body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: background 0.8s ease, color 0.8s ease; }
+
+/* ===== Glass Overlay ===== */
+.top-glass { position: fixed; top: 0; left: 0; right: 0; height: 50px; backdrop-filter: blur(5px); z-index: 1000; pointer-events: none; }
+
+/* ===== Sections ===== */
+.full-screen { height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; }
+.content-section { min-height: 100vh; padding: 6rem 2rem; color: #fff; }
 
 /* ===== Matrix Background for Welcome Section ===== */
-.matrix-bg {
-  position: relative;
-  background: black;
-  overflow: hidden;
-}
+.matrix-bg { background: #0f0f0f; overflow: hidden; position: relative; }
 
-/* ===== Glass Top Overlay ===== */
-.top-glass {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  z-index: 1001;
-}
-
-/* ===== Socials & GIF ===== */
-.social-icons { position: fixed; top: 10px; right: 20px; display: flex; gap: 15px; z-index: 1002; }
-.social-link img { width: 28px; height: 28px; transition: transform 0.3s ease; }
-.social-link:hover img { transform: scale(1.2); }
-.fixed-gif { position: fixed; top: 10px; left: 20px; z-index: 1002; max-width: 150px; }
-.fixed-gif img { max-width: 100%; height: auto; display: block; }
-@media (max-width: 768px) { .social-icons { top: 10px; right: 10px; } .fixed-gif { max-width: 100px; } }
-
-/* ===== Full Screen Sections ===== */
-.full-screen { height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; }
-.content-section { min-height: 100vh; padding: 6rem 2rem; color: #fff; background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; }
-
-/* ===== Welcome Text ===== */
-#welcomeText { font-size: clamp(2rem, 6vw, 4rem); line-height: 1.3; display: inline-block; position: relative; z-index: 1200; text-align: center; }
-.blur-text span { display: inline-block; opacity: 0; filter: blur(10px); transform: translateY(-50px); transition: opacity 0.6s ease, filter 0.6s ease, transform 0.6s ease; background: linear-gradient(to right, #FF0583, #9F6CF7, #FF0583, #9F6CF7, #FF0583); background-clip: text; -webkit-background-clip: text; color: transparent; animation: gradient 1.5s linear infinite; }
+/* ===== Blur + Gradient per word ===== */
+.blur-text span { display: inline-block; opacity: 0; filter: blur(10px); transform: translateY(-50px); transition: opacity 0.6s ease, filter 0.6s ease, transform 0.6s ease; background: linear-gradient(to right, #FF0583, #9F6CF7); background-clip: text; -webkit-background-clip: text; color: transparent; }
 .blur-text span.visible { opacity: 1; filter: blur(0); transform: translateY(0); }
-@keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-.subtitle { display: block; margin-top: 15px; font-size: clamp(1rem, 3vw, 1.5rem); text-align: center; opacity: 0.9; }
+/* ===== Subtitle ===== */
+.subtitle { margin-top: 15px; font-size: clamp(1rem, 3vw, 1.5rem); opacity: 0.9; text-align: center; }
 .blink { animation: blinkSubtitle 1.5s step-start infinite; }
-@keyframes blinkSubtitle { 0%, 50%, 100% { opacity: 1; } 25%, 75% { opacity: 0; } }
+@keyframes blinkSubtitle { 0%,50%,100%{opacity:1}25%,75%{opacity:0} }
 
-/* ===== About Section Scrolling Lines ===== */
-#scrollOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0px;
-  overflow: hidden;
-  z-index: 1050;
-}
-
-.scrolling-text-line {
-  display: flex;
-  white-space: nowrap;
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
-  font-weight: 400;
-  color: #fff;
-  line-height: 1;
-  margin: 0;
-}
-
+/* ===== Moving Lines ===== */
+#scrollOverlay { position: absolute; top: 0; left: 0; width: 100%; display: flex; flex-direction: column; align-items: flex-start; overflow: hidden; z-index: 1050; }
+.scrolling-text-line { display: flex; white-space: nowrap; font-size: clamp(1.5rem,4vw,2.2rem); font-weight: 400; color: #fff; margin: 0; }
 .line1 { animation: scrollLeft 25s linear infinite; }
-.line2 { animation: scrollRight 25s linear infinite; }
-
+.line2 { animation: scrollRight 25s linear infinite; margin-top: -5px; }
 .scrolling-text-line span { margin-right: 2rem; }
+@keyframes scrollLeft { 0%{transform:translateX(0%);}100%{transform:translateX(-50%);} }
+@keyframes scrollRight{0%{transform:translateX(-50%);}100%{transform:translateX(0%);} }
 
-@keyframes scrollLeft { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-@keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
+/* ===== Social Icons & GIF ===== */
+.social-icons { position: fixed; top: 10px; right: 20px; display: flex; gap: 15px; z-index: 1100; }
+.social-link img { width: 28px; height: 28px; }
+.fixed-gif { position: fixed; top: 10px; left: 20px; z-index: 1100; max-width: 150px; }
+.fixed-gif img { max-width: 100%; height: auto; display: block; }
 
-/* ===== About Profile Circle ===== */
-.about-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  position: relative;
-  z-index: 1050;
-  padding-top: 8rem;
-}
+/* ===== About Section Background ===== */
+#about { position: relative; background-image: url('dallas.JPG'); background-size: cover; background-position: center; background-repeat: no-repeat; }
 
-.profile-circle {
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  border: 5px solid rgba(255,255,255,0.25);
-  backdrop-filter: blur(8px);
-  background-color: rgba(255,255,255,0.05);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* ===== About Centered Profile Circle ===== */
+.about-center { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem; position: relative; z-index: 1050; padding-top: 8rem; }
+.profile-circle { width: 220px; height: 220px; border-radius: 50%; border: 5px solid rgba(255,255,255,0.25); backdrop-filter: blur(8px); background-color: rgba(255,255,255,0.05); box-shadow:0 4px 20px rgba(0,0,0,0.2); overflow:hidden; display:flex; align-items:center; justify-content:center; }
+.profile-circle img { width:100%; height:100%; border-radius:50%; object-fit:cover; }
+.about-description { max-width:600px; text-align:center; font-size:clamp(1rem,2.5vw,1.3rem); line-height:1.6; color:#fff; }
 
-.profile-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-.profile-circle:hover { box-shadow: 0 0 20px rgba(255,255,255,0.5); }
-
-.about-description { max-width: 600px; text-align: center; font-size: clamp(1rem, 2.5vw, 1.3rem); line-height: 1.6; }
-
-/* ===== Portfolio Grid ===== */
-.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
-.project-card { padding: 2rem; border-radius: 12px; background: rgba(30,30,30,0.85); box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.3s ease; }
-.project-card:hover { transform: translateY(-5px); }
+/* ===== Responsive ===== */
+@media(max-width:768px){.scrolling-text-line{font-size:clamp(1.5rem,5vw,2.5rem);}.social-link img{width:24px;height:24px;}.fixed-gif{max-width:100px;}}
