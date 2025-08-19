@@ -1,71 +1,65 @@
-/* ===== Reset & Base Styles ===== */
+/* ===== Reset & Base ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { font-size: 16px; scroll-behavior: smooth; }
-body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: background 0.8s ease, color 0.8s ease; overflow-x: hidden; }
+body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: background 0.8s ease, color 0.8s ease; }
 
-/* ===== Top Bar ===== */
-.top-bar {
+/* ===== Glass Top Overlay ===== */
+.top-glass {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 60px;
-  z-index: 1100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
+  backdrop-filter: blur(8px);
+  z-index: 1200;
 }
 
-/* Glass Under Top Bar */
-.glass-top {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  backdrop-filter: blur(6px);
-  z-index: 1000;
-  pointer-events: none;
-}
-
-/* Fixed GIF */
-.fixed-gif img { max-width: 80px; height: auto; }
-
-/* Social Icons */
-.social-icons { display: flex; gap: 15px; }
-.social-link img { width: 28px; height: 28px; transition: transform 0.3s ease; }
-.social-link:hover img { transform: scale(1.2); }
+/* ===== Social Icons & GIF ===== */
+.social-icons { position: fixed; top: 10px; right: 20px; display: flex; gap: 15px; z-index: 1300; }
+.social-icons img { width: 28px; height: 28px; transition: transform 0.3s ease; }
+.social-icons img:hover { transform: scale(1.2); }
+.fixed-gif { position: fixed; top: 10px; left: 20px; max-width: 150px; z-index: 1300; }
+.fixed-gif img { width: 100%; height: auto; }
 
 /* ===== Sections ===== */
-.full-screen { height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; overflow: hidden; position: relative; background: #0d0d0d; }
-.content-section { min-height: 100vh; padding: 6rem 2rem; color: #fff; background-image: url('dallas.JPG'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; }
+.full-screen { height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; position: relative; }
+.content-section { min-height: 100vh; padding: 6rem 2rem; background-image: url('dallas.JPG'); background-size: cover; background-position: center; color: #fff; position: relative; }
 
-/* ===== Welcome Text ===== */
-.blur-text span { display: inline-block; opacity: 0; filter: blur(10px); transform: translateY(-50px); transition: opacity 0.6s ease, filter 0.6s ease, transform 0.6s ease; background: linear-gradient(45deg, #FF0583, #9F6CF7); background-clip: text; -webkit-background-clip: text; color: transparent; animation: gradient 1.5s linear infinite; }
+/* ===== Welcome Text & Subtitle ===== */
+#welcomeText { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.3; display: inline-block; position: relative; z-index: 1200; }
+.subtitle { display: block; margin-top: 15px; font-size: clamp(1rem, 2.5vw, 1.3rem); opacity: 0.9; text-align: center; }
+.blink { animation: blinkSubtitle 1.5s step-start infinite; }
+@keyframes blinkSubtitle { 0%, 50%, 100% { opacity: 1; } 25%, 75% { opacity: 0; } }
+
+/* ===== Blur Text ===== */
+.blur-text span { display: inline-block; opacity: 0; filter: blur(10px); transform: translateY(-50px); transition: opacity 0.6s ease, filter 0.6s ease, transform 0.6s ease; background: linear-gradient(to right, #40ffaa, #4079ff, #40ffaa, #4079ff, #40ffaa); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: gradient 1.5s linear infinite; }
 .blur-text span.visible { opacity: 1; filter: blur(0); transform: translateY(0); }
 @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-#welcomeText { font-size: clamp(3rem, 8vw, 4rem); letter-spacing: 0.1rem; }
-
-/* Subtitle */
-.subtitle { margin-top: 15px; font-size: clamp(1rem, 3vw, 1.5rem); text-align: center; opacity: 0.9; }
-.blink { animation: blinkSubtitle 1.5s step-start infinite; }
-@keyframes blinkSubtitle { 0%,50%,100% { opacity: 1; } 25%,75% { opacity: 0; } }
+/* ===== About Section Scrolling Lines ===== */
+#scrollOverlay { position: absolute; top: 0; left: 0; width: 100%; overflow: hidden; z-index: 1150; }
+.scrolling-text-line { display: flex; white-space: nowrap; font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 400; color: #fff; line-height: 1; margin: 0; }
+.line1 { animation: scrollLeft 25s linear infinite; margin-bottom: 0.2rem; }
+.line2 { animation: scrollRight 25s linear infinite; }
+.scrolling-text-line span { margin-right: 2rem; }
+@keyframes scrollLeft { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+@keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
 
 /* ===== About Centered Profile Circle ===== */
-.about-center { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; position: relative; z-index: 1050; padding-top: 6rem; }
-.profile-circle { width: 220px; height: 220px; border-radius: 50%; border: 5px solid rgba(255,255,255,0.25); backdrop-filter: blur(8px); background-color: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; }
+.about-center { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem; position: relative; z-index: 1150; padding-top: 8rem; }
+.profile-circle { width: 220px; height: 220px; border-radius: 50%; border: 5px solid rgba(255,255,255,0.25); backdrop-filter: blur(8px); background-color: rgba(255,255,255,0.05); box-shadow: 0 4px 20px rgba(0,0,0,0.2); overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .profile-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.profile-circle:hover { box-shadow: 0 0 20px rgba(255,255,255,0.5); }
+.about-description { max-width: 600px; text-align: center; font-size: clamp(1rem, 2.5vw, 1.3rem); line-height: 1.6; }
 
-/* ===== Scrolling Lines ===== */
-#scrollOverlay { position: absolute; top: 0; left: 0; width: 100%; display: flex; flex-direction: column; gap: 0px; overflow: hidden; z-index: 1050; }
-.scrolling-text-line { display: flex; white-space: nowrap; font-size: clamp(1.5rem, 4vw, 2.2rem); }
-.scrolling-text-line span { margin-right: 3rem; }
-.line1 { animation: scrollLeft 15s linear infinite; }
-.line2 { animation: scrollRight 15s linear infinite; }
-@keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-@keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+/* ===== Portfolio Grid ===== */
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+.project-card { padding: 2rem; border-radius: 12px; background: rgba(30,30,30,0.85); box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.3s ease; }
+.project-card:hover { transform: translateY(-5px); }
 
-/* ===== Matrix Canvas ===== */
-#matrixCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .social-icons { top: 5px; right: 10px; }
+  .fixed-gif { top: 5px; left: 10px; max-width: 100px; }
+  .scrolling-text-line { font-size: clamp(1rem, 5vw, 1.8rem); }
+}
