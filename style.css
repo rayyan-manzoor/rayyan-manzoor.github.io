@@ -1,74 +1,159 @@
 /* ===== Reset & Base Styles ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { font-size: 16px; scroll-behavior: smooth; }
-body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: background 0.8s ease, color 0.8s ease; overflow-x: hidden; }
+body { font-family: 'Poppins', sans-serif; line-height: 1.6; overflow-x: hidden; }
 
-/* ===== Glass Overlay ===== */
+/* ===== Glass Blur Top ===== */
 .top-glass {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 60px; /* slightly taller than icons */
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  z-index: 950;
+  right: 0;
+  height: 50px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
 }
 
 /* ===== Social Icons ===== */
 .social-icons {
   position: fixed;
-  top: 10px;
+  top: 0;
   right: 20px;
   display: flex;
   gap: 15px;
-  z-index: 1000;
+  align-items: center;
+  height: 50px;
+  z-index: 1100;
 }
-.social-link img { width: 28px; height: 28px; transition: transform 0.3s ease; }
-.social-link:hover img { transform: scale(1.2); }
+.social-icons img { width: 28px; height: 28px; transition: transform 0.3s ease; }
+.social-icons img:hover { transform: scale(1.2); }
 
 /* ===== Fixed GIF ===== */
 .fixed-gif {
   position: fixed;
-  top: 10px;
+  top: 0;
   left: 20px;
   max-width: 150px;
-  z-index: 1000;
+  z-index: 1100;
 }
-.fixed-gif img { width: 100%; height: auto; display: block; }
+.fixed-gif img { width: 100%; display: block; }
 
-/* ===== Sections ===== */
-.full-screen { height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; overflow: hidden; }
-.content-section { min-height: 100vh; padding: 6rem 2rem; position: relative; color: #fff; background-image: url('dallas.JPG'); background-size: cover; background-position: center; background-repeat: no-repeat; }
+/* ===== Welcome Section ===== */
+.full-screen {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+.matrix-bg {
+  background: black;
+}
 
-/* ===== Welcome Text ===== */
-#welcomeText { font-size: clamp(2.5rem, 6vw, 3.5rem); line-height: 1.3; display: inline-block; z-index: 100; position: relative; color: #fff; text-align: center; }
-.subtitle { display: block; margin-top: 15px; font-size: clamp(1rem, 2.5vw, 1.5rem); opacity: 0.9; text-align: center; }
+/* ===== Typing / Blur Text ===== */
+#welcomeText {
+  font-size: clamp(3rem, 6vw, 4rem);
+  line-height: 1.2;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+.blur-text span {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(-50px);
+  transition: opacity 0.6s ease, filter 0.6s ease, transform 0.6s ease;
+  background: linear-gradient(to right, #FF0583, #9F6CF7, #FF0583);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradient 1.5s linear infinite;
+}
+.blur-text span.visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+@keyframes gradient { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
 
-/* ===== Blur + Gradient per word ===== */
-.blur-text span { display: inline-block; opacity: 0; filter: blur(10px); transform: translateY(-50px); transition: opacity 0.6s ease, filter 0.6s ease, transform 0.6s ease; background: linear-gradient(to right, #40ffaa, #4079ff, #40ffaa, #4079ff, #40ffaa); background-clip: text; -webkit-background-clip: text; color: transparent; animation: gradient 1.5s linear infinite; }
-.blur-text span.visible { opacity: 1; filter: blur(0); transform: translateY(0); }
-@keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+/* ===== Subtitle ===== */
+.subtitle { margin-top: 15px; font-size: clamp(1rem, 3vw, 1.5rem); opacity: 0.9; }
 
-/* ===== Scrolling Lines ===== */
-#scrollOverlay { position: absolute; top: 0; left: 0; width: 100%; display: flex; flex-direction: column; align-items: flex-start; overflow: hidden; z-index: 1050; }
-.scrolling-text-line { display: flex; white-space: nowrap; font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 400; color: #fff; line-height: 1; }
-.line1 { animation: scrollLeft 15s linear infinite; }
-.line2 { animation: scrollRight 15s linear infinite; margin-top: 0px; } /* almost no gap */
+/* ===== About Section ===== */
+#about {
+  position: relative;
+  background-image: url('dallas.JPG');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+/* ===== Scrolling Overlay ===== */
+#scrollOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 1050;
+  gap: 2px;
+}
+.scrolling-text-line {
+  display: flex;
+  white-space: nowrap;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 400;
+  color: #fff;
+}
+.line1 { animation: scrollLeft 20s linear infinite; }
+.line2 { animation: scrollRight 20s linear infinite; }
 .scrolling-text-line span { margin-right: 2rem; }
-@keyframes scrollLeft { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-@keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
+@keyframes scrollLeft { 0%{transform:translateX(0%);} 100%{transform:translateX(-50%);} }
+@keyframes scrollRight { 0%{transform:translateX(-50%);} 100%{transform:translateX(0%);} }
 
-/* ===== About Centered Profile Circle ===== */
-.about-center { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem; position: relative; z-index: 1050; padding-top: 8rem; }
-.profile-circle { width: 220px; height: 220px; border-radius: 50%; border: 5px solid rgba(255, 255, 255, 0.25); backdrop-filter: blur(8px); background-color: rgba(255,255,255,0.05); box-shadow: 0 4px 20px rgba(0,0,0,0.2); overflow: hidden; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+/* ===== About Centered Profile ===== */
+.about-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1050;
+  padding-top: 8rem;
+}
+.profile-circle {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 5px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(8px);
+  background-color: rgba(255,255,255,0.05);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .profile-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-.profile-circle:hover { box-shadow: 0 0 20px rgba(255,255,255,0.5); }
-.about-description { max-width: 600px; text-align: center; font-size: clamp(1rem, 2.5vw, 1.3rem); color: #fff; line-height: 1.6; }
+.about-description {
+  max-width: 600px;
+  text-align: center;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: #fff;
+  line-height: 1.6;
+}
 
-/* ===== Mobile Adjustments ===== */
+/* ===== Mobile ===== */
 @media (max-width: 768px) {
-  .scrolling-text-line { font-size: clamp(1.2rem, 5vw, 2rem); }
+  .social-icons img { width: 24px; height: 24px; }
   .fixed-gif { max-width: 100px; }
-  .social-link img { width: 24px; height: 24px; }
 }
