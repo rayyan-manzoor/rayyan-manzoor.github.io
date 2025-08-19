@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ===== Welcome Text Typing Animation =====
+  // ===== Welcome Text Typing =====
   const welcomeText = document.getElementById('welcomeText');
   const subtitle = document.getElementById('subtitle');
-
   const mainHeader = "Welcome to Rayyan's Portfolio!";
   welcomeText.innerHTML = mainHeader.split(" ").map(word => `<span>${word}</span>`).join(" ");
   const wordSpans = welcomeText.querySelectorAll("span");
@@ -16,20 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
         element.textContent += text.charAt(i);
         i++;
         setTimeout(typing, speed);
-      } else if (callback) callback();
+      } else if (callback) { callback(); }
     }
     typing();
   }
 
-  function deleteText(element, speed = 30, callback) {
+  function deleteText(element, speed = 50, callback) {
     let text = element.textContent;
     let i = text.length;
     function deleting() {
       if (i > 0) {
-        element.textContent = text.substring(0, i - 1);
+        element.textContent = text.substring(0, i-1);
         i--;
         setTimeout(deleting, speed);
-      } else if (callback) callback();
+      } else if (callback) { callback(); }
     }
     deleting();
   }
@@ -41,9 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         deleteText(subtitle, 30, () => {
           subtitle.textContent = '';
           typeText(subtitle, "Please scroll!", 50, () => {
-            setTimeout(() => {
-              subtitle.classList.add('blink');
-            }, 500);
+            setTimeout(() => { subtitle.classList.add('blink'); }, 500);
           });
         });
       }, 1000);
@@ -63,35 +60,29 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, { threshold: 0.1 });
-
   observer.observe(welcomeText);
 
-  // ===== Matrix Background =====
-  const canvas = document.getElementById("matrix");
-  const ctx = canvas.getContext("2d");
-  let width = canvas.width = window.innerWidth;
-  let height = canvas.height = window.innerHeight;
+  // ===== About Me Infinite Lines =====
+  const line1 = document.querySelector(".line1");
+  const line2 = document.querySelector(".line2");
 
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  const fontSize = 16;
-  const columns = Math.floor(width / fontSize);
-  const drops = Array(columns).fill(1);
-
-  function drawMatrix() {
-    ctx.fillStyle = "rgba(0,0,0,0.05)";
-    ctx.fillRect(0, 0, width, height);
-    ctx.fillStyle = "#FF0583";
-    ctx.font = fontSize + "px monospace";
-
-    for (let i = 0; i < drops.length; i++) {
-      const text = letters.charAt(Math.floor(Math.random() * letters.length));
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-      drops[i]++;
-      if (drops[i] * fontSize > height && Math.random() > 0.975) drops[i] = 0;
+  function fillLine(line, text) {
+    const containerWidth = line.parentElement.offsetWidth;
+    const textWidth = 300;
+    const repeatCount = Math.ceil(containerWidth / textWidth) + 3;
+    line.innerHTML = "";
+    for (let i = 0; i < repeatCount; i++) {
+      const span = document.createElement("span");
+      span.textContent = text + "   ";
+      line.appendChild(span);
     }
   }
 
-  setInterval(drawMatrix, 50);
-  window.addEventListener('resize', () => { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; });
+  fillLine(line1, "Welcome To About Me");
+  fillLine(line2, "Explore Projects About Me");
 
+  window.addEventListener("resize", () => {
+    fillLine(line1, "Welcome To About Me");
+    fillLine(line2, "Explore Projects About Me");
+  });
 });
