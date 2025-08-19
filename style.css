@@ -3,50 +3,55 @@
 html { font-size: 16px; scroll-behavior: smooth; }
 body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: background 0.8s ease, color 0.8s ease; }
 
-/* ===== Theme Variables ===== */
-.light-mode { --text-color: #333; --bg-gradient: linear-gradient(135deg, #a8edea, #fed6e3); --card-bg: rgba(255,255,255,0.85); --card-shadow: 0 4px 10px rgba(0,0,0,0.1); --gradient-colors: linear-gradient(to right, #FF0583, #9F6CF7, #FF0583, #9F6CF7, #FF0583); }
-.dark-mode { --text-color: #fff; --bg-gradient: linear-gradient(135deg, #000000, #1a1a1a); --card-bg: rgba(30,30,30,0.85); --card-shadow: 0 4px 10px rgba(0,0,0,0.3); --gradient-colors: linear-gradient(to right, #40ffaa, #4079ff, #40ffaa, #4079ff, #40ffaa); }
+/* ===== Theme Toggle & Social Icons ===== */
+.theme-switch { position: fixed; top: 20px; right: 20px; z-index: 1000; }
+.toggle-label { display: inline-block; width: 60px; height: 30px; background: rgba(255, 255, 255, 0.2); border-radius: 50px; position: relative; cursor: pointer; }
+.toggle-handle { position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; background: white; border-radius: 50%; transition: transform 0.3s ease; }
+#themeToggle { opacity: 0; width: 0; height: 0; }
+#themeToggle:checked + .toggle-label .toggle-handle { transform: translateX(30px); }
+
+.social-icons { position: fixed; top: 20px; right: 100px; display: flex; gap: 15px; z-index: 1000; }
+.social-link img { width: 28px; height: 28px; transition: transform 0.3s ease; }
+.social-link:hover img { transform: scale(1.2); }
+@media (max-width: 768px) {
+  .social-icons { top: 15px; right: 15px; }
+  .social-link img { width: 22px; height: 22px; }
+}
 
 /* ===== Sections ===== */
-.full-screen { height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--text-color); background: url('matrix-background.jpg') no-repeat center/cover; }
-.content-section { min-height: 100vh; padding: 6rem 2rem; background: url('dallas.JPG') no-repeat center/cover; color: var(--text-color); display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden; }
+.full-screen { height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; color: #fff; }
+.content-section { min-height: 100vh; padding: 6rem 2rem; background: url('dallas.JPG') center/cover no-repeat; color: #fff; position: relative; overflow: hidden; }
 
+/* ===== Welcome Text & Subtitle ===== */
 #welcomeText { font-size: clamp(2rem, 8vw, 4rem); line-height: 1.3; display: inline-block; position: relative; z-index: 2; }
 .subtitle { display: block; margin-top: 15px; font-size: clamp(1rem, 3vw, 1.5rem); opacity: 0.9; text-align: center; }
+.blink { animation: blinkSubtitle 1.5s step-start infinite; }
+@keyframes blinkSubtitle { 0%,50%,100%{opacity:1;} 25%,75%{opacity:0;} }
 
-/* ===== Scroll Overlay ===== */
-#scrollOverlay { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; gap: 0.5rem; z-index: 3; text-align: center; }
-.scrolling-text-line { display: flex; white-space: nowrap; font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 400; color: var(--text-color); line-height: 1; }
-.line1 { animation: scrollLeft 25s linear infinite; }
-.line2 { animation: scrollRight 25s linear infinite; }
+/* ===== Blur + Gradient for Words ===== */
+.blur-text span { display: inline-block; opacity: 0; filter: blur(10px); transform: translateY(-50px); transition: opacity 0.6s ease, filter 0.6s ease, transform 0.6s ease; background: linear-gradient(to right, #FF0583, #9F6CF7, #FF0583); background-clip: text; -webkit-background-clip: text; color: transparent; }
+.blur-text span.visible { opacity: 1; filter: blur(0); transform: translateY(0); }
+
+/* ===== About Section Moving Lines ===== */
+#scrollOverlay { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 100%; display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 10; pointer-events: none; }
+.scrolling-text-line { display: flex; white-space: nowrap; font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 400; line-height: 1; }
+.line1 { animation: scrollLeft 20s linear infinite; }
+.line2 { animation: scrollRight 20s linear infinite; }
 .scrolling-text-line span { margin-right: 2rem; }
 @keyframes scrollLeft { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
 @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
 
-/* ===== Profile Circle ===== */
-.about-center { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; z-index: 4; }
+/* ===== About Centered Profile Circle ===== */
+.about-center { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem; position: relative; z-index: 5; padding-top: 8rem; }
 .profile-circle { width: 220px; height: 220px; border-radius: 50%; border: 5px solid rgba(255,255,255,0.25); backdrop-filter: blur(8px); background-color: rgba(255,255,255,0.05); box-shadow: 0 4px 20px rgba(0,0,0,0.2); overflow: hidden; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
 .profile-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 .profile-circle:hover { box-shadow: 0 0 20px rgba(255,255,255,0.5); }
 .about-description { max-width: 600px; text-align: center; font-size: clamp(1rem, 2.5vw, 1.3rem); line-height: 1.6; }
 
-/* ===== Toggle & Socials ===== */
-.theme-switch { position: fixed; top: 20px; right: 20px; z-index: 10; }
-.toggle-label { display: inline-block; width: 60px; height: 30px; background: rgba(255,255,255,0.2); border-radius: 50px; position: relative; cursor: pointer; }
-.toggle-handle { position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; background: white; border-radius: 50%; transition: transform 0.3s ease; }
-#themeToggle { opacity: 0; width: 0; height: 0; }
-#themeToggle:checked + .toggle-label .toggle-handle { transform: translateX(30px); }
-.social-icons { position: fixed; top: 20px; right: 100px; display: flex; gap: 15px; z-index: 10; }
-.social-link img { width: 28px; height: 28px; transition: transform 0.3s ease; }
-.social-link:hover img { transform: scale(1.2); }
-@media (max-width: 768px) { .social-icons { right: 20px; } .social-link img { width: 24px; height: 24px; } }
+/* ===== Portfolio Grid ===== */
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 2rem; margin-top: 3rem; }
+.project-card { padding: 2rem; border-radius: 12px; background: rgba(0,0,0,0.5); box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.3s ease; }
+.project-card:hover { transform: translateY(-5px); }
 
-/* ===== Blur Text ===== */
-.blur-text span { display: inline-block; opacity: 0; filter: blur(10px); transform: translateY(-50px); transition: opacity 0.6s ease, filter 0.6s ease, transform 0.6s ease; background: var(--gradient-colors); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: gradient 1.5s linear infinite; }
-.blur-text span.visible { opacity: 1; filter: blur(0); transform: translateY(0); }
-@keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-
-/* ===== Fixed GIF ===== */
-.fixed-gif { position: fixed; top: 20px; left: 20px; z-index: 10; max-width: 150px; }
-.fixed-gif img { max-width: 100%; height: auto; display: block; }
-@media (max-width: 768px) { .fixed-gif { max-width: 100px; } }
+/* ===== Matrix Canvas ===== */
+#matrixCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: linear-gradient(135deg, #3a0ca3, #7209b7); }
