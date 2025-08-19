@@ -21,17 +21,19 @@
     <img src="newgif.gif" alt="Top GIF">
   </div>
 
-  <!-- Glass Overlay -->
+  <!-- Glass Top Overlay -->
   <div class="top-glass"></div>
 
   <!-- Welcome Section -->
-  <section id="welcome" class="full-screen matrix-bg">
+  <section id="welcome" class="full-screen">
+    <canvas id="matrix"></canvas>
     <h1 id="welcomeText" class="blur-text"></h1>
     <p class="subtitle" id="subtitle"></p>
   </section>
 
   <!-- About Section -->
   <section id="about" class="content-section">
+
     <!-- Scrolling Text Overlay -->
     <div id="scrollOverlay">
       <div class="scrolling-text-line line1">
@@ -65,6 +67,7 @@
         Hi! I'm Rayyan, a Medical Professional and Tech Enthusiast. Passionate about innovation, research, and exploring new ideas.
       </p>
     </div>
+
   </section>
 
   <!-- Portfolio Section -->
@@ -85,8 +88,5 @@
   </section>
 
   <script src="script.js"></script>
-  <script>
-    window.onbeforeunload = function () { window.scrollTo(0, 0); };
-  </script>
 </body>
 </html>
