@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function drawMatrix() {
     ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#FFFFFF";
+    ctx.fillStyle = "FF00FF";
     ctx.font = fontSize + "px monospace";
     for(let i=0; i<drops.length; i++) {
       const text = letters.charAt(Math.floor(Math.random()*letters.length));
