@@ -255,4 +255,13 @@ body {
     height: 350px;  /* increase height */
   }
 }
+#portfolio {
+  background-image: url('dallas.JPG'); /* Replace with your image file */
+  background-size: cover;       /* Makes the image cover the entire section */
+  background-position: center;  /* Centers the image */
+  background-repeat: no-repeat; /* Prevents repeating */
+  min-height: 100vh;            /* Ensure it fills the viewport height */
+  color: #fff;                  /* Keep text readable over the image */
+  position: relative;
+}
 
