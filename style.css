@@ -55,7 +55,7 @@ body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: backgro
   padding: 0.6rem 1.2rem;               /* space inside bubble */
   border-radius: 20px;              /* rounded edges */
   background: rgba(255, 255, 255, 0.1); /* translucent white */
-  backdrop-filter: blur(5px);      /* glass blur */
+  backdrop-filter: blur(2px);      /* glass blur */
   -webkit-backdrop-filter: blur(5px); /* Safari support */
   text-align: center;
   z-index: 1100;                     /* above background */
