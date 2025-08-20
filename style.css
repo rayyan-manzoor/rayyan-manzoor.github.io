@@ -226,5 +226,26 @@ body {
   25%, 75% { opacity: 0; }
 }   
 
+/* About description text */
+.about-description {
+  max-width: 600px;
+  text-align: center;
+  font-size: clamp(1rem, 2.5vw, 1.3rem); /* scales with screen width */
+  line-height: 1.6;
+  transition: font-size 0.3s ease; /* smooth resizing */
+}
+
+/* Optional: even bigger text on larger screens */
+@media (min-width: 1024px) {
+  .about-description {
+    font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  }
+}
+
+@media (min-width: 1440px) {
+  .about-description {
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+  }
+}
 
 
