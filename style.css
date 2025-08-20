@@ -56,14 +56,3 @@ body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: backgro
 /* ===== Subtitle Blink ===== */
 .blink { animation: blinkSubtitle 1.5s step-start infinite; }
 @keyframes blinkSubtitle { 0%, 50%, 100% { opacity: 1; } 25%, 75% { opacity: 0; } }
-
-.welcome-bubble {
-  display: inline-block;            /* shrink to fit content */
-  padding: 0.6rem 1.2rem;               /* space inside bubble */
-  border-radius: 20px;              /* rounded edges */
-  background: rgba(255, 255, 255, 0.1); /* translucent white */
-  backdrop-filter: blur(2px);      /* glass blur */
-  -webkit-backdrop-filter: blur(5px); /* Safari support */
-  text-align: center;
-  z-index: 1100;                     /* above background */
-}
