@@ -4,7 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const welcomeText = document.getElementById('welcomeText');
   const subtitle = document.getElementById('subtitle');
   const mainHeader = "Welcome to Rayyan's Portfolio!";
-  welcomeText.innerHTML = mainHeader.split(" ").map(word => `<span>${word}</span>`).join(" ");
+
+  // Split text into spans for gradient animation
+  welcomeText.innerHTML = mainHeader
+    .split(" ")
+    .map(word => `<span>${word}</span>`)
+    .join(" ");
+
   const wordSpans = welcomeText.querySelectorAll("span");
 
   // ===== Typing Effect Functions =====
@@ -47,30 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ===== Observer for Welcome Text =====
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        wordSpans.forEach((span, index) => {
-          setTimeout(() => {
-            span.classList.add("visible");
-            if (index === wordSpans.length - 1) {
-              setTimeout(animateSubtitle, 500);
-            }
-          }, index * 400);
-        });
-        observer.disconnect();
+  // ===== Show Header Immediately =====
+  wordSpans.forEach((span, index) => {
+    setTimeout(() => {
+      span.classList.add("visible"); // removes blur & sets opacity
+      if (index === wordSpans.length - 1) {
+        setTimeout(animateSubtitle, 500);
       }
-    });
-  }, { threshold: 0.1 });
+    }, index * 400);
+  });
 
-// Immediately show spans and start subtitle animation
-wordSpans.forEach((span, index) => {
-  setTimeout(() => {
-    span.classList.add("visible");
-    if (index === wordSpans.length - 1) {
-      setTimeout(animateSubtitle, 500);
-    }
-  }, index * 400);
 });
-
