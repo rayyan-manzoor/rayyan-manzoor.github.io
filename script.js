@@ -64,4 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.1 });
 
-  observer.observe(welcomeText);
+// Immediately show spans and start subtitle animation
+wordSpans.forEach((span, index) => {
+  setTimeout(() => {
+    span.classList.add("visible");
+    if (index === wordSpans.length - 1) {
+      setTimeout(animateSubtitle, 500);
+    }
+  }, index * 400);
+});
+
