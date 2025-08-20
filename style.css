@@ -248,4 +248,11 @@ body {
   }
 }
 
+/* Make profile circle bigger on desktop */
+@media (min-width: 1024px) {
+  .profile-circle {
+    width: 350px;   /* increase width */
+    height: 350px;  /* increase height */
+  }
+}
 
