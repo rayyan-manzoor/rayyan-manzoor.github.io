@@ -9,7 +9,7 @@ body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: backgro
   top: -200px;         /* pushes blur 200px above viewport */
   left: 0; 
   right: 0; 
-  height: 300px;       /* extend enough to cover above + visible area */
+  height: 100px;       /* extend enough to cover above + visible area */
   pointer-events: none; 
   z-index: 1000; 
   backdrop-filter: blur(6px); 
