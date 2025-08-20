@@ -155,7 +155,7 @@ body {
   margin: 0;
 }
 
-.line1 { animation: scrollLeft 30s linear infinite; }
+.line1 { animation: scrollLeft 16s linear infinite; }
 .line2 { animation: scrollRight 30s linear infinite; }
 
 .scrolling-text-line span {
