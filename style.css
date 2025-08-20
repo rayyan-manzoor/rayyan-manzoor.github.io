@@ -128,7 +128,7 @@ body {
   font-size: clamp(1rem, 2.5vw, 1.5rem);
   opacity: 0.9;
   text-align: center;
-  color: #ccc; /* Solid color; can make gradient if desired */
+  color: #fff; /* Solid color; can make gradient if desired */
 }
 
 /* ===== Scroll Overlay (Two Infinite Lines) ===== */
@@ -150,7 +150,7 @@ body {
   white-space: nowrap;
   font-size: clamp(1.2rem, 3.5vw, 1.8rem);
   font-weight: 400;
-  color: #F2F0EF;
+  color: #ccc;
   line-height: 1;
   margin: 0;
 }
