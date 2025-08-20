@@ -4,7 +4,17 @@ html { font-size: 16px; scroll-behavior: smooth; }
 body { font-family: 'Poppins', sans-serif; line-height: 1.6; transition: background 0.8s ease, color 0.8s ease; }
 
 /* ===== Glass Overlays (Top) ===== */
-.top-glass { position: fixed; top: -200px; left: 0; right: 0; height: 300px; pointer-events: none; z-index: 1000; backdrop-filter: blur(6px); }
+.top-glass { 
+  position: fixed; 
+  top: -200px;         /* pushes blur 200px above viewport */
+  left: 0; 
+  right: 0; 
+  height: 300px;       /* extend enough to cover above + visible area */
+  pointer-events: none; 
+  z-index: 1000; 
+  backdrop-filter: blur(6px); 
+  -webkit-backdrop-filter: blur(6px); /* Safari support */
+}
 
 /* ===== Sections ===== */
 .full-screen { height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; background: #000; position: relative; overflow: hidden; }
