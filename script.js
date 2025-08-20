@@ -64,3 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+// Scroll to the welcome section on page load
+window.addEventListener('load', () => {
+    const welcomeSection = document.getElementById('welcome');
+    if (welcomeSection) {
+        welcomeSection.scrollIntoView({ behavior: 'auto' });
+    }
+});
