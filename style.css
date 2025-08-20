@@ -148,15 +148,15 @@ body {
 .scrolling-text-line {
   display: flex;
   white-space: nowrap;
-  font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+  font-size: clamp(1rem, 3vw, 1.6rem);
   font-weight: 400;
   color: #ccc;
   line-height: 1;
   margin: 0;
 }
 
-.line1 { animation: scrollLeft 25s linear infinite; }
-.line2 { animation: scrollRight 25s linear infinite; }
+.line1 { animation: scrollLeft 30s linear infinite; }
+.line2 { animation: scrollRight 30s linear infinite; }
 
 .scrolling-text-line span {
   margin-right: 2rem;
