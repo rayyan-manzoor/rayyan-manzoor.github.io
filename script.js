@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function animateSubtitle() {
     subtitle.classList.remove('blink');
-    typeText(subtitle, "Medical Rookie & Tech Enthusiast.", 50, () => {
+    typeText(subtitle, "Medical & Tech Enthusiast.", 50, () => {
       setTimeout(() => {
         deleteText(subtitle, 30, () => {
           typeText(subtitle, "Please scroll!", 50, () => {
