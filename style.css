@@ -22,7 +22,7 @@ body {
   top: -200px;         /* pushes blur above the viewport */
   left: 0;
   right: 0;
-  height: 253px;       /* extend enough to cover above + visible area */
+  height: 245px;       /* extend enough to cover above + visible area */
   pointer-events: none;
   z-index: 1200;
   backdrop-filter: blur(6px);
