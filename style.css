@@ -264,4 +264,44 @@ body {
   color: #fff;                  /* Keep text readable over the image */
   position: relative;
 }
+/* ===== New Contact Section Styles ===== */
+#contact {
+  /* Inherits min-height: 100vh from .content-section, but we override background and center content */
+  background: #101010; /* A slightly different dark background for contrast */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Vertically centers content within the section */
+  text-align: center;
+}
 
+#contact h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+#contact p {
+  margin-bottom: 2rem;
+  max-width: 600px; /* Constrain the width of the descriptive text */
+}
+
+.contact-info {
+  margin-top: 1rem;
+  display: flex;
+  gap: 20px; /* Space between the two links */
+}
+
+.contact-link {
+  color: #00FF00; /* Uses your neon accent color for the text */
+  text-decoration: none;
+  border: 1px solid #00FF00; /* Neon border */
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background 0.3s ease, color 0.3s ease;
+  font-weight: 600;
+}
+
+.contact-link:hover {
+  background: #00FF00; /* Fills the button with neon color on hover */
+  color: #000; /* Changes text color to black for contrast on hover */
+}
