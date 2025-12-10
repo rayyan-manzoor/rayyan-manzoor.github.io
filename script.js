@@ -144,10 +144,14 @@ document.addEventListener('DOMContentLoaded', () => {
 }); // <-- End of DOMContentLoaded listener
 
 
-// Scroll to the welcome section on page load
+// Force scroll to the Welcome section on page load and reload
 window.addEventListener('load', () => {
   const welcomeSection = document.getElementById('welcome');
   if (welcomeSection) {
+    // 1. Force the scroll position to the top of the document immediately
+    window.scrollTo(0, 0); 
+    
+    // 2. Then, scroll the welcome section into view for consistency
     welcomeSection.scrollIntoView({ behavior: 'auto' });
   }
 });
