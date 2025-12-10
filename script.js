@@ -53,12 +53,83 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   } 
 
+  // =========================================================
+  // ===== ABOUT SECTION SCRAMBLE EFFECT LOGIC (NEW) =====
+  // =========================================================
 
+  const aboutParagraph = document.querySelector('.about-description');
+  // Store the final text for the animation, then clear the element immediately.
+  const finalAboutText = aboutParagraph ? aboutParagraph.textContent : '';
+
+  // Array of random characters for the scramble effect
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;':\",./<>?~";
+  
+  function scrambleText(element, finalText, duration = 1800) {
+    if (element.dataset.animated) return; // Prevent re-triggering
+    element.dataset.animated = 'true';
+    
+    let startTime;
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const elapsedTime = timestamp - startTime;
+      // Progress from 0 to 1
+      const progress = Math.min(elapsedTime / duration, 1);
+
+      let newText = '';
+      for (let i = 0; i < finalText.length; i++) {
+        // Calculate the relative time when this specific character should finish scrambling
+        const revealTime = i / finalText.length;
+        
+        if (progress >= revealTime) {
+          // If the reveal time is passed, show the final correct character
+          newText += finalText[i];
+        } else {
+          // Otherwise, show a random scramble character
+          const scrambleCharacter = characters[Math.floor(Math.random() * characters.length)];
+          newText += scrambleCharacter;
+        }
+      }
+
+      element.textContent = newText;
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    
+    // Start the animation loop
+    requestAnimationFrame(animate);
+  }
+
+  // ===== Scroll Trigger for Scramble Effect (Intersection Observer) =====
+  if (aboutParagraph) {
+    // Clear the text content so the user sees a blank space before the animation starts
+    aboutParagraph.textContent = ''; 
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // When the paragraph scrolls into view, start the scramble
+          scrambleText(aboutParagraph, finalAboutText, 1800);
+          
+          // Stop observing once the animation is triggered
+          observer.unobserve(aboutParagraph);
+        }
+      });
+    }, {
+      root: null, // Viewport is the root
+      threshold: 0.1, // Trigger when 10% of the element is visible
+    });
+
+    // Tell the observer to watch the paragraph
+    observer.observe(aboutParagraph);
+  }
+  
   // =========================================================
   // ===== PROJECT DETAIL NAVIGATION LOGIC (Strip Swapping) =====
   // =========================================================
 
-  // New variables to target ALL main sections for hiding/showing
   const projectDetailSections = document.querySelectorAll('.project-detail-section');
   const backLinks = document.querySelectorAll('.back-link');
   // Select all sections that form the "Main Strip"
@@ -69,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function showSection(targetId) {
     // 1. HIDE the entire Main Strip
     mainSections.forEach(section => {
-      // Use 'none' to completely remove the main content from view/flow
       section.style.display = 'none'; 
     });
 
@@ -86,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
       targetSection.style.display = 'block';
     }
     
-    // Scroll smoothly to the top of the browser window (where the new page appears)
+    // Scroll smoothly to the top of the browser window
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -99,11 +169,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 2. SHOW the entire Main Strip (using the correct display types)
-    // We must show them one by one using the display style defined in CSS:
-    document.getElementById('welcome').style.display = 'flex';   // #welcome uses flex
-    document.getElementById('about').style.display = 'block';    // #about uses block
-    document.getElementById('portfolio').style.display = 'flex'; // #portfolio uses flex
-    document.getElementById('contact').style.display = 'flex';   // #contact uses flex
+    document.getElementById('welcome').style.display = 'flex';
+    document.getElementById('about').style.display = 'block';
+    document.getElementById('portfolio').style.display = 'flex';
+    document.getElementById('contact').style.display = 'flex';
     
     // Scroll smoothly back to the Portfolio section
     document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
@@ -111,47 +180,4 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // 4. Attach click listeners to all project links (e.g., View Project Details)
   document.querySelectorAll('.project-link').forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault(); // Prevents the default hash jump
-      const targetId = this.getAttribute('href').substring(1); // Gets 'project-jana' from '#project-jana'
-      showSection(targetId);
-    });
-  });
-
-  // 5. Attach click listeners to all 'Back to Projects' links
-  backLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      showPortfolio();
-    });
-  });
-
-  // =========================================================
-  // ===== END PROJECT DETAIL NAVIGATION LOGIC =============
-  // =========================================================
-
-
-  // ===== Show Header Immediately (Animation Kickoff) =====
-  wordSpans.forEach((span, index) => {
-    setTimeout(() => {
-      span.classList.add("visible"); // removes blur & sets opacity
-      if (index === wordSpans.length - 1) {
-        setTimeout(animateSubtitle, 500);
-      }
-    }, index * 400);
-  });
-
-}); // <-- End of DOMContentLoaded listener
-
-
-// Force scroll to the Welcome section on page load and reload
-window.addEventListener('load', () => {
-  const welcomeSection = document.getElementById('welcome');
-  if (welcomeSection) {
-    // 1. Force the scroll position to the top of the document immediately
-    window.scrollTo(0, 0); 
-    
-    // 2. Then, scroll the welcome section into view for consistency
-    welcomeSection.scrollIntoView({ behavior: 'auto' });
-  }
-});
+    link
