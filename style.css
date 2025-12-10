@@ -255,14 +255,28 @@ body {
     height: 350px;  /* increase height */
   }
 }
+/* --- Centering The Portfolio Content (NEW CODE) --- */
 #portfolio {
-  background-image: url('dallas.JPG'); /* Replace with your image file */
-  background-size: cover;       /* Makes the image cover the entire section */
-  background-position: center;  /* Centers the image */
-  background-repeat: no-repeat; /* Prevents repeating */
-  min-height: 100vh;            /* Ensure it fills the viewport height */
-  color: #fff;                  /* Keep text readable over the image */
+  background-image: url('dallas.JPG');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  color: #fff;
   position: relative;
+  /* New centering properties to vertically and horizontally center content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Add this to ensure the content inside has space and centers the heading */
+#portfolio .container {
+    width: 100%;
+    max-width: 1200px; /* Constrains the width of the content */
+    text-align: center; /* Centers the 'My Projects' heading */
 }
 /* ===== New Contact Section Styles ===== */
 #contact {
@@ -304,4 +318,68 @@ body {
 .contact-link:hover {
   background: #00FF00; /* Fills the button with neon color on hover */
   color: #000; /* Changes text color to black for contrast on hover */
+}
+/* --- Portfolio Project Grid & Cards (NEW SECTION) --- */
+
+#portfolio h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Grid layout for projects */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+  gap: 30px;
+  margin-top: 3rem;
+}
+
+/* Individual Project Card Styling */
+.project-card {
+  /* Glassmorphism/Dark Theme Style */
+  background: rgba(255, 255, 255, 0.05); /* Light transparent background */
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 30px;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-10px); /* Lift effect on hover */
+  box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2); /* Neon shadow effect */
+}
+
+.project-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #00FF00; /* Neon green accent for title */
+}
+
+.project-card p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+.project-link {
+  display: inline-block;
+  color: #00FF00;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.project-link:hover {
+  color: #fff; /* White on hover */
+}
+
+/* Optional: Better responsiveness for smaller screens */
+@media (max-width: 600px) {
+  .project-grid {
+    grid-template-columns: 1fr; /* Stack cards on very small screens */
+  }
 }
