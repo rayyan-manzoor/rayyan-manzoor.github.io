@@ -271,12 +271,25 @@ body {
   justify-content: center;
   padding: 2rem;
 }
+/* NEW: The dark overlay for better text contrast */
+#portfolio::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark semi-transparent color */
+  z-index: 1; 
+}
 
-/* Add this to ensure the content inside has space and centers the heading */
+/* Ensure the content sits above the new overlay */
 #portfolio .container {
-    width: 100%;
-    max-width: 1200px; /* Constrains the width of the content */
-    text-align: center; /* Centers the 'My Projects' heading */
+  position: relative;
+  z-index: 2; /* Ensure content is above the overlay (z-index: 1) */
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
 }
 /* ===== New Contact Section Styles ===== */
 #contact {
@@ -382,4 +395,73 @@ body {
   .project-grid {
     grid-template-columns: 1fr; /* Stack cards on very small screens */
   }
+}
+/* --- Project Detail Sections Styling & HIDE/SHOW LOGIC --- */
+.project-detail-section {
+    /* Ensures this section looks good and is separated */
+    background: #0d0d0d;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    text-align: left;
+    
+    /* --- HIDE BY DEFAULT --- */
+    display: none; 
+    /* ----------------------- */
+}
+
+/* Rule to show the active section (used by JavaScript) */
+.project-detail-section.active {
+    display: block;
+}
+
+.project-detail-section h1 {
+    font-size: 3rem;
+    color: #00FF00;
+    margin-bottom: 0.5rem;
+}
+
+.project-tagline {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.project-content p {
+    margin-bottom: 1.5rem;
+}
+
+.project-content h3 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.project-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 2rem;
+}
+
+.project-content ul li {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    border-left: 3px solid #00FF00;
+}
+
+.back-link {
+    display: inline-block;
+    color: #00FF00;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #fff;
 }
