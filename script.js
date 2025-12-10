@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const wordSpans = welcomeText.querySelectorAll("span");
 
-  // ===== Typing Effect Functions (Correctly Defined) =====
+  // ===== Typing Effect Functions =====
   function typeText(element, text, speed = 50, callback) {
     let i = 0;
     element.textContent = '';
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (callback) callback();
     }
     typing();
-  } // <-- End of typeText function
+  } 
 
   function deleteText(element, speed = 50, callback) {
     let text = element.textContent;
@@ -51,21 +51,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }, 1000);
     });
-  } // <-- End of animateSubtitle function
+  } 
 
 
   // =========================================================
-  // ===== PROJECT DETAIL NAVIGATION LOGIC (Correct Location) =====
+  // ===== PROJECT DETAIL NAVIGATION LOGIC (Strip Swapping) =====
   // =========================================================
 
-  const portfolioSection = document.getElementById('portfolio');
+  // New variables to target ALL main sections for hiding/showing
   const projectDetailSections = document.querySelectorAll('.project-detail-section');
   const backLinks = document.querySelectorAll('.back-link');
+  // Select all sections that form the "Main Strip"
+  const mainSections = document.querySelectorAll('#welcome, #about, #portfolio, #contact');
 
-  // Function to show a specific detail section (and hide the main portfolio)
+
+  // Function to show a specific detail section (and hide the entire Main Strip)
   function showSection(targetId) {
-    // 1. Hide the main portfolio view
-    portfolioSection.style.display = 'none'; 
+    // 1. HIDE the entire Main Strip
+    mainSections.forEach(section => {
+      // Use 'none' to completely remove the main content from view/flow
+      section.style.display = 'none'; 
+    });
 
     // 2. Hide all detail sections just in case
     projectDetailSections.forEach(section => {
@@ -84,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Function to return to the main portfolio view
+  // Function to return to the main portfolio view (showing the entire Main Strip)
   function showPortfolio() {
     // 1. Hide all detail sections
     projectDetailSections.forEach(section => {
@@ -92,12 +98,15 @@ document.addEventListener('DOMContentLoaded', () => {
       section.style.display = 'none';
     });
 
-    // 2. Show the main portfolio view
-    // We use 'flex' because your CSS uses 'display: flex' for centering on the #portfolio section
-    portfolioSection.style.display = 'flex'; 
+    // 2. SHOW the entire Main Strip (using the correct display types)
+    // We must show them one by one using the display style defined in CSS:
+    document.getElementById('welcome').style.display = 'flex';   // #welcome uses flex
+    document.getElementById('about').style.display = 'block';    // #about uses block
+    document.getElementById('portfolio').style.display = 'flex'; // #portfolio uses flex
+    document.getElementById('contact').style.display = 'flex';   // #contact uses flex
     
-    // Scroll smoothly to the portfolio section
-    portfolioSection.scrollIntoView({ behavior: 'smooth' });
+    // Scroll smoothly back to the Portfolio section
+    document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
   }
   
   // 4. Attach click listeners to all project links (e.g., View Project Details)
@@ -121,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== END PROJECT DETAIL NAVIGATION LOGIC =============
   // =========================================================
 
+
   // ===== Show Header Immediately (Animation Kickoff) =====
   wordSpans.forEach((span, index) => {
     setTimeout(() => {
@@ -132,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 }); // <-- End of DOMContentLoaded listener
+
 
 // Scroll to the welcome section on page load
 window.addEventListener('load', () => {
