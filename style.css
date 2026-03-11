@@ -54,9 +54,27 @@ body {
   position: relative;
 }
 
-/* We must keep the background-image separate for the #about section specifically now */
 #about {
-  background-image: url('black.jpg');
+  /* Starts at pure black (matches Welcome) and ends at the dark sky color (matches Projects) */
+  background: linear-gradient(180deg, #000000 0%, #05070a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Optional: Re-add the grid lines over the new gradient for texture */
+#about::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* ===== Social Icons & GIF ===== */
