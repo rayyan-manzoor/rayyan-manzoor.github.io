@@ -47,12 +47,19 @@ body {
 .content-section {
   min-height: 100vh;
   padding: 6rem 2rem;
-  background-image: url('black.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   color: #fff;
   position: relative;
+  /* This creates the 'erased' edge at the bottom */
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+/* We must keep the background-image separate for the #about section specifically now */
+#about {
+  background-image: url('black.jpg');
 }
 
 /* ===== Social Icons & GIF ===== */
@@ -286,7 +293,7 @@ body {
 /* Ensure the content sits above the new overlay */
 #portfolio .container {
   position: relative;
-  z-index: 2; /* Ensure content is above the overlay (z-index: 1) */
+  z-index: 10; /* Ensure content is above the overlay (z-index: 1) */
   width: 100%;
   max-width: 1200px;
   text-align: center;
@@ -464,4 +471,23 @@ body {
 
 .back-link:hover {
     color: #fff;
+}
+/* This adds the blur effect to the transition gap */
+.content-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20vh; /* How tall the blur area is */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Keep the About text on top of the blur */
+.about-center {
+  position: relative;
+  z-index: 10;
 }
