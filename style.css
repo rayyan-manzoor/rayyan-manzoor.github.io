@@ -52,9 +52,10 @@ body {
   background-repeat: no-repeat;
   color: #fff;
   position: relative;
-  /* This creates the 'erased' edge at the bottom */
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  
+  /* This starts the fade halfway down the section for a much smoother blend */
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }
 
 /* We must keep the background-image separate for the #about section specifically now */
@@ -276,9 +277,10 @@ body {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  /* Pulls the section up to eliminate the white gap */
-  margin-top: -15vh; 
-  padding-top: 15vh; /* Offsets the text so it doesn't get cut off */
+
+  /* This pulls the Dallas photo up significantly */
+  margin-top: -40vh; 
+  padding-top: 40vh; 
 }
 /* NEW: The dark overlay for better text contrast */
 #portfolio::before {
@@ -288,7 +290,8 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6); /* Dark semi-transparent color */
+  /* This gradient makes the top darker to match the "About" section above it */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 100%);
   z-index: 1; 
 }
 
