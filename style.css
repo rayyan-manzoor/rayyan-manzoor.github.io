@@ -319,7 +319,10 @@ body {
 .contact-info {
   margin-top: 1rem;
   display: flex;
-  gap: 20px; /* Space between the two links */
+  justify-content: center; /* This horizontally centers the button */
+  align-items: center;     /* This ensures vertical alignment */
+  width: 100%;             /* This gives it the full width to center within */
+  gap: 20px; 
 }
 
 .contact-link {
