@@ -55,13 +55,13 @@ body {
 }
 
 #about {
-  /* Starts at pure black (matches Welcome) and ends at the dark sky color (matches Projects) */
-  background: linear-gradient(180deg, #000000 0%, #05070a 100%);
+  /* Transition from pure black to near-black to match the project top */
+  background: linear-gradient(180deg, #000000 0%, #020202 100%);
   position: relative;
   overflow: hidden;
 }
 
-/* Optional: Re-add the grid lines over the new gradient for texture */
+/* This keeps your grid lines visible over the new gradient */
 #about::after {
   content: "";
   position: absolute;
@@ -299,9 +299,9 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 250px; /* This is the "Blend Zone" */
-  /* This fades from the SOLID BLACK of the section above into the Dallas photo */
-  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  height: 350px; /* Increased height for a smoother blend */
+  /* This starts at the same #020202 color we ended the About section with */
+  background: linear-gradient(to bottom, #020202 0%, rgba(2,2,2,0) 100%);
   z-index: 2; 
 }
 
