@@ -52,10 +52,6 @@ body {
   background-repeat: no-repeat;
   color: #fff;
   position: relative;
-  
-  /* This starts the fade halfway down the section for a much smoother blend */
-  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }
 
 /* We must keep the background-image separate for the #about section specifically now */
@@ -277,10 +273,6 @@ body {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-
-  /* This pulls the Dallas photo up significantly */
-  margin-top: -40vh; 
-  padding-top: 40vh; 
 }
 /* NEW: The dark overlay for better text contrast */
 #portfolio::before {
@@ -289,10 +281,10 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  /* This gradient makes the top darker to match the "About" section above it */
-  background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 100%);
-  z-index: 1; 
+  height: 250px; /* This is the "Blend Zone" */
+  /* This fades from the SOLID BLACK of the section above into the Dallas photo */
+  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  z-index: 2; 
 }
 
 /* Ensure the content sits above the new overlay */
@@ -476,25 +468,4 @@ body {
 
 .back-link:hover {
     color: #fff;
-}
-/* This adds the blur effect to the transition gap */
-.content-section::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 25vh; /* Slightly taller for a smoother blend */
-  /* This dark gradient removes the white light effect */
-  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.9)); 
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  pointer-events: none;
-  z-index: 5;
-}
-
-/* Keep the About text on top of the blur */
-.about-center {
-  position: relative;
-  z-index: 10;
 }
