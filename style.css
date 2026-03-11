@@ -271,12 +271,14 @@ body {
   min-height: 100vh;
   color: #fff;
   position: relative;
-  /* New centering properties to vertically and horizontally center content */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  /* Pulls the section up to eliminate the white gap */
+  margin-top: -15vh; 
+  padding-top: 15vh; /* Offsets the text so it doesn't get cut off */
 }
 /* NEW: The dark overlay for better text contrast */
 #portfolio::before {
@@ -479,7 +481,9 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 20vh; /* How tall the blur area is */
+  height: 25vh; /* Slightly taller for a smoother blend */
+  /* This dark gradient removes the white light effect */
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.9)); 
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   pointer-events: none;
