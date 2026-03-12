@@ -1,158 +1,161 @@
+/* =========================================
+   1. SPLASH SCREEN & WELCOME ANIMATION 
+   ========================================= */
+const splash = document.querySelector('#entry-splash');
+const welcomeText = document.getElementById('welcomeText');
+const subtitle = document.getElementById('subtitle');
+const mainHeader = "Welcome to Rayyan's Portfolio!";
 
-document.addEventListener('DOMContentLoaded', () => {
+// Prepare the spans for the animation immediately
+if (welcomeText) {
+    welcomeText.innerHTML = mainHeader
+      .split(" ")
+      .map(word => `<span>${word}</span>`)
+      .join(" ");
+}
 
-  // ===== Welcome Text Variables & Setup =====
-  const welcomeText = document.getElementById('welcomeText');
-  const subtitle = document.getElementById('subtitle');
-  const mainHeader = "Welcome to Rayyan's Portfolio!";
+const wordSpans = document.querySelectorAll("#welcomeText span");
 
-  // Split text into spans for gradient animation
-  welcomeText.innerHTML = mainHeader
-    .split(" ")
-    .map(word => `<span>${word}</span>`)
-    .join(" ");
+// The "Enter" Logic: Handles the fade and starts the welcome text
+if (splash) {
+  splash.addEventListener('click', function() {
+    // Start the fade out
+    this.style.opacity = '0';
+    
+    // After the transition ends (800ms), remove it and unlock scroll
+    setTimeout(() => {
+      this.style.display = 'none';
+      document.body.classList.remove('no-scroll');
+      
+      // KICKOFF THE WELCOME ANIMATION ONLY AFTER ENTRY
+      startWelcomeAnimation(); 
+    }, 800);
+  });
+}
 
-  const wordSpans = welcomeText.querySelectorAll("span");
+function startWelcomeAnimation() {
+  wordSpans.forEach((span, index) => {
+    setTimeout(() => {
+      span.classList.add("visible"); 
+      if (index === wordSpans.length - 1) {
+        setTimeout(animateSubtitle, 500);
+      }
+    }, index * 400);
+  });
+}
 
-  // ===== Typing Effect Functions =====
-  function typeText(element, text, speed = 50, callback) {
-    let i = 0;
-    element.textContent = '';
-    function typing() {
-      if (i < text.length) {
-        element.textContent += text.charAt(i);
-        i++;
-        setTimeout(typing, speed);
-      } else if (callback) callback();
-    }
-    typing();
-  } 
-
-  function deleteText(element, speed = 50, callback) {
-    let text = element.textContent;
-    let i = text.length;
-    function deleting() {
-      if (i > 0) {
-        element.textContent = text.substring(0, i - 1);
-        i--;
-        setTimeout(deleting, speed);
-      } else if (callback) callback();
-    }
-    deleting();
+/* =========================================
+   2. TYPING EFFECT FUNCTIONS
+   ========================================= */
+function typeText(element, text, speed = 50, callback) {
+  let i = 0;
+  element.textContent = '';
+  function typing() {
+    if (i < text.length) {
+      element.textContent += text.charAt(i);
+      i++;
+      setTimeout(typing, speed);
+    } else if (callback) callback();
   }
+  typing();
+} 
 
-  function animateSubtitle() {
-    subtitle.classList.remove('blink');
-    typeText(subtitle, "Medical & Tech Enthusiast.", 50, () => {
-      setTimeout(() => {
-        deleteText(subtitle, 30, () => {
-          typeText(subtitle, "Please scroll!", 50, () => {
-            setTimeout(() => subtitle.classList.add('blink'), 500);
-          });
+function deleteText(element, speed = 50, callback) {
+  let text = element.textContent;
+  let i = text.length;
+  function deleting() {
+    if (i > 0) {
+      element.textContent = text.substring(0, i - 1);
+      i--;
+      setTimeout(deleting, speed);
+    } else if (callback) callback();
+  }
+  deleting();
+}
+
+function animateSubtitle() {
+  if (!subtitle) return;
+  subtitle.classList.remove('blink');
+  typeText(subtitle, "Medical & Tech Enthusiast.", 50, () => {
+    setTimeout(() => {
+      deleteText(subtitle, 30, () => {
+        typeText(subtitle, "Please scroll!", 50, () => {
+          setTimeout(() => subtitle.classList.add('blink'), 500);
         });
-      }, 1000);
-    });
-  } 
+      });
+    }, 1000);
+  });
+} 
 
-
-  // =========================================================
-  // ===== PROJECT DETAIL NAVIGATION LOGIC (Strip Swapping) =====
-  // =========================================================
-
-  // New variables to target ALL main sections for hiding/showing
+/* =========================================
+   3. NAVIGATION & PROJECT LOGIC
+   ========================================= */
+document.addEventListener('DOMContentLoaded', () => {
   const projectDetailSections = document.querySelectorAll('.project-detail-section');
   const backLinks = document.querySelectorAll('.back-link');
-  // Select all sections that form the "Main Strip"
   const mainSections = document.querySelectorAll('#welcome, #about, #portfolio, #contact');
 
-
-  // Function to show a specific detail section (and hide the entire Main Strip)
   function showSection(targetId) {
-    // 1. HIDE the entire Main Strip
-    mainSections.forEach(section => {
-      // Use 'none' to completely remove the main content from view/flow
-      section.style.display = 'none'; 
-    });
+    // Hide main strip
+    mainSections.forEach(section => section.style.display = 'none');
 
-    // 2. Hide all detail sections just in case
+    // Hide all details
     projectDetailSections.forEach(section => {
       section.classList.remove('active');
       section.style.display = 'none';
     });
 
-    // 3. Show the target detail section
+    // Show target
     const targetSection = document.getElementById(targetId);
     if (targetSection) {
       targetSection.classList.add('active');
       targetSection.style.display = 'block';
     }
-    
-    // Scroll smoothly to the top of the browser window (where the new page appears)
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Function to return to the main portfolio view (showing the entire Main Strip)
   function showPortfolio() {
-    // 1. Hide all detail sections
     projectDetailSections.forEach(section => {
       section.classList.remove('active');
       section.style.display = 'none';
     });
 
-    // 2. SHOW the entire Main Strip (using the correct display types)
-    // We must show them one by one using the display style defined in CSS:
-    document.getElementById('welcome').style.display = 'flex';   // #welcome uses flex
-    document.getElementById('about').style.display = 'block';    // #about uses block
-    document.getElementById('portfolio').style.display = 'flex'; // #portfolio uses flex
-    document.getElementById('contact').style.display = 'flex';   // #contact uses flex
+    document.getElementById('welcome').style.display = 'flex';
+    document.getElementById('about').style.display = 'block';
+    document.getElementById('portfolio').style.display = 'flex';
+    document.getElementById('contact').style.display = 'flex';
     
-    // Scroll smoothly back to the Portfolio section
     document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
   }
-  
-  // 4. Attach click listeners to all project links (e.g., View Project Details)
+
+  // Attach click listeners to project links
   document.querySelectorAll('.project-link').forEach(link => {
     link.addEventListener('click', function(e) {
-      e.preventDefault(); // Prevents the default hash jump
-      const targetId = this.getAttribute('href').substring(1); // Gets 'project-jana' from '#project-jana'
-      showSection(targetId);
+      const href = this.getAttribute('href');
+      // Only run swap logic if it points to a project section
+      if (href && href.startsWith('#project-')) {
+        e.preventDefault();
+        showSection(href.substring(1));
+      }
     });
   });
 
-  // 5. Attach click listeners to all 'Back to Projects' links
+  // Attach click listeners to back links
   backLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
       showPortfolio();
     });
   });
+}); 
 
-  // =========================================================
-  // ===== END PROJECT DETAIL NAVIGATION LOGIC =============
-  // =========================================================
-
-
-  // ===== Show Header Immediately (Animation Kickoff) =====
-  wordSpans.forEach((span, index) => {
-    setTimeout(() => {
-      span.classList.add("visible"); // removes blur & sets opacity
-      if (index === wordSpans.length - 1) {
-        setTimeout(animateSubtitle, 500);
-      }
-    }, index * 400);
-  });
-
-}); // <-- End of DOMContentLoaded listener
-
-
-// Force scroll to the Welcome section on page load and reload
+/* =========================================
+   4. SCROLL HANDLING
+   ========================================= */
 window.addEventListener('load', () => {
   const welcomeSection = document.getElementById('welcome');
   if (welcomeSection) {
-    // 1. Force the scroll position to the top of the document immediately
     window.scrollTo(0, 0); 
-    
-    // 2. Then, scroll the welcome section into view for consistency
     welcomeSection.scrollIntoView({ behavior: 'auto' });
   }
 });
