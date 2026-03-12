@@ -590,7 +590,7 @@ body {
   }
   /* Prevent hover effects on mobile to keep it clean */
   .project-card:hover .card-video {
-  opacity: 0.3 !important; /* Dims only when mouse is over it */
+  opacity: 0.55 !important; /* Dims only when mouse is over it */
   filter: grayscale(20%);  /* Optional: gives it a cool cinematic look on hover */
 }
 
