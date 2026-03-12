@@ -591,20 +591,21 @@ body {
     z-index: 10;
   }
 
-  /* SHOW ON TAP: When the user touches the card */
+  /* MOBILE LINK: Trigger on tap/focus for Safari compatibility */
   .project-card:active .project-link,
-  .project-card:hover .project-link {
+  .project-card:hover .project-link,
+  .project-card:focus .project-link {
     opacity: 1 !important;
     visibility: visible !important;
     transform: translate(-50%, -50%) scale(1) !important;
   }
 
-  /* DIM VIDEO ON TAP */
+  /* DIM VIDEO ON TAP/FOCUS */
   .project-card:active .card-video,
-  .project-card:hover .card-video {
+  .project-card:hover .card-video,
+  .project-card:focus .card-video {
     opacity: 0.3 !important;
   }
-
   .social-link img {
     width: 35px !important;
     height: 35px !important;
