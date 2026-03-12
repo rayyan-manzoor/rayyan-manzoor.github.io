@@ -290,7 +290,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 2rem 0; /* Changed to 0 on the sides */
 }
 /* NEW: The dark overlay for better text contrast */
 #portfolio::before {
@@ -552,57 +552,80 @@ body {
 }
 
 /* --- Ultra-Wide Mobile 2-Column Grid --- */
+/* --- Ultra-Wide Mobile 2-Column Grid (Centering Fix) --- */
 @media (max-width: 600px) {
   #portfolio .container {
-    padding: 0 4px;      /* Minimal padding to maximize horizontal space */
-    width: 98vw;         /* Uses 98% of the actual viewport width */
-    max-width: 100vw;
-    margin: 0 auto;
+    padding: 0 !important;      /* Removes all side padding */
+    margin: 0 auto !important;  /* Centers the container itself */
+    width: 100vw !important;    /* Forces container to be exactly screen width */
+    max-width: 100vw !important;
+    overflow: hidden;           /* Prevents horizontal scrolling */
   }
 
   .project-grid {
+    display: grid;
     grid-template-columns: 1fr 1fr; 
-    gap: 6px;            /* Tight gap to give more room to the card itself */
-    width: 100%;
-    justify-content: center;
+    gap: 8px;                   /* Gap between boxes */
+    width: 96%;                 /* Grid takes up 96% of screen */
+    margin-left: auto;          /* These two lines center the grid */
+    margin-right: auto;
+    padding: 0;
   }
 
   .project-item {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;        /* Centers title and card together */
   }
 
-  /* Making the Titles larger as requested */
   .external-title {
-    font-size: 1rem !important; 
-    margin-bottom: 6px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+    font-size: 0.9rem !important;
+    margin-bottom: 8px;
+    width: 100%;
+    text-align: center;         /* Ensures text is centered over the card */
+    white-space: nowrap;
   }
 
   .project-card {
-    width: 100%; 
-    max-width: 100%;     /* Removes any restriction so it expands to the edge */
-    aspect-ratio: 2 / 3.2; /* Slightly taller to look better on wide spans */
-    border-radius: 10px;
-    padding: 4px;        /* Moves the 'View' button closer to the video edge */
+    width: 100%;                /* Card fills the 1fr column */
+    max-width: 100%;
+    aspect-ratio: 2 / 3;
+    border-radius: 12px;
+    margin: 0;                  /* Removes any stray margins */
   }
 
-  /* Making the Social Icons at the top larger */
-  .social-icons {
-    right: 10px;
-    gap: 12px;
-  }
-
+  /* Boost the social icons size as requested earlier */
   .social-link img {
-    width: 32px !important; /* Increased from 28px */
-    height: 32px !important;
+    width: 35px !important;
+    height: 35px !important;
+  }
+}
+@media (max-width: 600px) {
+  #portfolio {
+    padding: 2rem 0 !important; /* Forces vertical padding only */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  /* Adjusting the Pill Button to fit the new width */
-  .project-link {
-    font-size: 0.75rem !important;
-    padding: 8px 5px !important;
-    width: 95%;
-    border-radius: 20px;
+  #portfolio .container {
+    padding: 0 !important;
+    margin: 0 auto !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    display: flex;           /* Added this */
+    flex-direction: column;  /* Added this */
+    align-items: center;     /* Ensures the grid is centered in the container */
   }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 8px;
+    width: 94%; /* Giving it just a tiny bit of breathing room from the glass edges */
+    margin: 0 auto !important;
+  }
+  
+  /* ... the rest of your mobile code ... */
 }
