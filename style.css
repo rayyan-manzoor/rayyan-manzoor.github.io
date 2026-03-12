@@ -376,14 +376,20 @@ body {
 
 /* Individual Project Card Styling */
 .project-card {
-  /* Glassmorphism/Dark Theme Style */
-  background: rgba(255, 255, 255, 0.05); /* Light transparent background */
+  background: rgba(255, 255, 255, 0.05); 
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   padding: 30px;
-  text-align: left;
+  min-height: 250px; /* Gives the card a consistent height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers content vertically */
+  align-items: center;     /* Centers content horizontally */
+  text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;      /* Important for the video/image to sit behind the text */
+  overflow: hidden;        /* Keeps the video/image inside the rounded corners */
 }
 
 .project-card:hover {
