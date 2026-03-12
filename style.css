@@ -424,31 +424,7 @@ body {
   color: #fff; /* White on hover */
 }
 
-/* Mobile Optimization: 2-Column Grid */
-@media (max-width: 600px) {
-  .project-grid {
-    grid-template-columns: repeat(2, 1fr); /* Forces 2 cards side-by-side */
-    gap: 15px; /* Tighter spacing for mobile */
-    padding: 10px;
-    align-items: start;
-  }
 
-  .external-title {
-    font-size: 0.9rem; /* Smaller text so it doesn't wrap awkwardly */
-    margin-bottom: 8px;
-    letter-spacing: 1px;
-  }
-
-  .project-card {
-    border-radius: 12px;
-    padding: 10px;
-  }
-
-  .project-link {
-    font-size: 0.7rem; /* Tiny but clickable link */
-    padding: 5px 10px;
-  }
-}
 /* --- Project Detail Sections Styling & HIDE/SHOW LOGIC --- */
 .project-detail-section {
     /* Ensures this section looks good and is separated */
@@ -537,34 +513,81 @@ body {
   z-index: 2;           /* Forces text to the top layer */
   text-shadow: 0 2px 10px rgba(0,0,0,0.8); /* Shadow for readability */
 }
-/* Keeps the title and card aligned */
+/* --- Desktop/Base Styles --- */
 .project-item {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* The Off-White External Title */
 .external-title {
-    color: #f0f0f0; /* Off-white matcha-foam color */
+    color: #f0f0f0; 
     font-size: 1.8rem;
     margin-bottom: 15px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1.5px;
+    text-align: center;
 }
 
-/* Make the video pop more (higher opacity) */
 .card-video {
-    opacity: 0.9 !important; /* Forces the video to be nice and bright */
+    opacity: 0.9 !important; 
 }
 
-/* Cleaner look for the internal link */
 .project-link {
     background: rgba(0, 0, 0, 0.5);
     padding: 10px 20px;
     border-radius: 30px;
-    color: #f0f0f0;
+    color: #00FF00; /* Neon green to match your theme */
+    border: 1px solid #00FF00;
     font-size: 0.9rem;
     backdrop-filter: blur(5px);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.project-link:hover {
+    background: #00FF00;
+    color: #000;
+}
+
+/* --- Mobile Override (MUST BE LAST) --- */
+@media (max-width: 600px) {
+  #portfolio .container {
+    padding: 0 10px;
+  }
+
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 12px;
+    justify-items: center; 
+  }
+
+  .project-item {
+    width: 100%;
+  }
+
+  .external-title {
+    font-size: 0.75rem !important; 
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .project-card {
+    border-radius: 12px;
+    padding: 8px;
+    max-width: 100%;
+  }
+
+  .card-video {
+    object-position: center; 
+  }
+
+  .project-link {
+    font-size: 0.65rem !important;
+    padding: 6px 12px !important;
+    white-space: nowrap;
+  }
 }
