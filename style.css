@@ -551,43 +551,50 @@ body {
     color: #000;
 }
 
-/* --- Mobile Override (MUST BE LAST) --- */
+/* --- Optimized Mobile 2-Column Grid (Final Final Version) --- */
 @media (max-width: 600px) {
   #portfolio .container {
-    padding: 0 10px;
+    padding: 0 15px; /* Balanced side breathing room */
+    width: 100%;
+    max-width: 100%;
   }
 
   .project-grid {
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 12px;
-    justify-items: center; 
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 15px; /* Slightly wider gap for a cleaner look */
+    justify-content: center; /* Centers the whole grid */
+    align-items: start;
+    margin-top: 2rem;
   }
 
   .project-item {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .external-title {
-    font-size: 0.75rem !important; 
-    margin-bottom: 8px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 0.9rem !important; /* Larger, more readable text */
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+    white-space: normal; /* Allows long titles like "University Research" to wrap if needed */
+    line-height: 1.2;
   }
 
   .project-card {
-    border-radius: 12px;
-    padding: 8px;
-    max-width: 100%;
-  }
-
-  .card-video {
-    object-position: center; 
+    width: 100%; /* Makes cards fill their half of the grid */
+    max-width: 100%; /* Removes the desktop cap */
+    aspect-ratio: 2 / 3;
+    border-radius: 15px;
+    padding: 10px;
   }
 
   .project-link {
-    font-size: 0.65rem !important;
-    padding: 6px 12px !important;
-    white-space: nowrap;
+    font-size: 0.75rem !important; /* Larger button text */
+    padding: 8px 14px !important;
+    width: 85%; /* Makes the button a bit wider/easier to tap */
+    text-align: center;
   }
 }
