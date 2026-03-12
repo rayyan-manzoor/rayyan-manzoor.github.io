@@ -568,27 +568,27 @@ body {
   }
 
   .project-card {
-    width: 100%;
-    max-width: 100%;
-    aspect-ratio: 2 / 3;
-    border-radius: 12px;
+    /* ... your existing mobile styles ... */
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    /* This tells Safari the element can be "clicked" */
+    user-select: none; 
   }
 
- /* MOBILE LINK: Hidden until the card is tapped */
-  .project-link {
-    position: absolute !important; /* Back to absolute to center it OVER the video */
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) scale(0.8) !important;
-    opacity: 0 !important;         /* HIDDEN BY DEFAULT */
-    visibility: hidden !important;
-    display: inline-block !important;
-    margin-top: 0 !important;
-    font-size: 0.75rem !important;
-    padding: 8px 15px !important;
-    background: rgba(0, 0, 0, 0.8) !important; /* Darker background for mobile readability */
-    transition: all 0.3s ease !important;
-    z-index: 10;
+  /* The "Magic" Selector for Safari/Chrome Mobile */
+  .project-card:active .project-link,
+  .project-card:hover .project-link,
+  .project-card:focus-within .project-link {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+  }
+
+  /* Ensure the video dims on the same trigger */
+  .project-card:active .card-video,
+  .project-card:hover .card-video,
+  .project-card:focus-within .card-video {
+    opacity: 0.3 !important;
   }
 
   /* MOBILE LINK: Trigger on tap/focus for Safari compatibility */
