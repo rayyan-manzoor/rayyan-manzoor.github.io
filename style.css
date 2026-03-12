@@ -574,25 +574,36 @@ body {
     border-radius: 12px;
   }
 
-  /* MOBILE LINK: Forces it to stay visible below the card */
+ /* MOBILE LINK: Hidden until the card is tapped */
   .project-link {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    transform: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: block !important; /* Changed from inline-block */
-    margin: 10px auto 0 auto !important; /* Centers it below the card */
+    position: absolute !important; /* Back to absolute to center it OVER the video */
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) scale(0.8) !important;
+    opacity: 0 !important;         /* HIDDEN BY DEFAULT */
+    visibility: hidden !important;
+    display: inline-block !important;
+    margin-top: 0 !important;
     font-size: 0.75rem !important;
     padding: 8px 15px !important;
-    width: fit-content;
+    background: rgba(0, 0, 0, 0.8) !important; /* Darker background for mobile readability */
+    transition: all 0.3s ease !important;
+    z-index: 10;
   }
-  /* Prevent hover effects on mobile to keep it clean */
+
+  /* SHOW ON TAP: When the user touches the card */
+  .project-card:active .project-link,
+  .project-card:hover .project-link {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+  }
+
+  /* DIM VIDEO ON TAP */
+  .project-card:active .card-video,
   .project-card:hover .card-video {
-  opacity: 0.55 !important; /* Dims only when mouse is over it */
-  filter: grayscale(20%);  /* Optional: gives it a cool cinematic look on hover */
-}
+    opacity: 0.3 !important;
+  }
 
   .social-link img {
     width: 35px !important;
