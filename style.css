@@ -424,10 +424,29 @@ body {
   color: #fff; /* White on hover */
 }
 
-/* Optional: Better responsiveness for smaller screens */
+/* Mobile Optimization: 2-Column Grid */
 @media (max-width: 600px) {
   .project-grid {
-    grid-template-columns: 1fr; /* Stack cards on very small screens */
+    grid-template-columns: repeat(2, 1fr); /* Forces 2 cards side-by-side */
+    gap: 15px; /* Tighter spacing for mobile */
+    padding: 10px;
+    align-items: start;
+  }
+
+  .external-title {
+    font-size: 0.9rem; /* Smaller text so it doesn't wrap awkwardly */
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .project-card {
+    border-radius: 12px;
+    padding: 10px;
+  }
+
+  .project-link {
+    font-size: 0.7rem; /* Tiny but clickable link */
+    padding: 5px 10px;
   }
 }
 /* --- Project Detail Sections Styling & HIDE/SHOW LOGIC --- */
