@@ -15,92 +15,56 @@ body {
   line-height: 1.6;
   transition: background 0.8s ease, color 0.8s ease;
 }
-/* 1. Splash Overlay */
+/* --- NEW CUSTOM IMAGE SPLASH STYLES --- */
 #entry-splash {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000; /* Solid black wall */
+  background-color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10000;
   transition: opacity 0.8s ease;
-}
-
-/* 2. The ID Card Container */
-.id-card {
-  width: 360px;
-  background: #fff; /* High contrast white */
-  padding: 25px;
-  border-radius: 4px; /* Slightly sharper corners for a more industrial look */
-  display: grid;
-  grid-template-columns: 130px 1fr;
-  gap: 20px;
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
   cursor: pointer;
-  position: relative;
 }
 
-/* 3. The Photo (The "Gritty" Look) */
-.id-photo img {
+.custom-id-container {
+  text-align: center;
+  width: 90%;
+  max-width: 500px; /* Limits size on desktop */
+}
+
+.custom-id-image {
   width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border: 2px solid #000;
-  /* Grayscale + High Contrast to match your reference photo */
-  filter: grayscale(1) contrast(1.5) brightness(0.9);
+  height: auto;
+  border-radius: 12px;
+  /* Optional: gives it a subtle glow like the reference photo */
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.05); 
+  transition: transform 0.3s ease;
 }
 
-/* 4. Text Details */
-.id-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  color: #000;
-  text-transform: uppercase;
+.custom-id-image:hover {
+  transform: scale(1.02);
 }
 
-.id-label {
-  font-size: 10px;
-  font-weight: 800;
-  color: #888;
-  margin-top: 10px;
-}
-
-.id-name {
-  font-size: 24px;
-  font-weight: 900;
-  margin: 0;
-  line-height: 1;
-}
-
-.id-type {
-  font-size: 12px;
+.tap-hint {
+  color: #00FF00; /* Neon green to match your site */
+  margin-top: 20px;
   font-weight: 600;
-  margin: 0;
+  letter-spacing: 4px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  animation: pulseHint 2s infinite;
 }
 
-/* 5. Enter Button */
-.id-enter-btn {
-  grid-column: span 2;
-  margin-top: 15px;
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 10px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: background 0.3s;
+@keyframes pulseHint {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
 }
-
-.id-enter-btn:hover {
-  background: #333;
-}
-
 /* Lock Scroll Class */
 .no-scroll {
   overflow: hidden !important;
