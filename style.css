@@ -178,7 +178,7 @@ body {
   opacity: 0;
   transform: translateY(-50px);
   transition: opacity 0.6s ease, transform 0.6s ease;
-  background: linear-gradient(to right, #FFFFFF, #F5F5F5, #FFFFFF, #F5F5F5, #FFFFFF);
+  background: linear-gradient(to right, #FFFFFF, #F8F0E3, #FFFFFF, #F8F0E3, #FFFFFF);
   background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
