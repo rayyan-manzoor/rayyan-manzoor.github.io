@@ -51,7 +51,7 @@ body {
 }
 
 .tap-hint {
-  color: #00FF00; /* Neon green to match your site */
+  color: #F5F5F5;
   margin-top: 20px;
   font-weight: 600;
   letter-spacing: 4px;
@@ -178,7 +178,7 @@ body {
   opacity: 0;
   transform: translateY(-50px);
   transition: opacity 0.6s ease, transform 0.6s ease;
-  background: linear-gradient(to right, #FFFFFF, #00FF00, #FFFFFF, #00FF00, #FFFFFF);
+  background: linear-gradient(to right, #FFFFFF, #F5F5F5, #FFFFFF, #F5F5F5, #FFFFFF);
   background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
