@@ -273,7 +273,12 @@ body {
   background-color: rgba(255,255,255,0.05);
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   overflow: hidden;
-  display: flex: 0;
+  
+  /* FIXED CODE BELOW */
+  display: flex;          /* Changed from display: flex: 0; */
+  flex-shrink: 0;        /* This prevents the oval squish */
+  aspect-ratio: 1 / 1;    /* This forces a perfect circle */
+  
   align-items: center;
   justify-content: center;
 }
@@ -670,11 +675,11 @@ body {
   }
 
   .profile-circle {
-    /* Use 'vw' (Viewport Width) so it fills 75% of the phone's width */
     width: 75vw !important; 
     height: 75vw !important; 
-    max-width: 320px; /* Prevents it from getting TOO huge on tablets */
-    flex-shrink: 0 !important; /* Forces the browser NOT to squish it */
+    max-width: 320px; 
+    flex-shrink: 0 !important; /* Keep this here too */
+    aspect-ratio: 1 / 1 !important; /* Keep this here too */
   }
 
   .about-description {
