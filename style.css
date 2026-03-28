@@ -209,12 +209,11 @@ body {
 
 /* ===== Scroll Overlay (Two Infinite Lines) ===== */
 #scrollOverlay {
-  display: none;
+  display: none !important; 
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0px;
