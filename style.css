@@ -109,10 +109,14 @@ body {
 }
 
 #about {
-  /* Transition from pure black to near-black to match the project top */
+  min-height: 100vh; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(180deg, #000000 0%, #020202 100%);
   position: relative;
   overflow: hidden;
+  padding: 2rem 0; 
 }
 
 /* This keeps your grid lines visible over the new gradient */
@@ -257,7 +261,7 @@ body {
   gap: 1.5rem;
   position: relative;
   z-index: 1050;
-  padding-top: 8rem;
+  /* padding-top: 8rem removed to fix the gap */
 }
 
 .profile-circle {
@@ -654,26 +658,19 @@ body {
 }
 /* This target screens smaller than 768px (Phones/Tablets) */
 @media screen and (max-width: 768px) {
-  
-  .about-me-section { 
-    /* 1. Reset height: This is the most important part! */
-    height: auto !important; 
-    min-height: 0 !important;
-
-    /* 2. Tighten the vertical space */
-    padding-top: 40px !important; 
-    padding-bottom: 40px !important;
-    
-    /* 3. Ensure content centers properly if it's a flexbox */
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
+  #about {
+    /* Shrinks the background height for mobile */
+    min-height: 60vh !important; 
   }
 
-  .about-me-section img {
-    /* 4. Shrink the image slightly so it doesn't push the text too far down */
-    max-width: 80%;
-    margin-bottom: 20px; 
+  .profile-circle {
+    /* Scales the photo down to save vertical space */
+    width: 220px !important;
+    height: 220px !important;
+  }
+
+  .about-description {
+    font-size: 1.1rem !important;
+    padding: 0 15px;
   }
 }
