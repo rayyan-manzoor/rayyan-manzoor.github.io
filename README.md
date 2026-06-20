@@ -1,6 +1,6 @@
 # Rayyan Manzoor Portfolio Website
 
-This is a personal portfolio website for Rayyan Manzoor. It includes:
+This is my personal portfolio website. It includes:
 
 - A **welcome page** with a typing animation greeting users.
 - A **scrollable portfolio section** with:
