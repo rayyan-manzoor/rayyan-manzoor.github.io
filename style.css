@@ -308,6 +308,25 @@ ul {
   background: linear-gradient(145deg, #0d0d1a 0%, #111825 60%, #080c14 100%);
 }
 
+.research-media {
+  background: linear-gradient(145deg, #0d1a14 0%, #14251c 60%, #080f0b 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 5px 14px;
+  background: rgba(0, 0, 0, 0.35);
+}
+
 .project-card-info {
   padding: 24px;
 }
@@ -450,6 +469,53 @@ ul {
 
 .inline-link:hover {
   border-color: var(--accent);
+}
+
+/* ─────────────────────────────────────────────
+   Certifications
+───────────────────────────────────────────── */
+#certifications {
+  padding: 120px 0;
+  border-top: 1px solid var(--border);
+}
+
+#certifications h2 {
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 48px;
+}
+
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.cert-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: border-color 0.25s, transform 0.25s;
+}
+
+.cert-card:hover {
+  border-color: #3a3a3a;
+  transform: translateY(-4px);
+}
+
+.cert-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.cert-card p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 /* ─────────────────────────────────────────────

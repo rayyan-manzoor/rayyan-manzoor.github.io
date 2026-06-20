@@ -49,7 +49,7 @@ function type() {
 // ─────────────────────────────────────────────
 function initFadeIn() {
   const targets = document.querySelectorAll(
-    '#about, #projects, .project-detail, #contact, .project-card, .about-grid'
+    '#about, #projects, #certifications, .project-detail, #contact, .project-card, .cert-card, .about-grid'
   );
 
   targets.forEach(el => el.classList.add('fade-in'));
