@@ -3,183 +3,226 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rayyan's Portfolio</title>
-  <link rel="icon" type="image/png" href="browsericon.PNG">
+  <title>Rayyan Manzoor</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
-<body class="dark-mode no-scroll">
-  <div id="entry-splash">
-    <div class="custom-id-container">
-        <img src="custom-id.PNG" alt="Rayyan ID Card" class="custom-id-image">
-        <p class="tap-hint">TAP TO ENTER</p>
+<body>
+
+  <!-- Navigation -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">RM</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Hi, I'm</p>
+      <h1 class="hero-name">Rayyan Manzoor</h1>
+      <p class="hero-subtitle" id="subtitle"></p>
     </div>
-</div>
-<div class="social-icons">
-  <a href="https://www.instagram.com/rayyan.manz/" target="_blank" class="social-link"><img src="instagram.png" alt="Instagram"></a>
-  <a href="https://www.youtube.com/@rayyan.manzoor" target="_blank" class="social-link"><img src="youtube.png" alt="YouTube"></a>
-</div>
-
-  <div class="fixed-gif">
-    <img src="RSM.svg" alt="Top GIF">
-  </div>
-
-  <div class="top-glass"></div>
-
-  <section id="welcome" class="full-screen">
-  <div class="welcome-bubble">
-    <h1 id="welcomeText" class="blur-text"></h1>
-    <p class="subtitle" id="subtitle"></p>
-  </div>
-</section>
-  
-  <section id="about" class="content-section">
-
-    <div id="scrollOverlay">
-      <div class="scrolling-text-line line1">
-        <span>Here's More About Me&nbsp;&nbsp;&nbsp;</span>
-        <span>Here's More About Me&nbsp;&nbsp;&nbsp;</span>
-        <span>Here's More About Me&nbsp;&nbsp;&nbsp;</span>
-        <span>Here's More About Me&nbsp;&nbsp;&nbsp;</span>
-        <span>Here's More About Me&nbsp;&nbsp;&nbsp;</span>
-        <span>Here's More About Me&nbsp;&nbsp;&nbsp;</span>
-        <span>Here's More About Me&nbsp;&nbsp;&nbsp;</span>
-        <span>Here's More About Me&nbsp;&nbsp;&nbsp;</span>
-      </div>
-      <div class="scrolling-text-line line2">
-        <span>I am Rayyan Manzoor.&nbsp;&nbsp;&nbsp;</span>    
-        <span>I am an aspiring Anesthesiologist.&nbsp;&nbsp;&nbsp;</span>
-        <span>I Enjoy my Free Time for Creativity.&nbsp;&nbsp;&nbsp;</span>
-        <span>I am Passionate in Designing.&nbsp;&nbsp;&nbsp;</span>
-        <span>I Love taking Drone Videography.&nbsp;&nbsp;&nbsp;</span>
-        <span>I am Versitile across Many Skills.&nbsp;&nbsp;&nbsp;</span>
-        <span>So Please Explore Projects About Me!&nbsp;&nbsp;&nbsp;</span>
-        <span>I am Rayyan Manzoor.&nbsp;&nbsp;&nbsp;</span>    
-        <span>I am an aspiring Anesthesiologist.&nbsp;&nbsp;&nbsp;</span>
-        <span>I Enjoy my Free Time for Creativity.&nbsp;&nbsp;&nbsp;</span>
-        <span>I am Passionate in Designing.&nbsp;&nbsp;&nbsp;</span>
-        <span>I Love taking Drone Videography.&nbsp;&nbsp;&nbsp;</span>
-        <span>I am Versitile across Many Skills.&nbsp;&nbsp;&nbsp;</span>
-        <span>So Please Explore Projects About Me!&nbsp;&nbsp;&nbsp;</span>
-      </div>
-    </div>
-
-    <div class="about-center">
-      <div class="profile-circle">
-        <img src="me.jpg" alt="Rayyan's Profile Picture">
-      </div>
-      <p class="about-description">
-        Hi! I'm Rayyan Manzoor, a Biomedical Sciences Major at the University of Texas at Dallas. I am a Tech Enthusiast, Passionate about innovation, research, and exploring new ideas.
-      </p>
-    </div>
-
+    <a href="#about" class="scroll-hint" aria-label="Scroll down">↓</a>
   </section>
 
-  <section id="portfolio" class="content-section">
+  <!-- About -->
+  <section id="about">
     <div class="container">
-      <h2>My Projects</h2>
-     <div class="project-grid">
-  <div class="project-item">
-    <h3 class="external-title">JanaCafe</h3>
-    <div class="project-card" onclick="" tabindex="0">
-      <video autoplay muted loop playsinline class="card-video">
-        <source src="jana video cropped.mp4" type="video/mp4">
-      </video>
-      <div class="card-content">
-        <a href="#" class="project-link" onclick="showProject('janacafe')">View Project Details</a>
+      <div class="about-grid">
+        <div class="about-photo">
+          <img src="me.jpg" alt="Rayyan Manzoor">
+        </div>
+        <div class="about-text">
+          <span class="section-label">About</span>
+          <h2>Building at the intersection of tech, health, and creativity.</h2>
+          <p>I'm a Biomedical Sciences student at the University of Texas at Dallas, founder of Jana Ventures LLC, and drone cinematographer. I find energy in building things from scratch — whether that's a business, a visual project, or something new entirely.</p>
+          <div class="about-links">
+            <a href="https://www.instagram.com/rayyan.manz/" target="_blank" rel="noopener" class="about-social">Instagram ↗</a>
+            <a href="https://www.youtube.com/@rayyan.manzoor" target="_blank" rel="noopener" class="about-social">YouTube ↗</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="project-item">
-    <h3 class="external-title">RaysDrone</h3>
-    <div class="project-card" onclick="" tabindex="0">
-      <video autoplay muted loop playsinline class="card-video">
-        <source src="raysdrone.mp4" type="video/mp4">
-      </video>
-      <div class="card-content">
-        <a href="#project-drone" class="project-link">View Gallery</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="project-item">
-    <h3 class="external-title">Research</h3>
-    <div class="project-card" onclick="" tabindex="0">
-      <div class="card-content">
-        <a href="#project-research" class="project-link">Read Abstract</a>
-      </div>
-    </div>
-  </div>
-</div>
   </section>
 
-  <section id="project-jana" class="project-detail-section content-section">
+  <!-- Projects -->
+  <section id="projects">
     <div class="container">
-      <a href="#portfolio" class="back-link">&larr; Back to Projects</a>
-      <h1>JanaCafe </h1>
-      <p class="project-tagline">Bringing clean, quality matcha to everyday life.</p>
-      
-      <div class="project-content">
-        <p>JANA is a matcha beverage business I founded at 18 under my registered company, Jana Ventures LLC. The brand is built around offering clean, high-quality matcha products that support wellness and daily balance. After extensive product development and branding work, JANA has grown into a physical location on Preston, where customers can experience our drinks in person. This project explores the full entrepreneurial process behind JANA—from establishing the LLC and creating the brand identity to product testing, marketing strategy, and launching our storefront.</p>
-        
-        <h3>Where to find Jana</h3>
+      <span class="section-label">Work</span>
+      <h2>Projects</h2>
+
+      <div class="projects-grid">
+
+        <!-- JanaCafe -->
+        <article class="project-card">
+          <a href="#jana" class="project-card-link">
+            <div class="project-media jana-media">
+              <video autoplay muted loop playsinline>
+                <source src="jana video cropped.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="project-card-info">
+              <div class="project-card-header">
+                <h3>JanaCafe</h3>
+                <span class="project-arrow">↗</span>
+              </div>
+              <p>A matcha beverage brand founded at 18 under Jana Ventures LLC.</p>
+              <div class="project-tags">
+                <span>Entrepreneurship</span>
+                <span>Branding</span>
+                <span>F&amp;B</span>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- RaysDrone -->
+        <article class="project-card">
+          <a href="#drone" class="project-card-link">
+            <div class="project-media drone-media">
+              <video autoplay muted loop playsinline>
+                <source src="raysdrone.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="project-card-info">
+              <div class="project-card-header">
+                <h3>RaysDrone</h3>
+                <span class="project-arrow">↗</span>
+              </div>
+              <p>Cinematic aerial photography and videography across Texas.</p>
+              <div class="project-tags">
+                <span>Cinematography</span>
+                <span>DJI Mavic 3 Pro</span>
+                <span>DaVinci Resolve</span>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!--
+          ═══════════════════════════════════════════════
+          TO ADD A NEW PROJECT — copy this block and fill in:
+
+          <article class="project-card">
+            <a href="#YOUR-ID" class="project-card-link">
+              <div class="project-media">
+                (optional: <video> or <img> tag here)
+              </div>
+              <div class="project-card-info">
+                <div class="project-card-header">
+                  <h3>Project Name</h3>
+                  <span class="project-arrow">↗</span>
+                </div>
+                <p>One-line description.</p>
+                <div class="project-tags">
+                  <span>Tag</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          Then scroll down and add a matching detail section.
+          ═══════════════════════════════════════════════
+        -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- JanaCafe Detail -->
+  <section id="jana" class="project-detail">
+    <div class="container">
+      <a href="#projects" class="back-link">← Projects</a>
+      <div class="detail-header">
+        <h1>JanaCafe</h1>
+        <p class="detail-tagline">Bringing clean, quality matcha to everyday life.</p>
+      </div>
+      <div class="detail-body">
+        <p>JANA is a matcha beverage business I founded at 18 under Jana Ventures LLC. The brand is built around offering clean, high-quality matcha products that support wellness and daily balance. After extensive product development and branding work, JANA has grown into a physical location where customers can experience our drinks in person.</p>
+        <p>This project covers the full entrepreneurial journey — from establishing the LLC and developing the brand identity, to product testing, marketing strategy, and launching the storefront.</p>
+        <h3>What I built</h3>
         <ul>
-          <li>Main</li>
-          <li>I</li>
-          <li>S</li>
+          <li>Registered Jana Ventures LLC and handled all business formation</li>
+          <li>Developed brand identity, packaging, and visual language</li>
+          <li>Managed product sourcing and quality testing</li>
+          <li>Built out marketing strategy and social presence</li>
+          <li>Launched and operated a physical storefront</li>
         </ul>
-        <p>Ta.</p>
       </div>
     </div>
   </section>
 
-  <section id="project-drone" class="project-detail-section content-section">
+  <!-- RaysDrone Detail -->
+  <section id="drone" class="project-detail">
     <div class="container">
-      <a href="#portfolio" class="back-link">&larr; Back to Projects</a>
-      <h1>Drone Cinematography</h1>
-      <p class="project-tagline">Capturing landscapes and events from a unique aerial perspective.</p>
-      
-      <div class="project-content">
-        <p>My passion for drone videography allows me to combine technical skill with creative storytelling. I specialize in cinematic shots of Texas landscapes, urban environments, and event coverage.</p>
-        
-        <h3>Equipment & Skills:</h3>
+      <a href="#projects" class="back-link">← Projects</a>
+      <div class="detail-header">
+        <h1>RaysDrone</h1>
+        <p class="detail-tagline">Capturing landscapes and events from a unique aerial perspective.</p>
+      </div>
+      <div class="detail-body">
+        <p>Drone cinematography is where I combine technical precision with creative storytelling. I specialize in cinematic shots of Texas landscapes, urban environments, and event coverage — always chasing the right light and composition.</p>
+        <h3>Equipment &amp; skills</h3>
         <ul>
-          <li>DJI Mavic 3 Pro (4K/60fps, 10-bit D-Log).</li>
-          <li>Advanced knowledge of FAA regulations and safe flight practices.</li>
-          <li>Post-production editing using DaVinci Resolve.</li>
+          <li>DJI Mavic 3 Pro — 4K/60fps, 10-bit D-Log</li>
+          <li>FAA regulations and airspace management</li>
+          <li>Post-production editing in DaVinci Resolve</li>
         </ul>
-        <p>Vl.</p>
+        <a href="https://www.youtube.com/@rayyan.manzoor" target="_blank" rel="noopener" class="inline-link">Watch on YouTube ↗</a>
       </div>
     </div>
   </section>
 
-  <section id="project-research" class="project-detail-section content-section">
+  <!--
+    ═══════════════════════════════════════════════
+    TO ADD A NEW PROJECT DETAIL SECTION — copy this block:
+
+    <section id="YOUR-ID" class="project-detail">
+      <div class="container">
+        <a href="#projects" class="back-link">← Projects</a>
+        <div class="detail-header">
+          <h1>Project Name</h1>
+          <p class="detail-tagline">Short tagline.</p>
+        </div>
+        <div class="detail-body">
+          <p>Description...</p>
+          <h3>What I built</h3>
+          <ul>
+            <li>Item one</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    ═══════════════════════════════════════════════
+  -->
+
+  <!-- Contact -->
+  <section id="contact">
     <div class="container">
-      <a href="#portfolio" class="back-link">&larr; Back to Projects</a>
-      <h1>Biomedical Research Abstract</h1>
-      <p class="project-tagline">Exploration of neural signaling pathways.</p>
-      
-      <div class="project-content">
-        <p>This academic project, conducted at UTD, focused on the inhibitory effects of novel compounds on specific G-protein coupled receptors (GPCRs) relevant to anesthetic research.</p>
-        
-        <h3>Abstract Summary:</h3>
-        <p>The study utilized cell culture models and fluorescent assays to measure receptor activity. The findings suggest a potential therapeutic window for... [briefly summarize the outcome].</p>
-        <p>Full paper available upon request.</p>
+      <span class="section-label">Say hello</span>
+      <h2>Get in touch</h2>
+      <p>Open to collaborations, opportunities, and good conversations.</p>
+      <div class="contact-actions">
+        <a href="mailto:rayyan@manzoor.net" class="btn-primary">rayyan@manzoor.net</a>
+        <div class="contact-socials">
+          <a href="https://www.instagram.com/rayyan.manz/" target="_blank" rel="noopener">Instagram ↗</a>
+          <a href="https://www.youtube.com/@rayyan.manzoor" target="_blank" rel="noopener">YouTube ↗</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="content-section">
+  <footer>
     <div class="container">
-        <h2>Get In Touch!</h2>
-        <p>I'd love to connect and discuss potential opportunities or collaborations.</p>
-        <div class="contact-info">
-    <a href="mailto:rayyan@manzoor.net" class="contact-link">Email Me</a>
-</div>
+      <p>© 2025 Rayyan Manzoor</p>
     </div>
-  </section>
-  
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
