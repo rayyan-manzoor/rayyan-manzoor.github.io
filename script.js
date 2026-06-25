@@ -1,62 +1,50 @@
-// ─────────────────────────────────────────────
-// Typing animation — hero subtitle
-// To change phrases, edit the array below.
-// ─────────────────────────────────────────────
-const phrases = [
+const heroPhrases = [
   'Biomedical Sciences @ UTD.',
   'Founder of Jana Ventures LLC.',
   'Drone cinematographer.',
-  'Building across disciplines.',
+  'Building across disciplines.'
 ];
 
-let phraseIndex = 0;
-let charIndex   = 0;
-let isDeleting  = false;
+const HOLD_MS = 3800;
+const TRANSITION_MS = 550;
 
-const subtitleEl = document.getElementById('subtitle');
+function startFadeAnimation() {
+  const subtitle = document.getElementById('subtitle');
+  if (!subtitle) return;
 
-function type() {
-  if (!subtitleEl) return;
+  subtitle.classList.add('subtitle-fade');
+  let index = 0;
 
-  const current = phrases[phraseIndex];
-
-  if (isDeleting) {
-    charIndex--;
-  } else {
-    charIndex++;
+  function showPhrase() {
+    subtitle.textContent = heroPhrases[index];
+    requestAnimationFrame(() => {
+      subtitle.classList.add('is-visible');
+    });
   }
 
-  subtitleEl.textContent = current.slice(0, charIndex);
-
-  let delay = isDeleting ? 38 : 62;
-
-  if (!isDeleting && charIndex === current.length) {
-    delay = 2400;
-    isDeleting = true;
-  } else if (isDeleting && charIndex === 0) {
-    isDeleting  = false;
-    phraseIndex = (phraseIndex + 1) % phrases.length;
-    delay       = 420;
+  function cycle() {
+    subtitle.classList.remove('is-visible');
+    setTimeout(() => {
+      index = (index + 1) % heroPhrases.length;
+      showPhrase();
+      setTimeout(cycle, HOLD_MS + TRANSITION_MS);
+    }, TRANSITION_MS);
   }
 
-  setTimeout(type, delay);
+  showPhrase();
+  setTimeout(cycle, HOLD_MS);
 }
 
-// ─────────────────────────────────────────────
-// Scroll fade-in
-// Adds .fade-in to key sections; IntersectionObserver
-// adds .visible when they enter the viewport.
-// ─────────────────────────────────────────────
 function initFadeIn() {
   const targets = document.querySelectorAll(
     '#about, #projects, #certifications, .project-detail, #contact, .project-card, .cert-card, .about-grid'
   );
 
-  targets.forEach(el => el.classList.add('fade-in'));
+  targets.forEach((el) => el.classList.add('fade-in'));
 
   const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
+    (entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
           observer.unobserve(entry.target);
@@ -66,21 +54,18 @@ function initFadeIn() {
     { threshold: 0.08 }
   );
 
-  targets.forEach(el => observer.observe(el));
+  targets.forEach((el) => observer.observe(el));
 }
 
-// ─────────────────────────────────────────────
-// Nav active-link highlight on scroll
-// ─────────────────────────────────────────────
 function initNavHighlight() {
-  const sections  = document.querySelectorAll('section[id]');
-  const navLinks  = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
 
   const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
+    (entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          navLinks.forEach(link => {
+          navLinks.forEach((link) => {
             link.classList.toggle(
               'active',
               link.getAttribute('href') === `#${entry.target.id}`
@@ -92,14 +77,11 @@ function initNavHighlight() {
     { threshold: 0.4 }
   );
 
-  sections.forEach(s => observer.observe(s));
+  sections.forEach((s) => observer.observe(s));
 }
 
-// ─────────────────────────────────────────────
-// Init
-// ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(type, 700);
+  startFadeAnimation();
   initFadeIn();
   initNavHighlight();
 });
